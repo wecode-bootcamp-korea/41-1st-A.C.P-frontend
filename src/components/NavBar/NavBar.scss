@@ -1,0 +1,13 @@
+@import '../../styles/mixin.scss';
+
+// 초기세팅 임시 스타일
+.navBar {
+  @include flexSortCenter();
+  height: 60px;
+  border-bottom: 1px solid #333;
+}
+.navBar a {
+  display: inline-block;
+  margin-left: 8px;
+}
+// 위 내용은 작업시 지워주세요
