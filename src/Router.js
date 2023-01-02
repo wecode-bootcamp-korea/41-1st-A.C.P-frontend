@@ -11,8 +11,8 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Main />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
