@@ -1,8 +1,8 @@
-// 초기 세팅 스타일입니다
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
+@import '../../styles/variables.scss';
+
+.container {
+  background-color: $bgColor;
 }
-// 작업시 지워주세요
+.main {
+  height: 100vh;
+}
