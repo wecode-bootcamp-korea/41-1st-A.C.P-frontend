@@ -11,7 +11,8 @@
   .listFooter {
     display: flex;
     width: 100%;
-    li {
+
+    .itemFooter {
       width: 25%;
       padding: 62px 30px 50px 54px;
       border-right: 1px solid $GRAY666;
@@ -20,11 +21,8 @@
         border-right: none;
       }
 
-      img {
-        width: 86px;
-        & + p {
-          margin-top: 1px;
-        }
+      .copyright {
+        margin-top: 1px;
       }
     }
   }
@@ -45,10 +43,12 @@
     display: flex;
     flex-direction: column;
     margin-top: 12px;
+
     .link {
       display: inline-block;
       color: $bgColor;
       font-size: 13px;
+
       & + .link {
         margin-top: 5px;
       }
