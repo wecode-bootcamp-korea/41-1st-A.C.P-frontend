@@ -55,11 +55,11 @@ export default function Footer() {
 }
 
 const INFO_LIST = [
-  '㈜서윤식물',
-  'CEO - 강서윤',
-  'E-mail - hiImSeoyunKang@Plait.com',
-  'N - 892-75-03231',
-  'Phone - 02 - 5024 -7859',
-  'Address - 서울특별시 강남구 테헤란로 427, 11F',
+  '㈜ Plaît',
+  'CEO: 강서윤',
+  'E-mail: seoyunlefleuve@plait.com',
+  'N: 892-75-03231',
+  'Phone: 02 - 5024 -7859',
+  'Address: 서울특별시 강남구 테헤란로 427, 11F',
   '통신판매업 신고 제 2023-서울-0001호',
 ];
