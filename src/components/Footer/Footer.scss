@@ -1,7 +1,57 @@
+@import '../../styles/variables.scss';
 @import '../../styles/mixin.scss';
 
 .footer {
-  @include flexSortCenter;
-  height: 60px;
+  display: flex;
+  height: 320px;
   border-top: 1px solid #333;
+  background-color: $GRAY252525;
+  color: $bgColor;
+
+  .listFooter {
+    display: flex;
+    width: 100%;
+
+    .itemFooter {
+      width: 25%;
+      padding: 62px 30px 50px 54px;
+      border-right: 1px solid $GRAY666;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      .copyright {
+        margin-top: 1px;
+      }
+    }
+  }
+
+  .listTitle {
+    font-size: 16px;
+  }
+
+  .listDescription {
+    margin-top: 12px;
+    font-size: 13px;
+  }
+  .descInfo {
+    display: block;
+  }
+
+  .boxTerms {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+
+    .link {
+      display: inline-block;
+      color: $bgColor;
+      font-size: 13px;
+
+      & + .link {
+        margin-top: 5px;
+      }
+    }
+  }
 }
