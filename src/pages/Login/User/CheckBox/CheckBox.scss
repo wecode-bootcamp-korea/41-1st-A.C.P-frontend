@@ -1,0 +1,33 @@
+.boxInputCheckBox {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+
+  .inpCheckBox {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    margin-right: 4px;
+    border: 1px solid #bcbbb4;
+    background-color: transparent;
+    appearance: none;
+
+    &::before {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-left: 2px;
+      background-color: transparent;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+      transform: scale(0);
+      content: '';
+    }
+
+    &:checked {
+      &::before {
+        background-color: currentcolor;
+        transform: scale(1);
+      }
+    }
+  }
+}
