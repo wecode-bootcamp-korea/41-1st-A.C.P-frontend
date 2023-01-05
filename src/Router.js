@@ -4,6 +4,7 @@ import Layout from './components/Layout/Layout';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import Products from './pages/Products/Products';
+// import ProductDetail from './pages/Products/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 
@@ -15,6 +16,7 @@ export default function Router() {
           <Route path="" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/products" element={<Products />} />
+          {/* <Route path="/productDetail" element={<ProductDetail />} /> */}
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
         </Route>

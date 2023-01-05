@@ -28,7 +28,7 @@ export default function Order() {
               <span>수령희망일</span>
               <button className="dateSelectBox">날짜 선택</button>
               <div className="selectArrow">
-                <img src="images/productDetail/productDetail_bottom_arrow.png" />
+                <img src="images/order/productDetail_bottom_arrow.png" />
               </div>
               <ul className="selectDate">
                 <li>
@@ -74,7 +74,7 @@ export default function Order() {
           </div>
           <div className="orderProductInfos">
             <div className="orderProductImg">
-              <img src="images/productDetail/productDetail_img_01.jpg" />
+              <img src="images/order/productDetail_img_01.jpg" />
             </div>
             <div className="orderProductMiniInfos">
               <div>
@@ -85,7 +85,7 @@ export default function Order() {
                 <button className="selectBox">
                   <span>1</span>
                   <div className="selectArrow">
-                    <img src="images/productDetail/productDetail_bottom_arrow.png" />
+                    <img src="images/order/productDetail_bottom_arrow.png" />
                   </div>
                 </button>
                 <ul>
