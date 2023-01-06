@@ -46,7 +46,7 @@ export default function MenuList() {
     <div className="menuList">
       <div className="logoPart">
         <Link to="/">
-          <img src="images/logo/plait_logo.png" alt="logo" />
+          <img src="images/common/img_logo_b.png" alt="logo" />
         </Link>
       </div>
       <div className="categoryLeft">
@@ -57,8 +57,8 @@ export default function MenuList() {
               <li className="bigCategoryTitle">{title}</li>
               {categoryItems.map(bigCategoryTitle => {
                 return (
-                  <li key={title} className="bigCategoryTitles">
-                    <Link to="/products" className="title">
+                  <li key={bigCategoryTitle} className="bigCategoryItems">
+                    <Link to="/products" className="bigItem">
                       {bigCategoryTitle}
                     </Link>
                   </li>
@@ -90,7 +90,7 @@ export default function MenuList() {
 
       <div className="menuImage">
         <div className="plantMenuImage">
-          <img src="images/menu/plant_menu_img.jpg" alt="plant_menu_img" />
+          <img src="images/nav/plants_menu_img.jpg" alt="plant_menu_img" />
         </div>
       </div>
     </div>
