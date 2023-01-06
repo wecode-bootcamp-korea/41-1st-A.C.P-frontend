@@ -1,0 +1,91 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variables.scss';
+
+.menuList {
+  width: 100%;
+  height: 695px;
+  background-color: #f0efe0;
+  display: flex;
+
+  .logoPart {
+    width: 19%;
+    img {
+      width: 80px;
+      margin: 79px 0px 0px 50px;
+    }
+  }
+}
+
+.categoryLeft {
+  width: 15%;
+  height: 80%;
+}
+
+.bigCategoryTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $GRAY333;
+}
+
+.title {
+  font-size: 16px;
+  color: $GRAY333;
+}
+
+.bigCategoryTitles {
+  margin-top: 7px;
+}
+
+.categoryRight {
+  width: 25%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .categoryList {
+    width: 50%;
+
+    .categoryTitle {
+      font-size: 16px;
+      color: $GRAY333;
+    }
+  }
+}
+
+.categoryItems {
+  margin-top: 5px;
+}
+
+.categoryList {
+  margin-top: 90px;
+}
+
+//   a:link {
+//     color: $GRAY666;
+//     text-decoration: none;
+//   }
+//   a:visited {
+//     color: $GRAY666;
+//   }
+//   a:hover {
+//     color: $GRAY666;
+//   }
+//   a:active {
+//     color: $GRAY666;
+
+.menuImage {
+  width: 41%;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+
+  .plantMenuImage {
+    position: relative;
+    width: 80%;
+
+    img {
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
