@@ -96,15 +96,3 @@ export default function MenuList() {
     </div>
   );
 }
-
-// function categoryName() {
-//   return <li className="categoryTitle">{categoryTitle}</li>;
-// }
-
-// function categorySpeciesList() {
-//   return (
-//     <li className="categorySpecies">
-//       <Link to="/products">{categorySpecies}</Link>
-//     </li>
-//   );
-// }
