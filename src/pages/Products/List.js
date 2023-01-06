@@ -1,17 +1,14 @@
 /*eslint-disable*/
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import dataList from './DataList';
-import ProductImg from './ProductImg/ProductImg';
+import DataList from './DataList';
+import ProductInfo from './ProductInfo';
 
 function List() {
-  const [data] = useState(dataList);
-
   return (
     <>
-      {data.map(function (item, index) {
-        return <ProductImg item={item} />;
+      {DataList.map(function (item, index) {
+        return <ProductInfo item={item} />;
       })}
     </>
   );

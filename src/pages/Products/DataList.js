@@ -1,4 +1,4 @@
-const dataList = [
+const DataList = [
   {
     id: 1,
     img: 'images/productsList/plant1.jpg',
@@ -42,4 +42,4 @@ const dataList = [
     price: '180,000₩',
   },
 ];
-export default dataList;
+export default DataList;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ProductImg({ item }) {
+function ProductInfo({ item }) {
   const [isHover, setIsHover] = useState(false);
 
   return (
-    <div className="products">
+    <div className="productInfo">
       <Link to={'/product/' + item.id}>
         <div className="productsImg">
           <img
@@ -24,4 +24,4 @@ function ProductImg({ item }) {
   );
 }
 
-export default ProductImg;
+export default ProductInfo;

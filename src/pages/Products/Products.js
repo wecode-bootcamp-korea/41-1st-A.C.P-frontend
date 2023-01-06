@@ -1,28 +1,43 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
-import './Products.scss';
 import List from './List';
+import FilterData from './FilterData';
+import FilterModal from './FilterModal';
+import './Products.scss';
 
 export default function Products() {
   const [plus, setPlus] = useState(1);
+  const [modal, setModal] = useState(false);
+  const { species, categoryInfo } = FilterData;
+
   return (
     <>
-      <div>배너</div>
       <div className="filter">
-        <ul className="plantsFilter">
-          <li className="plantFilter">식물 모두 보기</li>
-          <li className="plantFilter1">천남성과</li>
-          <li className="plantFilter1">덩굴식물</li>
-          <li className="plantFilter1">양치식물</li>
-          <li className="plantFilter1">소철, 허브</li>
-          <li className="plantFilter1">선인장</li>
-          <li className="plantFilter1">목본류</li>
-        </ul>
-
-        <button className="filterBox">필터</button>
+        <>
+          <ul className="plantsFilter">
+            식물 모두 보기 |
+            {species.map(function (categoryL, index) {
+              return (
+                //1. FilterData - species - categoryL의 관계
+                <li key={categoryL.id} className="plantFilter">
+                  {categoryL.name}
+                </li>
+              );
+            })}
+          </ul>
+        </>
+        <button
+          className="filterButton"
+          onClick={() => {
+            setModal(!modal);
+          }}
+        >
+          필터
+        </button>
       </div>
+      {modal ? <FilterModal categoryInfo={categoryInfo} /> : null}
       <div className="productsMain">
-        <List></List>
+        <List />
       </div>
       <div className="button">
         <button
