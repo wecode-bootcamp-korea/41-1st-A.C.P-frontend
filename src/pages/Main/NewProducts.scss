@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.newProductBox {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 30px;
+
+  .newProductImg {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .newProductDetail {
+    font-size: 16px;
+
+    p {
+      display: flex;
+      justify-content: center;
+    }
+
+    .newProductName {
+      color: $GRAY333;
+    }
+
+    .newProductPrice {
+      color: $GRAY666;
+    }
+  }
+}
