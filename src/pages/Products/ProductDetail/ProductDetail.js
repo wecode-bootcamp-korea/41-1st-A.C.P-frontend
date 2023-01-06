@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import './ProductDetail.scss';
@@ -32,6 +32,35 @@ function ProductDetail() {
       .then(res => res.json())
       .then(data => setProductInfo(data));
   }, []);
+
+  // BE와 통신세팅
+  // const productInfos = () => {
+  //   fetch(
+  //     'http://10.58.52.199:3000/??',
+  //     {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //       },
+  //       body: JSON.stringify({
+  //         name: '',
+  //         description: '',
+  //         species: '',
+  //         size: '',
+  //         position: '',
+  //         mood: '',
+  //         difficulty: '',
+  //         care: '',
+  //         price: '',
+  //       })
+  //         .then(res => res.json())
+  //         .then(data => {
+  //           console.log(data);
+  //         }),
+  //     },
+  //     []
+  //   );
+  // };
 
   return (
     <div className="productDetail">
