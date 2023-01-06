@@ -1,9 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Modal from './components/Modal';
+import ProductInfo from './components/ProductInfo';
 import './ProductDetail.scss';
 
 function ProductDetail() {
+  const navigate = useNavigate();
+
+  const [modal1, setModal1] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [productInfo, setProductInfo] = useState([]);
+
+  const handleModal1 = e => {
+    setModal1(true);
+  };
+
+  const handleModal2 = e => {
+    setModal2(true);
+  };
+
+  const goToOrder = e => {
+    navigate('/order');
+  };
+
+  const goToCart = e => {
+    navigate('/cart');
+  };
+
+  useEffect(() => {
+    fetch('data/productInfo.json')
+      .then(res => res.json())
+      .then(data => setProductInfo(data));
+  }, []);
+
   return (
     <div className="productDetail">
       <div className="productDetailTop">
@@ -14,31 +43,23 @@ function ProductDetail() {
           <h1>Product Name</h1>
           <p>one line description</p>
           <ul>
-            <li>
-              <span>종류</span>
-              <p>천남성과 (Araceae)</p>
-            </li>
-            <li>
-              <span>크기</span>
-              <p>20 - 40cm</p>
-            </li>
-            <li>
-              <span>위치</span>
-              <p>Houseplant</p>
-            </li>
-            <li>
-              <span>분위기</span>
-              <p>adorable</p>
-            </li>
+            {productInfo.map(productInfoDetail => {
+              return (
+                <ProductInfo
+                  key={productInfoDetail.id}
+                  productInfoDetail={productInfoDetail}
+                />
+              );
+            })}
           </ul>
           <ul className="plantingInfos">
             <li className="difficulty">
               <span>난이도</span>
-              <span className="difficultyDot difficultyDotFill"></span>
-              <span className="difficultyDot difficultyDotFill"></span>
-              <span className="difficultyDot difficultyDotEmpty"></span>
-              <span className="difficultyDot difficultyDotEmpty"></span>
-              <span className="difficultyDot difficultyDotEmpty"></span>
+              <span className="difficultyDot difficultyDotFill" />
+              <span className="difficultyDot difficultyDotFill" />
+              <span className="difficultyDot difficultyDotEmpty" />
+              <span className="difficultyDot difficultyDotEmpty" />
+              <span className="difficultyDot difficultyDotEmpty" />
             </li>
             <li className="plantingCare">
               <span>케어</span>
@@ -46,10 +67,12 @@ function ProductDetail() {
             </li>
           </ul>
           <div className="productDetailBtns">
-            <Link to="/order" className="linkToOrder">
-              <button className="payBtn">구매하기 &nbsp;90,000₩ </button>
-            </Link>
-            <button className="cartBtn">장바구니</button>
+            <button className="payBtn" onClick={handleModal1}>
+              구매하기 &nbsp;90,000₩
+            </button>
+            <button className="cartBtn" onClick={handleModal2}>
+              장바구니
+            </button>
           </div>
         </div>
       </div>
@@ -64,10 +87,46 @@ function ProductDetail() {
           <p>신문지와 종이테이프만을 사용하여 정성스럽게 포장해드립니다</p>
         </div>
       </div>
+      {modal1 && (
+        <Modal
+          goToOrder={goToOrder}
+          goToCart={goToCart}
+          text="( '아니오'를 클릭하시면, 바로 주문결제페이지로 이동합니다. )"
+          component1={
+            <p>
+              장바구니에 담긴 상품이 있습니다. <br />
+              함께 구매하시겠습니까?
+            </p>
+          }
+          onClose={() => setModal1(false)}
+          component2={
+            <div className="modalBtn">
+              <button onClick={goToCart}>네</button>
+              <button onClick={goToOrder}>아니오</button>
+            </div>
+          }
+        />
+      )}
+      {modal2 && (
+        <Modal
+          goToCart={goToCart}
+          text=""
+          component1={
+            <p>
+              장바구니에 상품을 담았습니다. <br />
+              이동하시겠습니까?
+            </p>
+          }
+          onClose={() => setModal2(false)}
+          component2={
+            <div className="modalBtn btn2">
+              <button onClick={goToCart}>이동</button>
+            </div>
+          }
+        />
+      )}
     </div>
   );
 }
-// 구매하기 버튼 누르면 결제페이지
-// 장바구니 버튼 누르면 장바구니 팝업
 
 export default ProductDetail;

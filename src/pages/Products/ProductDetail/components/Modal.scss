@@ -1,0 +1,75 @@
+@import '../../../../styles/variables.scss';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+
+  .modalBox {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 33%;
+    height: 300px;
+    // border: 1px solid #333;
+    background: $bgColor;
+    text-align: center;
+
+    p {
+      margin-top: 84px;
+      font-size: 16px;
+      font-weight: 500;
+      color: $GRAY333;
+    }
+
+    .modalSubTxt {
+      margin-top: 6px;
+      font-size: 14px;
+      font-weight: 400;
+      color: $GRAY666;
+    }
+
+    .modalBtn {
+      width: 50%;
+      margin: 0 auto;
+      margin-top: 30px;
+
+      button {
+        width: 40%;
+        padding: 15px;
+        margin-right: 40px;
+        border: none;
+        background: $GRAY333;
+
+        font-size: 16px;
+        color: $bgColor;
+        cursor: pointer;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .btn2 {
+      margin-top: 57px;
+    }
+
+    .closeX {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      width: 15px;
+
+      img {
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+  }
+}
