@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ORDERED_TABLE_TITLE } from './components/ORDERED_TABLE_TITLE';
+import OrderedInfo from './components/OrderedInfo';
 import './Ordered.scss';
 
-function ordered() {
+function Ordered() {
+  const [orderedInfo, setOrderedInfo] = useState([]);
+
+  useEffect(() => {
+    fetch('data/orderedProductInfo.json')
+      .then(res => res.json())
+      .then(data => setOrderedInfo(data));
+  });
+
   return (
     <div className="ordered">
       <div className="orderedTop">
@@ -19,21 +29,15 @@ function ordered() {
         <table>
           <thead>
             <tr>
-              <th>주문번호</th>
-              <th>상품명</th>
-              <th>수량</th>
-              <th>배송지</th>
-              <th>수령희망일</th>
+              {ORDERED_TABLE_TITLE.map(item => {
+                return <th key={item.id}>{item.title}</th>;
+              })}
             </tr>
           </thead>
           <tfoot>
-            <tr>
-              <td>00001</td>
-              <td>여인초</td>
-              <td>1</td>
-              <td>서울특별시 선릉로 위워크타워 1층</td>
-              <td>2023년 1월 12일</td>
-            </tr>
+            {orderedInfo.map(info => {
+              return <OrderedInfo key={info.id} info={info} />;
+            })}
           </tfoot>
         </table>
         <div className="orderedHomeBtn">
@@ -46,4 +50,4 @@ function ordered() {
   );
 }
 
-export default ordered;
+export default Ordered;
