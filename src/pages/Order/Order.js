@@ -3,6 +3,22 @@ import { Link } from 'react-router-dom';
 import InfoInput from './components/InfoInput';
 import './Order.scss';
 
+const SELECT_DATE = [
+  { id: 1, date: '1일 후' },
+  { id: 2, date: '2일 후' },
+  { id: 3, date: '3일 후' },
+  { id: 4, date: '4일 후' },
+  { id: 5, date: '5일 후' },
+];
+
+const INFOINPUT_LABEL_VALUE = [
+  { id: 1, value: '수령인 성함' },
+  { id: 2, value: '수령인 전화번호' },
+  { id: 3, value: '우편번호' },
+  { id: 4, value: '주소' },
+  { id: 5, value: '상세주소' },
+];
+
 export default function Order() {
   return (
     <div className="order">
@@ -17,40 +33,33 @@ export default function Order() {
         <div className="destinationInfos">
           <h2>배송지 정보</h2>
           <div className="infoInputs">
-            <InfoInput label="수령인 성함" />
-            <InfoInput label="수령인 전화번호" />
-            <InfoInput label="우편번호" />
-            <InfoInput label="주소" />
-            <InfoInput label="상세주소" />
+            {INFOINPUT_LABEL_VALUE.map(data => {
+              return <InfoInput key={data.id} label={data.value} />;
+            })}
           </div>
           <ul>
             <li className="desiredWant">
               <span>수령희망일</span>
               <button className="dateSelectBox">날짜 선택</button>
               <div className="selectArrow">
-                <img src="images/order/productDetail_bottom_arrow.png" />
+                <img
+                  src="images/order/productDetail_bottom_arrow.png"
+                  alt="선택리스트 창 열기 버튼"
+                />
               </div>
               <ul className="selectDate">
-                <li>
-                  <button>1일 후</button>
-                </li>
-                <li>
-                  <button>2일 후</button>
-                </li>
-                <li>
-                  <button>3일 후</button>
-                </li>
-                <li>
-                  <button>4일 후</button>
-                </li>
-                <li>
-                  <button>5일 후</button>
-                </li>
+                {SELECT_DATE.map(data => {
+                  return (
+                    <li key={data.id}>
+                      <button>{data.date}</button>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
             <li>
               <span>배송메세지</span>
-              <textarea placeholder="부재 시, 문 앞에 두고 가주세요."></textarea>
+              <textarea placeholder="부재 시, 문 앞에 두고 가주세요." />
             </li>
           </ul>
         </div>
@@ -74,7 +83,10 @@ export default function Order() {
           </div>
           <div className="orderProductInfos">
             <div className="orderProductImg">
-              <img src="images/order/productDetail_img_01.jpg" />
+              <img
+                src="images/order/productDetail_img_01.jpg"
+                alt="상품이미지"
+              />
             </div>
             <div className="orderProductMiniInfos">
               <div>
@@ -85,7 +97,10 @@ export default function Order() {
                 <button className="selectBox">
                   <span>1</span>
                   <div className="selectArrow">
-                    <img src="images/order/productDetail_bottom_arrow.png" />
+                    <img
+                      src="images/order/productDetail_bottom_arrow.png"
+                      alt="선택리스트 창 열기 버튼"
+                    />
                   </div>
                 </button>
                 <ul>
