@@ -1,55 +1,81 @@
 import React, { useState } from 'react';
 import CheckBox from './CheckBox/CheckBox';
 import TextInput from './TextInput/TextInput';
+import { GET_USER_INFO_API, RESIST_USER_INFO_API } from '../../../config';
+import { LOGIN_INPUT_LIST, SIGNUP_INPUT_LIST } from './uidata';
+import { fetchData } from './config';
 import './User.scss';
 
-export default function User({ title, children }) {
+export default function User({ title, children, setIsModalOpen }) {
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
     userName: '',
     phoneNumber: '',
   });
+  const [isValid, setIsValid] = useState({
+    email: false,
+    password: false,
+  });
   const [passwordType, setPasswordType] = useState('password');
+
+  const allVaild = isValid.email && isValid.password;
+
+  const handleFormSubmit = e => {
+    e.preventDefault();
+
+    if (allVaild) {
+      let userData =
+        title === '로그인'
+          ? {
+              email: userInfo.email,
+              password: userInfo.password,
+            }
+          : {
+              email: userInfo.email,
+              password: userInfo.password,
+              name: userInfo.userName,
+              phoneNumber: userInfo.phoneNumber,
+            };
+
+      const res = fetchData(
+        title === '로그인' ? GET_USER_INFO_API : RESIST_USER_INFO_API,
+        'POST',
+        userData
+      );
+      const data = res.json();
+
+      console.log('통신 성공! 데이터 확인 >>>', data);
+      // 통신 성공 후 환영 모달창 오픈 예정
+      setIsModalOpen(prev => !prev);
+    } else {
+      alert(
+        `Validation Error! 이메일 검사 : ${isValid.email} / 비밀번호 검사 ${isValid.password}`
+      );
+    }
+  };
+
+  const inputList = title === '로그인' ? LOGIN_INPUT_LIST : SIGNUP_INPUT_LIST;
 
   return (
     <div className="user">
       <h1 className="userTitle">{title}</h1>
-      <form className="form" onSubmit={e => e.preventDefault()}>
-        {title === '회원가입' && (
-          <TextInput
-            type="text"
-            name="userName"
-            placeholder="이름"
-            userInfo={userInfo}
-            setUserInfo={setUserInfo}
-          />
-        )}
-        <TextInput
-          type="text"
-          name="email"
-          placeholder="이메일 입력"
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-        />
-        <TextInput
-          type={passwordType}
-          name="password"
-          placeholder="비밀번호"
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-          passwordType={passwordType}
-          setPasswordType={setPasswordType}
-        />
-        {title === '회원가입' && (
-          <TextInput
-            type="text"
-            name="phoneNumber"
-            placeholder="휴대폰 번호"
-            userInfo={userInfo}
-            setUserInfo={setUserInfo}
-          />
-        )}
+      <form className="form" onSubmit={handleFormSubmit}>
+        {inputList.map(list => {
+          const { id, type, name, label } = list;
+          return (
+            <TextInput
+              key={id}
+              type={name === 'password' ? passwordType : type}
+              name={name}
+              label={label}
+              inputValue={userInfo.name}
+              setUserInfo={setUserInfo}
+              setPasswordType={name === 'password' ? setPasswordType : null}
+              setIsValid={setIsValid}
+            />
+          );
+        })}
 
         {title === '회원가입' && (
           <div className="wrapInpChk">

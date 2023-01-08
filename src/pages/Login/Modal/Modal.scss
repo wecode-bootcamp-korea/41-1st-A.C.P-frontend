@@ -1,0 +1,44 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background-color: rgba(#000, 0.5);
+
+  .innerModal {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    min-width: 320px;
+    max-width: 550px;
+    padding: 50px;
+    margin: 0 auto;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+  }
+
+  .title {
+    font-weight: normal;
+    color: $GRAY333;
+  }
+
+  .text {
+    margin-top: 4px;
+  }
+
+  .btnMore {
+    @include btnFill;
+    margin-top: 20px;
+  }
+
+  .btnClose {
+    @include position($right: 25px, $top: 25px);
+    @include btnText($fontColor: #333);
+    font-size: 20px;
+  }
+}
