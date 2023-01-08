@@ -34,39 +34,32 @@ function ProductDetail() {
   }, []);
 
   // BE와 통신세팅
-  // const productInfos = () => {
-  //   fetch(
-  //     'http://10.58.52.199:3000/??',
-  //     {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=utf-8',
-  //       },
-  //       body: JSON.stringify({
-  //         name: '',
-  //         description: '',
-  //         species: '',
-  //         size: '',
-  //         position: '',
-  //         mood: '',
-  //         difficulty: '',
-  //         care: '',
-  //         price: '',
-  //       })
-  //         .then(res => res.json())
-  //         .then(data => {
-  //           console.log(data);
-  //         }),
+  // const fetchProductInfos = e => {
+  //   e.preventDefault();
+
+  //   fetch('http://10.58.52.67:3000/plants/1', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
   //     },
-  //     []
-  //   );
+  //     body: JSON.stringify({
+  //       plant_id: 1,
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //     }, []);
   // };
 
   return (
     <div className="productDetail">
       <div className="productDetailTop">
         <div className="productDetailImage">
-          <img src="images/productDetail/productDetail_img_01.jpg" />
+          <img
+            src="images/productDetail/productDetail_img_01.jpg"
+            alt="상품이미지"
+          />
         </div>
         <div className="productDetailInfos">
           <h1>Product Name</h1>
