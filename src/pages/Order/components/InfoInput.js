@@ -17,7 +17,7 @@ function InfoInput({ label }) {
   };
 
   return (
-    <div className={`orderTextInput${move === true ? ' move' : ''}`}>
+    <div className={`orderTextInput${move ? ' move' : ''}`}>
       <input
         type="text"
         onFocus={onFocusInput}

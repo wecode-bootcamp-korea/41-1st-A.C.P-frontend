@@ -38,7 +38,7 @@ export default function Order() {
                   alt="선택리스트 창 열기 버튼"
                 />
               </div>
-              <ul className={`selectDate${dateBox === true ? ' show' : ''}`}>
+              <ul className={`selectDate${dateBox ? ' show' : ''}`}>
                 {SELECT_DATE.map(data => {
                   return (
                     <li key={data.id}>
