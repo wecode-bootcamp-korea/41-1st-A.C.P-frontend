@@ -1,18 +1,51 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/variables.scss';
+@import '../../styles/common.scss';
 
 .navBar {
+  width: 100%;
   height: 80px;
   background-color: $bgColor;
   display: flex;
   align-items: center;
   padding: 0px 50px;
+  position: fixed;
+  z-index: 1;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .closeBtn {
+    display: none;
+  }
+
+  .closeBtnShow {
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+
+    img {
+      width: 13px;
+      height: 13px;
+      margin-left: 5px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   .navBarLeft {
     width: 18%;
     display: flex;
     justify-content: space-between;
-    color: black;
+
+    .menuCate {
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
   }
 
   .navBarRight {
@@ -22,4 +55,8 @@
     position: absolute;
     right: 50px;
   }
+}
+
+.contentsNull {
+  display: none;
 }

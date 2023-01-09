@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './MenuList.scss';
+import './PlantsCate.scss';
 
-export default function MenuList() {
+export default function PlantsCate() {
   return (
-    <div className="menuList">
+    <div className="plantsCate">
       <div className="logoPart">
         <Link to="/">
           <img src="images/common/img_logo_b.png" alt="logo" />
