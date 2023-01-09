@@ -38,6 +38,7 @@
           label {
             position: absolute;
             top: 25px;
+            transition: all 0.3s ease;
             left: 0;
             color: $GRAY666;
             font-size: 18px;
@@ -104,6 +105,7 @@
           label {
             position: absolute;
             top: 25px;
+            transition: all 0.3s ease;
             left: 0;
             color: $GRAY666;
             font-size: 18px;
@@ -138,7 +140,7 @@
             }
 
             textarea {
-              width: 100%;
+              width: 95%;
               height: 100px;
               padding: 10px;
               border: 1px solid #d5d4c9;
@@ -178,19 +180,16 @@
 
             img {
               width: 100%;
+              cursor: pointer;
             }
           }
 
           .selectDate {
-            // display: none;
+            display: none;
             height: 80px;
             border: 1px solid #d5d4c9;
             margin-top: 5px;
             overflow: scroll;
-
-            // &::-webkit-scrollbar {
-            //   width: 5px;
-            // }
 
             li {
               padding: 2px 0;
@@ -199,11 +198,11 @@
               text-align: center;
 
               &:first-child {
-                padding-top: 8px;
+                padding-top: 10px;
               }
 
               &:last-child {
-                padding-bottom: 8px;
+                padding-bottom: 10px;
               }
             }
 
@@ -213,6 +212,18 @@
               font-size: 14px;
               color: $GRAY666;
               cursor: pointer;
+            }
+
+            &.show {
+              display: block;
+              height: 80px;
+              border: 1px solid #d5d4c9;
+              margin-top: 5px;
+              overflow: scroll;
+            }
+
+            &::-webkit-scrollbar {
+              display: none;
             }
           }
         }
@@ -228,147 +239,6 @@
         color: $GRAY666;
 
         cursor: pointer;
-      }
-    }
-  }
-
-  .orderRight {
-    width: 100%;
-    background: $bgColorPoint;
-
-    .orderInfosFixed {
-      width: 100%;
-
-      .orderPriceInfos {
-        width: 70%;
-        margin: 0 auto;
-        padding-bottom: 30px;
-
-        div {
-          display: flex;
-          justify-content: space-between;
-          padding-top: 120px;
-
-          font-size: 16px;
-          color: $GRAY333;
-
-          &:nth-child(2) {
-            padding: 30px 0;
-            border-bottom: 1px solid #d5d4c9;
-          }
-
-          &:nth-child(3) {
-            padding-top: 30px;
-            span {
-              &:last-child {
-                font-weight: 700;
-              }
-            }
-          }
-
-          span {
-            &:first-child {
-            }
-
-            &:last-child {
-            }
-          }
-        }
-      }
-
-      .orderProductInfos {
-        display: flex;
-        justify-content: space-between;
-
-        width: 71%;
-        margin: 0 auto;
-        padding: 15px 0 42px;
-        border-top: 2px solid $GRAY333;
-        border-bottom: 1px solid $GRAY666;
-
-        .orderProductImg {
-          display: inline-block;
-          width: 50%;
-          margin-top: 30px;
-          overflow: hidden;
-
-          img {
-            width: 100%;
-          }
-        }
-
-        .orderProductMiniInfos {
-          display: flex;
-          flex-direction: column;
-          width: 30%;
-          margin: 30px 0 0 30px;
-          padding-right: 80px;
-
-          div:first-child {
-            height: 215px;
-
-            p {
-              &:first-child {
-                font-size: 16px;
-                font-weight: 600;
-                color: $GRAY333;
-              }
-
-              &:last-child {
-                font-size: 14px;
-                color: $GRAY666;
-              }
-            }
-          }
-
-          div:last-child {
-            .selectBox {
-              display: flex;
-              justify-content: space-between;
-              width: 50px;
-              padding: 5px 11px;
-              border: 1px solid $GRAY333;
-              background: $bgColor;
-              color: $GRAY333;
-
-              .selectArrow {
-                display: inline-block;
-                width: 9px;
-
-                img {
-                  width: 100%;
-                  padding-bottom: 1px;
-                }
-              }
-            }
-
-            ul {
-              // display: none;
-              width: 48px;
-              height: 60px;
-              margin-top: 2px;
-              border: 1px solid $GRAY333;
-
-              overflow: scroll;
-
-              li {
-                button {
-                  width: 48px;
-                  padding: 5px 15px;
-                  border: none;
-                  background: $bgColor;
-                }
-              }
-            }
-
-            p {
-              margin-top: 5px;
-              color: $GRAY333;
-              font-size: 16px;
-              font-weight: 600;
-            }
-          }
-        }
       }
     }
   }

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InfoInput from './components/InfoInput';
 import OrderRight from '../../components/OrderRight/OrderRight';
 import './Order.scss';
 
 const SELECT_DATE = [
-  { id: 1, date: '3일 후' },
-  { id: 2, date: '4일 후' },
-  { id: 3, date: '5일 후' },
-  { id: 4, date: '6일 후' },
-  { id: 5, date: '7일 후' },
+  { id: 1, date: '날짜 선택' },
+  { id: 2, date: '주문일로부터 2일 후' },
+  { id: 3, date: '주문일로부터 3일 후' },
+  { id: 4, date: '주문일로부터 4일 후' },
+  { id: 5, date: '주문일로부터 5일 후' },
+  { id: 6, date: '주문일로부터 6일 후' },
 ];
 
 const INFOINPUT_LABEL_VALUE = [
@@ -20,6 +21,13 @@ const INFOINPUT_LABEL_VALUE = [
 ];
 
 export default function Order() {
+  const [dateBox, setDateBox] = useState(false);
+  const [date, setDate] = useState('날짜 선택');
+
+  const showDateBox = e => {
+    setDateBox(!dateBox);
+  };
+
   return (
     <div className="order">
       <div className="orderLeft">
@@ -38,20 +46,26 @@ export default function Order() {
             })}
           </div>
           <ul>
-            <li className="desiredWant">
+            <li className="desiredWant" onClick={showDateBox}>
               <span>수령희망일</span>
-              <button className="dateSelectBox">날짜 선택</button>
+              <button className="dateSelectBox">{date}</button>
               <div className="selectArrow">
                 <img
                   src="images/order/productDetail_bottom_arrow.png"
                   alt="선택리스트 창 열기 버튼"
                 />
               </div>
-              <ul className="selectDate">
+              <ul className={`selectDate${dateBox === true ? ' show' : ''}`}>
                 {SELECT_DATE.map(data => {
                   return (
                     <li key={data.id}>
-                      <button>{data.date}</button>
+                      <button
+                        onClick={e => {
+                          return setDate(data.date);
+                        }}
+                      >
+                        {data.date}
+                      </button>
                     </li>
                   );
                 })}
