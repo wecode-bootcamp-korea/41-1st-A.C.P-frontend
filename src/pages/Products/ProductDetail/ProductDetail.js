@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import './ProductDetail.scss';
@@ -7,24 +7,20 @@ import './ProductDetail.scss';
 function ProductDetail() {
   const navigate = useNavigate();
 
-  const [modal1, setModal1] = useState(false);
+  // const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
 
-  const handleModal1 = e => {
-    setModal1(true);
-  };
+  // const handleModal1 = e => {
+  //   setModal1(true);
+  // };
 
   const handleModal2 = e => {
     setModal2(true);
   };
 
-  const goToOrder = e => {
-    navigate('/order');
-  };
-
-  const goToCart = e => {
-    navigate('/cart');
+  const goToPage = path => {
+    navigate(`/${path}`);
   };
 
   useEffect(() => {
@@ -89,7 +85,12 @@ function ProductDetail() {
             </li>
           </ul>
           <div className="productDetailBtns">
-            <button className="payBtn" onClick={handleModal1}>
+            <button
+              className="payBtn"
+              onClick={() => {
+                goToPage('order');
+              }}
+            >
               구매하기 &nbsp;90,000₩
             </button>
             <button className="cartBtn" onClick={handleModal2}>
@@ -103,46 +104,44 @@ function ProductDetail() {
           <p>하늘 아래 같은 식물은 없다</p>
           <p>각 식물의 고유한 수형을 담아 한 식물은 하나만 판매해요</p>
         </div>
-        <span></span>
+        <span />
         <div className="ecoPackaging">
           <p>신문지 포장으로 환경과 친하게</p>
           <p>신문지와 종이테이프만을 사용하여 정성스럽게 포장해드립니다</p>
         </div>
       </div>
-      {modal1 && (
+      {/* { 장바구니에 해당 상품 아이디가 있으면 ? (
         <Modal
           goToOrder={goToOrder}
           goToCart={goToCart}
-          text="( '아니오'를 클릭하시면, 바로 주문결제페이지로 이동합니다. )"
+          // text="( '아니오'를 클릭하시면, 바로 주문결제페이지로 이동합니다. )"
           component1={
             <p>
-              장바구니에 담긴 상품이 있습니다. <br />
-              함께 구매하시겠습니까?
+              장바구니에 이미 동일한 상품이 있습니다. <br />
+              장바구니로 이동하시겠습니까?
             </p>
           }
           onClose={() => setModal1(false)}
           component2={
             <div className="modalBtn">
-              <button onClick={goToCart}>네</button>
-              <button onClick={goToOrder}>아니오</button>
+              <button onClick={goToPage(cart)}>이동</button>
             </div>
           }
         />
-      )}
+      ) : ? } */}
       {modal2 && (
         <Modal
-          goToCart={goToCart}
-          text=""
+          goToCart={() => goToPage('cart')}
           component1={
             <p>
-              장바구니에 상품을 담았습니다. <br />
-              이동하시겠습니까?
+              장바구니에 상품이 담겼습니다. <br />
+              장바구니로 이동하시겠습니까?
             </p>
           }
           onClose={() => setModal2(false)}
           component2={
             <div className="modalBtn btn2">
-              <button onClick={goToCart}>이동</button>
+              <button onClick={() => goToPage('cart')}>이동</button>
             </div>
           }
         />

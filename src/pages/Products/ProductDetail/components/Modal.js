@@ -1,7 +1,7 @@
 import React from 'react';
 import './Modal.scss';
 
-function Modal({ text, onClose, component1, component2 }) {
+function Modal({ onClose, component1, component2 }) {
   const handleCloseX = e => {
     onClose();
   };
@@ -10,10 +10,10 @@ function Modal({ text, onClose, component1, component2 }) {
     <div className="modal">
       <div className="modalBox">
         {component1}
-        <p className="modalSubTxt">{text}</p>
+        {/* <p className="modalSubTxt">{text}</p> */}
         {component2}
         <div className="closeX" onClick={handleCloseX}>
-          <img src="images/productDetail/close_btn.png" />
+          <img src="images/productDetail/close_btn.png" alt="닫기" />
         </div>
       </div>
     </div>
