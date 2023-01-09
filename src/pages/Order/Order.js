@@ -3,23 +3,6 @@ import InfoInput from './components/InfoInput';
 import OrderRight from '../../components/OrderRight/OrderRight';
 import './Order.scss';
 
-const SELECT_DATE = [
-  { id: 1, date: '날짜 선택' },
-  { id: 2, date: '주문일로부터 2일 후' },
-  { id: 3, date: '주문일로부터 3일 후' },
-  { id: 4, date: '주문일로부터 4일 후' },
-  { id: 5, date: '주문일로부터 5일 후' },
-  { id: 6, date: '주문일로부터 6일 후' },
-];
-
-const INFOINPUT_LABEL_VALUE = [
-  { id: 1, value: '수령인 성함' },
-  { id: 2, value: '수령인 전화번호' },
-  { id: 3, value: '우편번호' },
-  { id: 4, value: '주소' },
-  { id: 5, value: '상세주소' },
-];
-
 export default function Order() {
   const [dateBox, setDateBox] = useState(false);
   const [date, setDate] = useState('날짜 선택');
@@ -82,3 +65,20 @@ export default function Order() {
     </div>
   );
 }
+
+const SELECT_DATE = [
+  { id: 1, date: '날짜 선택' },
+  { id: 2, date: '주문일로부터 2일 후' },
+  { id: 3, date: '주문일로부터 3일 후' },
+  { id: 4, date: '주문일로부터 4일 후' },
+  { id: 5, date: '주문일로부터 5일 후' },
+  { id: 6, date: '주문일로부터 6일 후' },
+];
+
+const INFOINPUT_LABEL_VALUE = [
+  { id: 1, value: '수령인 성함' },
+  { id: 2, value: '수령인 전화번호' },
+  { id: 3, value: '우편번호' },
+  { id: 4, value: '주소' },
+  { id: 5, value: '상세주소' },
+];
