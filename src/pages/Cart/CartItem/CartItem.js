@@ -1,9 +1,10 @@
 import React from 'react';
 import CheckBox from '../CheckBox/CheckBox';
+import SelectBoxQuantity from '../SelectBoxQuantity/SelectBoxQuantity';
 import './CartItem.scss';
 
 export default function CartItem({
-  data: { id, name, description, price, quantity, imgUrl },
+  cartItem: { id, name, description, price, quantity, imgUrl },
   setCartItems,
 }) {
   const updateCartQuantity = () => {
@@ -26,10 +27,7 @@ export default function CartItem({
           <p className="description">{description}</p>
         </div>
         <div className="boxPrice">
-          <select name="itemNum" id="">
-            <option value="1">1</option>
-            <option value="1">2</option>
-          </select>
+          <SelectBoxQuantity />
           <span className="priceInfo">
             <span className="titlePrice">주문금액</span>
             <span className="numPrice">
