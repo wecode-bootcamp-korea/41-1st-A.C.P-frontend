@@ -28,7 +28,7 @@
     margin: 30px 0 0 30px;
     padding-right: 80px;
 
-    div:first-child {
+    .miniInfoDetail {
       height: 215px;
 
       p {
@@ -45,70 +45,11 @@
       }
     }
 
-    div:last-child {
-      .selectBox {
-        display: flex;
-        justify-content: space-between;
-        width: 50px;
-        padding: 5px 11px;
-        border: 1px solid $GRAY333;
-        background: $bgColor;
-        color: $GRAY333;
-
-        cursor: pointer;
-
-        .selectArrow {
-          display: inline-block;
-          width: 9px;
-
-          img {
-            width: 100%;
-            padding-bottom: 1px;
-          }
-        }
-      }
-
-      ul {
-        display: none;
-        width: 48px;
-        height: 60px;
-        padding: 3px 0;
-        margin-top: 2px;
-        border: 1px solid $GRAY333;
-        background: $bgColor;
-
-        overflow: scroll;
-
-        li {
-          button {
-            width: 48px;
-            padding: 5px 15px;
-            border: none;
-            background: $bgColor;
-
-            cursor: pointer;
-          }
-        }
-
-        &.show {
-          display: block;
-          width: 48px;
-          height: 60px;
-          margin-top: 2px;
-          border: 1px solid $GRAY333;
-        }
-
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      }
-
-      p {
-        margin-top: 5px;
-        color: $GRAY333;
-        font-size: 16px;
-        font-weight: 600;
-      }
+    .price {
+      margin-top: 5px;
+      color: $GRAY333;
+      font-size: 16px;
+      font-weight: 600;
     }
   }
 }
