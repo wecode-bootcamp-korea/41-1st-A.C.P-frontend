@@ -46,8 +46,6 @@ export default function User({ title, children, setIsModalOpen }) {
       const data = res.json();
 
       console.log('통신 성공! 데이터 확인 >>>', data);
-      // 통신 성공 후 환영 모달창 오픈 예정
-      setIsModalOpen(prev => !prev);
     } else {
       alert(
         `Validation Error! 이메일 검사 : ${isValid.email} / 비밀번호 검사 ${isValid.password}`

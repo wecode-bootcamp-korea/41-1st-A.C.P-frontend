@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import User from './User/User';
-import Modal from './Modal/Modal';
 import './Login.scss';
 
 export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const loginChildren = (
     <>
@@ -39,15 +37,11 @@ export default function Login() {
           }}
         />
         <article className="articleRight">
-          <User
-            title={isLoginPage ? '로그인' : '회원가입'}
-            setIsModalOpen={setIsModalOpen}
-          >
+          <User title={isLoginPage ? '로그인' : '회원가입'}>
             {isLoginPage ? loginChildren : signupChildren}
           </User>
         </article>
       </section>
-      {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
     </>
   );
 }
