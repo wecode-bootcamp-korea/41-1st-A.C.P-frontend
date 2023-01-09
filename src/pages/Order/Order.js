@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import InfoInput from './components/InfoInput';
+import OrderRight from '../../components/OrderRight/OrderRight';
 import './Order.scss';
 
 const SELECT_DATE = [
-  { id: 1, date: '1일 후' },
-  { id: 2, date: '2일 후' },
-  { id: 3, date: '3일 후' },
-  { id: 4, date: '4일 후' },
-  { id: 5, date: '5일 후' },
+  { id: 1, date: '3일 후' },
+  { id: 2, date: '4일 후' },
+  { id: 3, date: '5일 후' },
+  { id: 4, date: '6일 후' },
+  { id: 5, date: '7일 후' },
 ];
 
 const INFOINPUT_LABEL_VALUE = [
@@ -64,73 +64,7 @@ export default function Order() {
           </ul>
         </div>
       </div>
-
-      <div className="orderRight">
-        <div className="orderInfosFixed">
-          <div className="orderPriceInfos">
-            <div>
-              <span>총 주문금액</span>
-              <span>90,000₩</span>
-            </div>
-            <div className="deliveryCost">
-              <span>배송비</span>
-              <span>2,500₩</span>
-            </div>
-            <div>
-              <span>총 결제금액</span>
-              <span>92,500₩</span>
-            </div>
-          </div>
-          <div className="orderProductInfos">
-            <div className="orderProductImg">
-              <img
-                src="images/order/productDetail_img_01.jpg"
-                alt="상품이미지"
-              />
-            </div>
-            <div className="orderProductMiniInfos">
-              <div>
-                <p>제품명</p>
-                <p>제품 상세 정보</p>
-              </div>
-              <div>
-                <button className="selectBox">
-                  <span>1</span>
-                  <div className="selectArrow">
-                    <img
-                      src="images/order/productDetail_bottom_arrow.png"
-                      alt="선택리스트 창 열기 버튼"
-                    />
-                  </div>
-                </button>
-                <ul>
-                  <li>
-                    <button>1</button>
-                  </li>
-                  <li>
-                    <button>2</button>
-                  </li>
-                  <li>
-                    <button>3</button>
-                  </li>
-                  <li>
-                    <button>4</button>
-                  </li>
-                  <li>
-                    <button>5</button>
-                  </li>
-                </ul>
-                <p>90,000₩</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="orderBtn">
-          <Link to="/ordered">
-            <button className="orderBtn">주문하기</button>
-          </Link>
-        </div>
-      </div>
+      <OrderRight />
     </div>
   );
 }
