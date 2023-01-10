@@ -1,0 +1,127 @@
+@import '../../styles/variables.scss';
+
+.filter {
+  width: 100%;
+  height: 100px;
+  background-color: $bgColorPoint;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 40px 0px 20px;
+  box-sizing: border-box;
+
+  .plantsFilter {
+    font-size: 16px;
+    color: $GRAY333;
+    display: inline-block;
+    padding-top: 40px;
+    cursor: pointer;
+    .plantFilter {
+      font-size: 16px;
+      color: $GRAY333;
+      display: inline-block;
+      margin: auto 60px auto 20px;
+      cursor: pointer;
+      &:hover {
+        border-bottom: 1px solid rgba($GRAY333, 1);
+      }
+    }
+  }
+  .filterButton {
+    background-color: transparent;
+    font-size: 16px;
+    color: $GRAY333;
+    margin: auto 0px;
+    height: 50px;
+    width: 120px;
+    border: 1px solid $GRAY333;
+    margin-right: 20px;
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-color: $GRAY333;
+    }
+  }
+}
+.productsMain {
+  background-color: $bgColor;
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+  max-width: 1400px;
+  margin: 50px auto;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .productInfo {
+    width: 400px;
+    height: 600px;
+    margin-top: 100px;
+    .productsImg {
+      width: auto;
+      height: 90%;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .productsInfo {
+      padding: 15px 0px;
+      text-align: center;
+      .productsTitle {
+        height: 5%;
+        text-align: center;
+        padding: auto auto;
+        color: $GRAY333;
+        font-size: 18px;
+      }
+      .productsPrice {
+        height: 5%;
+        text-align: center;
+        color: $GRAY666;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+    }
+  }
+}
+
+.button {
+  text-align: center;
+  .btn {
+    color: $GRAY666;
+    font-family: 'Source Serif 4';
+    font-size: 16px;
+    margin: 40px auto 100px auto;
+    width: 110px;
+    height: 40px;
+    cursor: pointer;
+    background-color: $bgColor;
+    border: 0.5px solid rgba($GRAY666, 0.5);
+
+    &:hover {
+      border: 0.5px solid $GRAY333;
+    }
+  }
+}
+.filterModal {
+  background-color: $bgColorPoint;
+  display: flex;
+  height: 500px;
+  font-size: 16px;
+  color: $GRAY333;
+  .filterCategoryL {
+    padding-left: 80px;
+    padding-top: 30px;
+
+    .filterCategoryM {
+      line-height: 40px;
+      border-bottom: 1px solid;
+    }
+    .filterCategoryS {
+      margin-right: 80px;
+      line-height: 40px;
+    }
+  }
+}

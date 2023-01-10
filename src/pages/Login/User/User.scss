@@ -1,0 +1,64 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixin.scss';
+
+.user {
+  width: 100%;
+  min-width: 440px;
+  padding: 50px;
+  border: 1px solid #252525;
+  box-sizing: border-box;
+  background-color: $bgColor;
+
+  .userTitle {
+    font-size: 30px;
+    font-weight: 400;
+    color: #333;
+  }
+
+  .userTitleSub {
+    margin-top: 35px;
+    font-size: 24px;
+    font-weight: normal;
+    color: #333;
+  }
+
+  .wrapInp {
+    display: flex;
+
+    .boxInput + .boxInput {
+      margin-left: 24px;
+    }
+  }
+
+  .wrapBtn {
+    @include flexSortCenter;
+    margin-top: 15px;
+  }
+
+  .btnSubmit {
+    @include btnFill;
+    margin-top: 35px;
+
+    &:hover {
+      background-color: #252525;
+    }
+  }
+
+  .btnSubmitType2 {
+    @include btnFill(#333, #333, $bgColor);
+    margin-top: 20px;
+
+    &:hover {
+      background-color: #252525;
+      color: $bgColor;
+    }
+  }
+
+  .btnText {
+    @include btnText;
+  }
+
+  .wrapInpChk {
+    padding-top: 20px;
+  }
+}
