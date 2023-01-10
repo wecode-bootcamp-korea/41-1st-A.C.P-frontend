@@ -82,6 +82,25 @@ function ProductDetail() {
       }, []);
   };
 
+  // BE와 통신세팅 -> 주문하기 버튼을 클릭했을 때, 해당 상품 아이디를 요청하여 오더페이지에 뿌려져야 되는 fetch 코드
+  const fetchOrderBtn = e => {
+    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
+
+    fetch('http://10.58.52.135:3000/plants/1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        plant_id: 1,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      }, []);
+  };
+
   const [num, setNum] = useState('');
   // const setNum = difficultyList[key];
 
