@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { json, useNavigate, useParams } from 'react-router-dom';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import './ProductDetail.scss';
@@ -12,7 +12,18 @@ function ProductDetail() {
   // const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
+  const [difficultyDot, setDifficultyDot] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
+  useEffect(() => {
+    console.log('useEffect함수 실행했나요?');
+    difficultyDotChange();
+  }, []);
   // const handleModal1 = e => {
   //   setModal1(true);
   // };
@@ -32,23 +43,50 @@ function ProductDetail() {
   }, []);
 
   // BE와 통신세팅
-  // const fetchProductInfos = e => {
-  //   e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
+  const fetchProductInfos = e => {
+    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
 
-  //   fetch(`http://10.58.52.67:3000/plants/${productId}`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body: JSON.stringify({
-  //       plant_id: 1,
-  //     }),
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       // setProductInfo(data);
-  //     }, []);
+    fetch('http://10.58.52.135:3000/plants/6', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        plant_id: 1,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        setProductInfo(data);
+        console.log(data);
+      }, []);
+  };
+
+  function difficultyDotChange() {
+    console.log('함수실행중입니다..');
+    switch (productInfo.difficulty) {
+      case 'Easy':
+        return setDifficultyDot([true, false, false, false, false]);
+        break;
+      case 'Normal':
+        return setDifficultyDot([true, true, false, false, false]);
+        break;
+      case 'Hard':
+        return setDifficultyDot([true, true, true, true, false]);
+        break;
+    }
+  }
+
+  // const difficultyDotChange = () => {
+
+  //   productInfo.difficulty === 'Easy' &&
+  //     setProductInfo([true, false, false, false, false]);
+
+  //   productInfo.difficulty === 'Normal' &&
+  //     setProductInfo([true, true, false, false, false]);
+
+  //   productInfo.difficulty === 'Hard' &&
+  //     setProductInfo([true, true, true, true, false]);
   // };
 
   return (
@@ -61,40 +99,61 @@ function ProductDetail() {
           />
         </div>
         <div className="productDetailInfos">
-          <h1>Product Name</h1>
-          <p>one line description</p>
-          <ul>
-            {productInfo.map(productInfoDetail => {
-              return (
-                <ProductInfo
-                  key={productInfoDetail.id}
-                  productInfoDetail={productInfoDetail}
-                />
-              );
-            })}
-          </ul>
+          <h1>{productInfo.plant_name}</h1>
+          <p>{productInfo.plant_description}</p>
+          <ProductInfo key={productInfo.id} productInfo={productInfo} />
           <ul className="plantingInfos">
             <li className="difficulty">
               <span>난이도</span>
-              <span className="difficultyDot difficultyDotFill" />
-              <span className="difficultyDot difficultyDotFill" />
-              <span className="difficultyDot difficultyDotEmpty" />
-              <span className="difficultyDot difficultyDotEmpty" />
-              <span className="difficultyDot difficultyDotEmpty" />
+              {/* productInfo.difficulty === 'Easy' >>> 'difficultyDotFill' 1개 */}
+              {/* productInfo.difficulty === 'Nomal' >>> 'difficultyDotFill' 2개  */}
+              {/* productInfo.difficulty === 'Hard' >>> 'difficultyDotFill' 4개 */}
+
+              <span
+                value={difficultyDot[0]}
+                className={`difficultyDot ${
+                  difficultyDot[0] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[1]}
+                className={`difficultyDot ${
+                  difficultyDot[1] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[2]}
+                className={`difficultyDot ${
+                  difficultyDot[2] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[3]}
+                className={`difficultyDot ${
+                  difficultyDot[3] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[4]}
+                className={`difficultyDot ${
+                  difficultyDot[4] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
             </li>
             <li className="plantingCare">
               <span>케어</span>
-              <p>겉흙이 마르면 물을 흠뻑주세요</p>
+              <p>{productInfo.care}</p>
             </li>
           </ul>
           <div className="productDetailBtns">
             <button
               className="payBtn"
-              onClick={() => {
-                goToPage('order');
-              }}
+              onClick={fetchProductInfos}
+              // onClick={() => {
+              //   goToPage('order');
+              // }}
             >
-              구매하기 &nbsp;90,000₩
+              구매하기 &nbsp;{productInfo.plant_price}
             </button>
             <button className="cartBtn" onClick={handleModal2}>
               장바구니
@@ -154,3 +213,5 @@ function ProductDetail() {
 }
 
 export default ProductDetail;
+
+const DOT_LIST = [];
