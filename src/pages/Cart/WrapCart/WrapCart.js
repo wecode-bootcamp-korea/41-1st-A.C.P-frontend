@@ -1,19 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CartItem from '../CartItem/CartItem';
-import '../CartItem/CartItem.scss';
+import CheckBox from '../CheckBox/CheckBox';
+import './WrapCart.scss';
 
 export default function WrapCart({ cartItems }) {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const selectAllItems = () => {
+    const cartItemsIds = cartItems.map(item => item.id);
+    setSelectedItems(cartItemsIds);
+  };
+
+  const selectSingleItem = e => {
+    const { id, checked } = e.target;
+    if (!checked) {
+      setSelectedItems(prev => [...prev, parseInt(id)]);
+    } else {
+      let filteredList = selectedItems.filter(
+        selectedItemId => selectedItemId !== id
+      );
+      setSelectedItems(filteredList);
+    }
+  };
+
   return (
-    <div className="wrapItems">
+    <div className="wrapCart">
       {cartItems.length > 0 ? (
         <>
-          <div className="checkBox all">
-            <input type="checkbox" className="inpChk" id="allCheck" />
-            <label className="label">전체선택</label>
-          </div>
+          <CheckBox
+            id="allCheck"
+            className="all"
+            label="전체선택"
+            onChange={selectAllItems}
+          />
           <ul className="cartList">
             {cartItems.map(cartItem => {
-              return <CartItem key={cartItem.id} cartItem={cartItem} />;
+              return (
+                <CartItem
+                  key={cartItem.id}
+                  cartItem={cartItem}
+                  selectSingleItem={selectSingleItem}
+                />
+              );
             })}
           </ul>
         </>

@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import './SelectBoxQuantity.scss';
 
-function SelectBoxQuantity() {
+function SelectBoxQuantity({ updateCartQuantity }) {
   const [quantityBox, setQuantityBox] = useState(false);
-  const [quantity, setQuantity] = useState('1');
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   const showQuantityBox = e => {
     setQuantityBox(!quantityBox);
   };
 
+  const handleSelectClick = e => {
+    const quantity = e.target.value;
+    setSelectedQuantity(quantity);
+    updateCartQuantity(quantity);
+    setQuantityBox(false);
+  };
+
   return (
     <div className="selectBoxQuantity">
       <button className="selectBox" onClick={showQuantityBox}>
-        {quantity}
+        {selectedQuantity}
       </button>
       <div className="selectArrow">
         <img
@@ -26,11 +33,10 @@ function SelectBoxQuantity() {
           return (
             <li key={data.id} className="itemSelect">
               <button
+                type="button"
                 className="btnSelect"
-                onClick={e => {
-                  setQuantity(data.quantity);
-                  setQuantityBox(false);
-                }}
+                onClick={handleSelectClick}
+                value={data.quantity}
               >
                 {data.quantity}
               </button>

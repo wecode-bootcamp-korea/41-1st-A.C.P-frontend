@@ -1,42 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CheckBox from '../CheckBox/CheckBox';
 import SelectBoxQuantity from '../SelectBoxQuantity/SelectBoxQuantity';
 import './CartItem.scss';
 
 export default function CartItem({
-  cartItem: { id, name, description, price, quantity, imgUrl },
+  cartItem: {
+    cart_id,
+    plant_id,
+    plant_name,
+    plant_description,
+    plant_price,
+    plant_quantity,
+    plant_imgUrl,
+  },
   setCartItems,
+  selectSingleItem,
 }) {
-  const updateCartQuantity = () => {
-    // id와 일치하는 상품 quantity 변경 후 setData로 재렌더링;
+  const [cartItemPrice, setCartItemPrice] = useState(0);
+  const updateCartQuantity = quantity => {
+    // alert('수량 변경!');
+    // setCartItemPrice(parseInt(plant_price));
+    // calcCartItemPrice(quantity * parseInt(plant_price));
+    fetch('/data/cart.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        plant_id,
+        plant_quantity: quantity,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        // 성공시 카트아이템 다시 세팅
+        // setCartItems(data)
+      });
   };
 
   const deleteCartItem = () => {
-    // id 값 전달해서 해당 상품 삭제된 cartList 다시 setData후 렌더링;
+    alert('삭제버튼 클릭!');
+    fetch('/data/cart.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        plant_id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        // 성공시 카트아이템 다시 세팅
+        // setCartItems(data)
+      });
   };
+
+  // const calcCartItemPrice = calcPrice => {
+  //   return calcPrice.toLocaleString();
+  // };
 
   return (
     <li className="cartItem">
-      <CheckBox id={`check${id}`} />
+      <CheckBox id={cart_id} onChange={selectSingleItem} />
       <div className="wrapImg">
-        <img src={imgUrl} alt="" className="cartImg" width={170} />
+        <img src={plant_imgUrl} alt="" className="cartImg" />
       </div>
       <div className="wrapInfo">
         <div className="boxTitle">
-          <strong className="title">{name}</strong>
-          <p className="description">{description}</p>
+          <strong className="title">{plant_name}</strong>
+          <p className="description">{plant_description}</p>
         </div>
         <div className="boxPrice">
-          <SelectBoxQuantity />
+          <SelectBoxQuantity
+            id={cart_id}
+            setCartItems={setCartItems}
+            updateCartQuantity={updateCartQuantity}
+          />
           <span className="priceInfo">
             <span className="titlePrice">주문금액</span>
-            <span className="numPrice">
-              ₩ {parseInt(price).toLocaleString()}
-            </span>
+            <span className="numPrice">₩ {cartItemPrice}</span>
           </span>
         </div>
       </div>
-      <button type="button" className="btnDelete">
+      <button type="button" className="btnDelete" onClick={deleteCartItem}>
         <img src="/images/common/close_btn.png" alt="X" width={12} />
       </button>
     </li>
