@@ -78,7 +78,6 @@ function ProductDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        setProductInfo(data);
         console.log(data);
       }, []);
   };
