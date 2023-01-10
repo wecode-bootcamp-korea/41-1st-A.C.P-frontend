@@ -10,7 +10,7 @@ export default function NewProducts({
   productPage,
 }) {
   return (
-    <div className="newProductBox">
+    <div className="newProducts">
       <div className="newProductImg">
         <Link to={productPage}>
           <img src={productImg} alt={imgAlt} />
