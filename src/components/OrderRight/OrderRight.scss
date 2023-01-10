@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.orderRight {
+  width: 40%;
+  background: $bgColorPoint;
+
+  .orderInfos {
+    width: 100%;
+  }
+
+  .orderBtn {
+    // margin-top: 10px;
+    text-align: center;
+
+    button {
+      width: 70%;
+      border: none;
+      padding: 22px 0;
+      background: $GRAY333;
+
+      color: $bgColor;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+}
