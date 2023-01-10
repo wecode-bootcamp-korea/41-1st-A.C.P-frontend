@@ -10,31 +10,28 @@ export default function NavBar() {
   let [closeBtn, setCloseBtn] = useState('closeBtn');
   let [contentsNull, setContentsNull] = useState('contentsNull');
 
+  const menuTabOpen = tab => {
+    setContentsNull('contents');
+    setCurrentTab(tab);
+    setCloseBtn('closeBtnShow');
+  };
+
+  const menuTabClose = () => {
+    setCloseBtn('closeBtn');
+    setContentsNull('contentsNull');
+  };
+
   return (
     <nav className="navBar">
       <ul className="navBarLeft">
         {TAB_ARR.map((tab, index) => (
-          <li
-            className="menuTab"
-            key={index}
-            onClick={() => {
-              setContentsNull('contents');
-              setCurrentTab(tab);
-              setCloseBtn('closeBtnShow');
-            }}
-          >
+          <li className="menuTab" key={index} onClick={() => menuTabOpen(tab)}>
             {tab}
           </li>
         ))}
       </ul>
       <div className={contentsNull}>{MAPPING_OBJ[currentTab]}</div>
-      <div
-        className={closeBtn}
-        onClick={() => {
-          setCloseBtn('closeBtn');
-          setContentsNull('contentsNull');
-        }}
-      >
+      <div className={closeBtn} onClick={menuTabClose}>
         닫기
         <img src="images/nav/close_btn.png" alt="close_Btn" />
       </div>
