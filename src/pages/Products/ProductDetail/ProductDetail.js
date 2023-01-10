@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import './ProductDetail.scss';
 
 function ProductDetail() {
   const navigate = useNavigate();
+  const params = useParams();
+  const productId = params.id;
 
   // const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
@@ -31,9 +33,9 @@ function ProductDetail() {
 
   // BE와 통신세팅
   // const fetchProductInfos = e => {
-  //   e.preventDefault();
+  //   e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
 
-  //   fetch('http://10.58.52.67:3000/plants/1', {
+  //   fetch(`http://10.58.52.67:3000/plants/${productId}`, {
   //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json;charset=utf-8',
@@ -45,6 +47,7 @@ function ProductDetail() {
   //     .then(res => res.json())
   //     .then(data => {
   //       console.log(data);
+  //       // setProductInfo(data);
   //     }, []);
   // };
 
