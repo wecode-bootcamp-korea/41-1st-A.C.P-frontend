@@ -16,11 +16,11 @@ export default function CartItem({
   setCartItems,
   selectSingleItem,
 }) {
-  const [cartItemPrice, setCartItemPrice] = useState(0);
+  const cartItemPrice = plant_quantity * parseInt(plant_price);
+
   const updateCartQuantity = quantity => {
-    // alert('수량 변경!');
-    // setCartItemPrice(parseInt(plant_price));
-    // calcCartItemPrice(quantity * parseInt(plant_price));
+    alert('수량 변경!');
+
     fetch('/data/cart.json', {
       method: 'POST',
       headers: {
@@ -58,10 +58,6 @@ export default function CartItem({
       });
   };
 
-  // const calcCartItemPrice = calcPrice => {
-  //   return calcPrice.toLocaleString();
-  // };
-
   return (
     <li className="cartItem">
       <CheckBox id={cart_id} onChange={selectSingleItem} />
@@ -73,6 +69,11 @@ export default function CartItem({
           <strong className="title">{plant_name}</strong>
           <p className="description">{plant_description}</p>
         </div>
+        <ul className="listSubsidiary">
+          <li className="itemSubsidiary">아이템1</li>
+          <li className="itemSubsidiary">아이템2</li>
+          <li className="itemSubsidiary">아이템3</li>
+        </ul>
         <div className="boxPrice">
           <SelectBoxQuantity
             id={cart_id}
@@ -81,7 +82,7 @@ export default function CartItem({
           />
           <span className="priceInfo">
             <span className="titlePrice">주문금액</span>
-            <span className="numPrice">₩ {cartItemPrice}</span>
+            <span className="numPrice">₩ {cartItemPrice.toLocaleString()}</span>
           </span>
         </div>
       </div>

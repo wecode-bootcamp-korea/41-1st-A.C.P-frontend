@@ -1,12 +1,12 @@
 import React from 'react';
-import './OrderPriceInfos.scss';
+import './CartPriceInfos.scss';
 
-function OrderPriceInfos({ cartTotalPrice }) {
+function CartPriceInfos({ cartTotalPrice }) {
   const shipFee = 2500;
 
   return (
-    <div className="orderPriceInfos">
-      <div>
+    <div className="cartPriceInfos">
+      <div className="wrapPriceInfo">
         <span>총 주문금액</span>
         <span>{cartTotalPrice && cartTotalPrice.toLocaleString()}₩</span>
       </div>
@@ -14,9 +14,9 @@ function OrderPriceInfos({ cartTotalPrice }) {
         <span>배송비</span>
         <span>{shipFee.toLocaleString()}₩</span>
       </div>
-      <div>
+      <div className="totalPriceInfo">
         <span>총 결제금액</span>
-        <span>
+        <span className="numTotalPrice">
           {cartTotalPrice && (cartTotalPrice + shipFee).toLocaleString()}₩
         </span>
       </div>
@@ -24,4 +24,4 @@ function OrderPriceInfos({ cartTotalPrice }) {
   );
 }
 
-export default OrderPriceInfos;
+export default CartPriceInfos;

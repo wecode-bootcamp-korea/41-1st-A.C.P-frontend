@@ -25,7 +25,7 @@ export default function WrapCart({ cartItems }) {
 
   return (
     <div className="wrapCart">
-      {cartItems.length > 0 ? (
+      {cartItems ? (
         <>
           <CheckBox
             id="allCheck"
@@ -37,7 +37,7 @@ export default function WrapCart({ cartItems }) {
             {cartItems.map(cartItem => {
               return (
                 <CartItem
-                  key={cartItem.id}
+                  key={cartItem.cart_id}
                   cartItem={cartItem}
                   selectSingleItem={selectSingleItem}
                 />

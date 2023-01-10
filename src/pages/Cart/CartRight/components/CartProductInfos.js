@@ -1,13 +1,13 @@
 import React from 'react';
-import './OrderProductInfos.scss';
+import './CartProductInfos.scss';
 
-function OrderProductInfos() {
+function CartProductInfos() {
   return (
-    <div className="orderProductInfos">
-      <div className="orderProductImg">
-        <img src="images/order/productDetail_img_01.jpg" alt="상품이미지" />
+    <div className="cartProductInfos">
+      <div className="cartProductImg">
+        <img src="images/cart/productDetail_img_01.jpg" alt="상품이미지" />
       </div>
-      <div className="orderProductMiniInfos">
+      <div className="cartProductMiniInfos">
         <div>
           <p>제품명</p>
           <p>제품 상세 정보</p>
@@ -17,7 +17,7 @@ function OrderProductInfos() {
             <span>1</span>
             <div className="selectArrow">
               <img
-                src="images/order/productDetail_bottom_arrow.png"
+                src="images/cart/productDetail_bottom_arrow.png"
                 alt="선택리스트 창 열기 버튼"
               />
             </div>
@@ -46,4 +46,4 @@ function OrderProductInfos() {
   );
 }
 
-export default OrderProductInfos;
+export default CartProductInfos;

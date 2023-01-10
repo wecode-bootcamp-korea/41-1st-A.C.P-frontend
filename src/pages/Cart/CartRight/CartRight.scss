@@ -1,14 +1,14 @@
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
-.orderRight {
+.cartRight {
   width: 40%;
   background: $bgColorPoint;
 
-  .orderInfos {
+  .cartInfos {
     width: 100%;
   }
 
-  .orderBtn {
+  .cartBtn {
     // margin-top: 10px;
     text-align: center;
 
