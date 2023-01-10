@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import NewProducts from './NewProducts';
+import BottomSlide from './BottomSlide';
 import './Main.scss';
 
 export default function Main() {
@@ -13,7 +14,7 @@ export default function Main() {
   });
 
   return (
-    <Fragment className="main">
+    <Fragment clssName="main">
       <div className="logoBar">
         <Link to="/">
           <img src="images/common/img_logo_b.png" alt="plait_logo" />
@@ -92,26 +93,7 @@ export default function Main() {
         </div>
         <div className="blank" />
         <div className="slideWrapper">
-          <div className="slideBox">
-            <div className="subscriptionBox">
-              <img src="images/main/pot.jpg" alt="pot subscription" />
-            </div>
-            <div className="nutrientsBox">
-              <img src="images/main/leaf.jpg" alt="nutrients subscription" />
-            </div>
-            <div className="subscriptionBox">
-              <img
-                src="images/main/recommendation.jpg"
-                alt="pot subscription"
-              />
-            </div>
-            <div className="nutrientsBox">
-              <img
-                src="images/main/delivery.jpg"
-                alt="nutrients subscription"
-              />
-            </div>
-          </div>
+          <BottomSlide />
         </div>
       </div>
     </Fragment>

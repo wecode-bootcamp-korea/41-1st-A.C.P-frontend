@@ -129,37 +129,6 @@
 }
 
 .slideWrapper {
+  width: 100%;
   overflow: hidden;
-
-  .slideBox {
-    width: 400vw;
-    display: flex;
-    overflow: hidden;
-
-    .subscriptionBox {
-      width: 100vw;
-      height: 600px;
-      position: relative;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        position: absolute;
-        top: -1000px;
-      }
-    }
-
-    .nutrientsBox {
-      width: 100vw;
-      height: 600px;
-      position: relative;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        position: absolute;
-        top: -400px;
-      }
-    }
-  }
 }
