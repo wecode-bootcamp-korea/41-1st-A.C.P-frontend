@@ -14,7 +14,7 @@ function OrderProductInfos() {
           <p>제품 상세 정보</p>
         </div>
         <div>
-          <SelectBoxQuantity />
+          {/* <SelectBoxQuantity /> */}
           <p className="price">90,000₩</p>
         </div>
       </div>

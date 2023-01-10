@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import InfoInput from './components/InfoInput';
-import OrderRight from '../../components/OrderRight/OrderRight';
+import OrderRight from './components/OrderRight/OrderRight';
 import './Order.scss';
 
 export default function Order() {
