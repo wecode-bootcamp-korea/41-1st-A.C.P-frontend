@@ -213,5 +213,3 @@ function ProductDetail() {
 }
 
 export default ProductDetail;
-
-const DOT_LIST = [];
