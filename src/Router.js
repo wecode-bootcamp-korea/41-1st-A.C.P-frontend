@@ -6,7 +6,6 @@ import Login from './pages/Login/Login';
 import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
-import MenuList from './pages/MenuList/MenuList';
 
 export default function Router() {
   return (
@@ -18,7 +17,6 @@ export default function Router() {
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
-          <Route path="/menulist" element={<MenuList />} />
         </Route>
       </Routes>
     </BrowserRouter>
