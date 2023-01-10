@@ -6,19 +6,20 @@ function ProductInfo({ item }) {
 
   return (
     <div className="productInfo">
-      <Link to={'/product/' + item.id}>
+      <Link to={'/product/' + item.plant_id}>
         <div className="productsImg">
           <img
             alt="식물"
             src={isHover ? item.hoverImg : item.img}
+            // src="/images/productsList/plant4.jpg"
             onMouseOver={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
           />
         </div>
       </Link>
       <div className="productsInfo">
-        <h2 className="productsTitle">{item.title}</h2>
-        <p className="productsPrice">{item.price}</p>
+        <h2 className="productsTitle">{item.plant_name}</h2>
+        <p className="productsPrice">{item.plant_price}</p>
       </div>
     </div>
   );

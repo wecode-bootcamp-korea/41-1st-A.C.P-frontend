@@ -10,12 +10,16 @@
   box-sizing: border-box;
 
   .plantsFilter {
+    margin-left: 40px;
     font-size: 16px;
     color: $GRAY333;
     display: inline-block;
     padding-top: 40px;
     cursor: pointer;
     .plantFilter {
+      display: inline-block;
+    }
+    .linkCategory {
       font-size: 16px;
       color: $GRAY333;
       display: inline-block;
@@ -35,6 +39,7 @@
     width: 120px;
     border: 1px solid $GRAY333;
     margin-right: 20px;
+
     &:hover {
       cursor: pointer;
       color: white;
@@ -102,26 +107,6 @@
 
     &:hover {
       border: 0.5px solid $GRAY333;
-    }
-  }
-}
-.filterModal {
-  background-color: $bgColorPoint;
-  display: flex;
-  height: 500px;
-  font-size: 16px;
-  color: $GRAY333;
-  .filterCategoryL {
-    padding-left: 80px;
-    padding-top: 30px;
-
-    .filterCategoryM {
-      line-height: 40px;
-      border-bottom: 1px solid;
-    }
-    .filterCategoryS {
-      margin-right: 80px;
-      line-height: 40px;
     }
   }
 }
