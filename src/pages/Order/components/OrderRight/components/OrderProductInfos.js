@@ -1,6 +1,5 @@
 import React from 'react';
 import './OrderProductInfos.scss';
-import SelectBoxQuantity from './SelectBoxQuantity';
 
 function OrderProductInfos() {
   return (
@@ -14,7 +13,6 @@ function OrderProductInfos() {
           <p>제품 상세 정보</p>
         </div>
         <div>
-          {/* <SelectBoxQuantity /> */}
           <p className="price">90,000₩</p>
         </div>
       </div>

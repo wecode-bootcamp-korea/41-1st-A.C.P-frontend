@@ -43,8 +43,8 @@ export default function Order() {
                   return (
                     <li key={data.id}>
                       <button
-                        onClick={e => {
-                          return setDate(data.date);
+                        onClick={() => {
+                          setDate(data.date);
                         }}
                       >
                         {data.date}
