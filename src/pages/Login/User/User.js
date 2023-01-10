@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CheckBox from './CheckBox/CheckBox';
 import TextInput from './TextInput/TextInput';
 import { GET_USER_INFO_API, RESIST_USER_INFO_API } from '../../../config';
 import { LOGIN_INPUT_LIST, SIGNUP_INPUT_LIST } from './uidata';
 import { fetchData } from './config';
 import './User.scss';
+import { useLocation } from 'react-router-dom';
 
-export default function User({ title, children, setIsModalOpen }) {
-  const [userInfo, setUserInfo] = useState({
-    email: '',
-    password: '',
-    userName: '',
-    phoneNumber: '',
-  });
-  const [isValid, setIsValid] = useState({
-    email: false,
-    password: false,
-  });
+const initialUserInfo = {
+  email: '',
+  password: '',
+  userName: '',
+  phoneNumber: '',
+};
+
+export default function User({ title, children }) {
+  const [userInfo, setUserInfo] = useState(initialUserInfo);
   const [passwordType, setPasswordType] = useState('password');
+  const location = useLocation();
 
-  const allVaild = isValid.email && isValid.password;
+  useEffect(() => {
+    setUserInfo(initialUserInfo);
+  }, [location.pathname]);
+
+  const idValid = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+  const pwValid = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
+
+  const validCondition = {
+    email: idValid.test(userInfo.email),
+    password: pwValid.test(userInfo.password),
+  };
+
+  const allVaild = validCondition.email && validCondition.password;
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -44,12 +56,8 @@ export default function User({ title, children, setIsModalOpen }) {
         userData
       );
       const data = res.json();
-
-      console.log('통신 성공! 데이터 확인 >>>', data);
     } else {
-      alert(
-        `Validation Error! 이메일 검사 : ${isValid.email} / 비밀번호 검사 ${isValid.password}`
-      );
+      alert('Validation Error!');
     }
   };
 
@@ -67,10 +75,10 @@ export default function User({ title, children, setIsModalOpen }) {
               type={name === 'password' ? passwordType : type}
               name={name}
               label={label}
-              inputValue={userInfo.name}
+              inputValue={userInfo[name]}
               setUserInfo={setUserInfo}
+              validCondition={validCondition}
               setPasswordType={name === 'password' ? setPasswordType : null}
-              setIsValid={setIsValid}
             />
           );
         })}

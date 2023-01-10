@@ -28,20 +28,18 @@ export default function Login() {
   const bgImage = isLoginPage ? 'login' : 'signup';
 
   return (
-    <>
-      <section className="login">
-        <article
-          className="articleLeft"
-          style={{
-            backgroundImage: `url('/images/login/img_${bgImage}.jpg')`,
-          }}
-        />
-        <article className="articleRight">
-          <User title={isLoginPage ? '로그인' : '회원가입'}>
-            {isLoginPage ? loginChildren : signupChildren}
-          </User>
-        </article>
-      </section>
-    </>
+    <section className="login">
+      <article
+        className="articleLeft"
+        style={{
+          backgroundImage: `url('/images/login/img_${bgImage}.jpg')`,
+        }}
+      />
+      <article className="articleRight">
+        <User title={isLoginPage ? '로그인' : '회원가입'}>
+          {isLoginPage ? loginChildren : signupChildren}
+        </User>
+      </article>
+    </section>
   );
 }
