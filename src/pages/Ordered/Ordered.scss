@@ -1,0 +1,84 @@
+@import '../../styles/variables.scss';
+
+.ordered {
+  .orderedTop {
+    width: 80vw;
+    margin: 0 auto;
+    margin-top: 127px;
+
+    text-align: center;
+
+    .orderedLogo {
+      width: 83px;
+      padding-bottom: 43px;
+      margin: 0 auto;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+      color: $GRAY333;
+    }
+  }
+
+  .orderedBottom {
+    width: 60%;
+    margin: 0 auto;
+
+    table {
+      width: 100%;
+      margin-top: 55px;
+      border: 1px solid $GRAY333;
+
+      thead {
+        border: 1px solid $GRAY333;
+        background: $GRAY333;
+        tr {
+          th {
+            padding: 10px 0;
+            border: 1px solid $GRAY333;
+            border-right: 1px solid $bgColor;
+            font-size: 14px;
+            color: $bgColor;
+
+            &:last-child {
+              border-right: 1px solid $GRAY333;
+            }
+          }
+        }
+      }
+
+      tfoot {
+        border: 1px solid $GRAY333;
+        tr {
+          td {
+            padding: 10px 10px;
+            border: 1px solid $GRAY333;
+            font-size: 14px;
+            color: $GRAY333;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .orderedHomeBtn {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 100px;
+      button {
+        width: 13%;
+        padding: 16px;
+        border: none;
+        background: $GRAY333;
+        font-size: 16px;
+        color: $bgColor;
+
+        cursor: pointer;
+      }
+    }
+  }
+}
