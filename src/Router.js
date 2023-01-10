@@ -7,6 +7,7 @@ import Products from './pages/Products/Products';
 import ProductDetail from './pages/Products/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
+import Ordered from './pages/Ordered/Ordered';
 
 export default function Router() {
   return (
@@ -15,10 +16,12 @@ export default function Router() {
         <Route path="/" element={<Layout />}>
           <Route path="" element={<Main />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Login />} />
           <Route path="/products" element={<Products />} />
           <Route path="/productDetail" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
+          <Route path="/ordered" element={<Ordered />} />
         </Route>
       </Routes>
     </BrowserRouter>
