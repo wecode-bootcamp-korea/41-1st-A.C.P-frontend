@@ -3,3 +3,36 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin position($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin btnFill(
+  $fontColor: #f6f5e8,
+  $borderColor: $GRAY333,
+  $bgColor: $GRAY333
+) {
+  display: inline-block;
+  max-width: 100%;
+  width: 100%;
+  height: 60px;
+  font-size: 16px;
+  color: $fontColor;
+  border: 1px solid $borderColor;
+  background-color: $bgColor;
+  transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+}
+
+@mixin btnText($fontColor: #333) {
+  display: inline-block;
+  color: $fontColor;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
