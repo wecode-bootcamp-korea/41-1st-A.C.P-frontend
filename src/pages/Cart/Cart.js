@@ -1,5 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import OrderRight from '../../components/OrderRight/OrderRight';
+import WrapCart from './WrapCart/WrapCart';
+import './Cart.scss';
 
 export default function Cart() {
-  return <div>Cart</div>;
+  const [cartItems, setCartItems] = useState([]);
+  const [cartTotalPrice, setCartTotalPrice] = useState();
+
+  useEffect(() => {
+    // 장바구니 데이터 가져오기
+    fetch('/data/cart.json')
+      .then(res => res.json())
+      .then(data => {
+        setCartItems(data);
+
+        const itemTotalPrice = data.reduce(
+          (acc, curr) => acc + parseInt(curr.price),
+          0
+        );
+
+        setCartTotalPrice(itemTotalPrice);
+      });
+  }, []);
+
+  return (
+    <section className={`cart${cartItems.length > 0 ? '' : ' empty'}`}>
+      <div className="innerCart">
+        <article className="cartLeft">
+          <h2 className="titleArticle">장바구니</h2>
+          <WrapCart cartItems={cartItems} />
+        </article>
+        {cartItems.length > 0 && <OrderRight cartTotalPrice={cartTotalPrice} />}
+      </div>
+    </section>
+  );
 }
