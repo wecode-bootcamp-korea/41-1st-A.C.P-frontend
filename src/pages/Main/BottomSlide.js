@@ -22,10 +22,10 @@ export default function BottomSlide() {
       </div>
       <div className="slideBtn">
         <button className="backBtn" onClick={backSlide}>
-          BACK
+          <img src="images/main/next.png" alt="back" className="back" />
         </button>
         <button className="nextBtn" onClick={nextSlide}>
-          NEXT
+          <img src="images/main/next.png" alt="next" className="next" />
         </button>
       </div>
     </div>
