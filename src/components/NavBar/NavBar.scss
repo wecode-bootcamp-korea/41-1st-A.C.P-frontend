@@ -1,13 +1,62 @@
 @import '../../styles/mixin.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/common.scss';
 
-// 초기세팅 임시 스타일
 .navBar {
-  @include flexSortCenter();
-  height: 60px;
-  border-bottom: 1px solid #333;
+  width: 100%;
+  height: 80px;
+  background-color: $bgColor;
+  display: flex;
+  align-items: center;
+  padding: 0px 50px;
+  position: fixed;
+  z-index: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .closeBtn {
+    display: none;
+  }
+
+  .closeBtnShow {
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+
+    img {
+      width: 13px;
+      height: 13px;
+      margin-left: 5px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .navBarLeft {
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+
+    .menuCate {
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .navBarRight {
+    width: 12%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 50px;
+  }
 }
-.navBar a {
-  display: inline-block;
-  margin-left: 8px;
+
+.contentsNull {
+  display: none;
 }
-// 위 내용은 작업시 지워주세요
