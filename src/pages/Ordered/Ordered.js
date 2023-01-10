@@ -12,11 +12,30 @@ function Ordered() {
       .then(data => setOrderedInfo(data));
   });
 
+  // BE와 통신세팅 -> 오더페이지에서 넘어온 데이터 뿌려주는 fetch 코드
+  const fetchOrderedTable = e => {
+    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
+
+    fetch('http://10.58.52.135:3000/ordered/1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        plant_id: 1,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      }, []);
+  };
+
   return (
     <div className="ordered">
       <div className="orderedTop">
         <div className="orderedLogo">
-          <img src="images/ordered/logo(252525).png" />
+          <img src="images/ordered/logo(252525).png" alt="로고" />
         </div>
         <h2>
           고객님의 주문이 완료되었습니다.
