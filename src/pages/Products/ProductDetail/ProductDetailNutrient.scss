@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
 
-.productDetail {
+.productDetailNutrient {
   padding-top: 90px;
   background: $bgColor;
 
@@ -66,55 +66,6 @@
         }
       }
 
-      .plantingInfos {
-        display: flex;
-        justify-content: space-between;
-        width: 400px;
-        margin-top: 0;
-
-        li {
-          width: 50%;
-        }
-
-        .difficulty {
-          display: inline-block;
-          border-top: 0;
-
-          .difficultyDot {
-            display: inline-block;
-            width: 9px;
-            height: 9px;
-            padding-bottom: 0;
-            margin-right: 5px;
-            border-radius: 50%;
-          }
-
-          .difficultyDotFill {
-            border: 1px solid $GRAY333;
-
-            background: $GRAY333;
-          }
-
-          .difficultyDotEmpty {
-            border: 1px solid $GRAY333;
-
-            background: $bgColor;
-          }
-        }
-
-        .plantingCare {
-          border-left: 1px solid #d5d4c9;
-
-          span {
-            margin-left: 20px;
-          }
-
-          p {
-            margin-left: 20px;
-          }
-        }
-      }
-
       .productDetailBtns {
         display: flex;
         justify-content: space-between;
@@ -148,46 +99,6 @@
           background: $bgColor;
           color: $GRAY333;
         }
-      }
-    }
-  }
-
-  .productDetailBottom {
-    display: flex;
-    justify-content: space-around;
-
-    width: 70%;
-    margin: 0 auto;
-    padding: 150px 0;
-    text-align: center;
-
-    .onlyOnePlant {
-      p:first-child {
-        font-size: 16px;
-        color: $GRAY333;
-      }
-
-      p:last-child {
-        margin-top: 5px;
-      }
-    }
-
-    span {
-      display: block;
-      width: 1px;
-      height: 37px;
-      margin-top: 7px;
-      background: #d5d4c9;
-    }
-
-    .ecoPackaging {
-      p:first-child {
-        font-size: 16px;
-        color: $GRAY333;
-      }
-
-      p:last-child {
-        margin-top: 5px;
       }
     }
   }
