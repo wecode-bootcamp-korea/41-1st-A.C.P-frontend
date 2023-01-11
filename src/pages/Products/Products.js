@@ -13,12 +13,11 @@ export default function Products() {
   const [productList, setProductList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  console.log(searchParams.toString());
 
   const defaultOffset = 6;
-  let offset = Number(searchParams.get('_offset')) || defaultOffset;
-  const maxLength = Math.floor(productList.length / defaultOffset);
-  const currentCount = offset / defaultOffset;
+  const maxLength = Math.floor(productList.length / defaultOffset) || 1;
+  let limit = Number(searchParams.get('_offset')) || defaultOffset;
+  const currentCount = limit / defaultOffset;
 
   useEffect(() => {
     navigate('/products');
@@ -78,6 +77,7 @@ export default function Products() {
                         : `/products?species=${categoryL.id}`
                     }
                     className="linkCategory"
+                    onClick={() => setModal(false)}
                   >
                     {categoryL.name}
                   </Link>
