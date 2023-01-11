@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { json, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import DifficultyDot from './DifficultyDot';
@@ -7,27 +7,15 @@ import './ProductDetail.scss';
 
 function ProductDetail() {
   const navigate = useNavigate();
+  const location = useLocation();
   const params = useParams();
   const productId = params.id;
+
+  console.log(params);
 
   // const [modal1, setModal1] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
-  // const [difficultyDot, setDifficultyDot] = useState([
-  //   false,
-  //   false,
-  //   false,
-  //   false,
-  //   false,
-  // ]);
-
-  // useEffect(() => {
-  //   console.log('useEffect함수 실행했나요?');
-  //   difficultyDotChange();
-  // }, []);
-  // const handleModal1 = e => {
-  //   setModal1(true);
-  // };
 
   const handleModal2 = e => {
     setModal2(true);
@@ -37,17 +25,19 @@ function ProductDetail() {
     navigate(`/${path}`);
   };
 
-  useEffect(() => {
-    fetch('data/productInfo.json')
-      .then(res => res.json())
-      .then(data => setProductInfo(data));
-  }, []);
+  // ===== Mock Data 상품 정보 =====
+  // useEffect(() => {
+  //   fetch('data/productInfo.json')
+  //     .then(res => res.json())
+  //     .then(data => setProductInfo(data));
+  // }, []);
 
   // BE와 통신세팅 -> 상품리스트에서 클릭했을 때 요청되어, 상품상세에 데이터가 뿌려지는 fetch 코드
-  const fetchProductInfos = e => {
+  // 성공 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  useEffect(() => {
     // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
 
-    fetch('http://10.58.52.135:3000/plants/1', {
+    fetch(`http://10.58.52.135:3000/plants/${productId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -60,8 +50,8 @@ function ProductDetail() {
       .then(data => {
         setProductInfo(data);
         console.log(data);
-      }, []);
-  };
+      });
+  }, [productId]);
 
   // BE와 통신세팅 -> 장바구니 버튼을 클릭했을 때, 장바구니에 담긴 상품들의 아이디와 일치하는게 있는지 조건 검사하고 결과를 받아야하는 fetch 코드, 동적라우팅은 상품리스트로!
   const fetchCartBtn = e => {
@@ -101,7 +91,9 @@ function ProductDetail() {
       }, []);
   };
 
-  const [num, setNum] = useState('');
+  // ========== 난이도 dot 기능 구현 ========== //
+
+  const [num, setNum] = useState('Easy'); // difficulty 데이터 값 ?
   // const setNum = difficultyList[key];
 
   const difficultyList = {
@@ -110,20 +102,20 @@ function ProductDetail() {
     Hard: 4,
   };
 
-  // function difficultyDotChange() {
-  //   console.log('함수실행중입니다..');
-  //   switch (productInfo.difficulty) {
-  //     case 'Easy':
-  //       return setDifficultyDot([true, false, false, false, false]);
-  //       break;
-  //     case 'Normal':
-  //       return setDifficultyDot([true, true, false, false, false]);
-  //       break;
-  //     case 'Hard':
-  //       return setDifficultyDot([true, true, true, true, false]);
-  //       break;
-  //   }
-  // }
+  // ========== 난이도 dot 기능 구현 ========== //
+
+  const {
+    id,
+    plant_name,
+    plant_description,
+    species,
+    position,
+    size,
+    mood,
+    difficulty,
+    care,
+    plant_price,
+  } = productInfo;
 
   return (
     <div className="productDetail">
@@ -135,62 +127,37 @@ function ProductDetail() {
           />
         </div>
         <div className="productDetailInfos">
-          <h1>{productInfo.plant_name}</h1>
-          <p>{productInfo.plant_description}</p>
-          <ProductInfo key={productInfo.id} productInfo={productInfo} />
+          <h1>{plant_name}</h1>
+          <p>{plant_description}</p>
+          <ProductInfo
+            key={id}
+            species={species}
+            position={position}
+            size={size}
+            mood={mood}
+          />
           <ul className="plantingInfos">
             <li className="difficulty">
               <span>난이도</span>
-              <DifficultyDot level={difficultyList[num]} />
-              {/* productInfo.difficulty === 'Easy' >>> 'difficultyDotFill' 1개 */}
-              {/* productInfo.difficulty === 'Nomal' >>> 'difficultyDotFill' 2개  */}
-              {/* productInfo.difficulty === 'Hard' >>> 'difficultyDotFill' 4개 */}
-
-              {/* <span
-                value={difficultyDot[0]}
-                className={`difficultyDot ${
-                  difficultyDot[0] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
+              <DifficultyDot
+                key={difficultyList.key}
+                level={difficultyList[num]}
               />
-              <span
-                value={difficultyDot[1]}
-                className={`difficultyDot ${
-                  difficultyDot[1] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              />
-              <span
-                value={difficultyDot[2]}
-                className={`difficultyDot ${
-                  difficultyDot[2] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              />
-              <span
-                value={difficultyDot[3]}
-                className={`difficultyDot ${
-                  difficultyDot[3] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              />
-              <span
-                value={difficultyDot[4]}
-                className={`difficultyDot ${
-                  difficultyDot[4] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              /> */}
             </li>
             <li className="plantingCare">
               <span>케어</span>
-              <p>{productInfo.care}</p>
+              <p>{care}</p>
             </li>
           </ul>
           <div className="productDetailBtns">
             <button
               className="payBtn"
-              onClick={fetchProductInfos}
-              // onClick={() => {
-              //   goToPage('order');
-              // }}
+              // onClick={fetchProductInfos}
+              onClick={() => {
+                goToPage('order');
+              }}
             >
-              구매하기 &nbsp;{productInfo.plant_price}
+              구매하기 &nbsp;{plant_price}
             </button>
             <button className="cartBtn" onClick={handleModal2}>
               장바구니
@@ -247,6 +214,80 @@ function ProductDetail() {
       )}
     </div>
   );
+}
+
+// const [difficultyDot, setDifficultyDot] = useState([
+//   false,
+//   false,
+//   false,
+//   false,
+//   false,
+// ]);
+
+// useEffect(() => {
+//   console.log('useEffect함수 실행했나요?');
+//   difficultyDotChange();
+// }, []);
+// const handleModal1 = e => {
+//   setModal1(true);
+// };
+
+// function difficultyDotChange() {
+//   console.log('함수실행중입니다..');
+//   switch (productInfo.difficulty) {
+//     case 'Easy':
+//       return setDifficultyDot([true, false, false, false, false]);
+//       break;
+//     case 'Normal':
+//       return setDifficultyDot([true, true, false, false, false]);
+//       break;
+//     case 'Hard':
+//       return setDifficultyDot([true, true, true, true, false]);
+//       break;
+//   }
+// }
+
+{
+  /* productInfo.difficulty === 'Easy' >>> 'difficultyDotFill' 1개 */
+}
+{
+  /* productInfo.difficulty === 'Nomal' >>> 'difficultyDotFill' 2개  */
+}
+{
+  /* productInfo.difficulty === 'Hard' >>> 'difficultyDotFill' 4개 */
+}
+
+{
+  /* <span
+                value={difficultyDot[0]}
+                className={`difficultyDot ${
+                  difficultyDot[0] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[1]}
+                className={`difficultyDot ${
+                  difficultyDot[1] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[2]}
+                className={`difficultyDot ${
+                  difficultyDot[2] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[3]}
+                className={`difficultyDot ${
+                  difficultyDot[3] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              />
+              <span
+                value={difficultyDot[4]}
+                className={`difficultyDot ${
+                  difficultyDot[4] ? 'difficultyDotFill' : 'difficultyDotEmpty'
+                } `}
+              /> */
 }
 
 export default ProductDetail;

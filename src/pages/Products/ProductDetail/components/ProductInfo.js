@@ -1,23 +1,23 @@
 import React from 'react';
 
-function ProductInfo({ productInfo }) {
+function ProductInfo({ species, position, size, mood }) {
   return (
     <ul>
       <li className="productInfo">
         <span>종류</span>
-        <p>{productInfo.species}</p>
+        <p>{species}</p>
       </li>
       <li className="productInfo">
         <span>위치</span>
-        <p>{productInfo.position}</p>
+        <p>{position}</p>
       </li>
       <li className="productInfo">
         <span>크기</span>
-        <p>{productInfo.size}</p>
+        <p>{size}</p>
       </li>
       <li className="productInfo">
         <span>분위기</span>
-        <p>{productInfo.mood}</p>
+        <p>{mood}</p>
       </li>
     </ul>
   );

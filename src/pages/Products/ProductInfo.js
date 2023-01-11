@@ -6,7 +6,7 @@ function ProductInfo({ item }) {
 
   return (
     <div className="productInfo">
-      <Link to={'/product/' + item.id}>
+      <Link to={'/products/' + item.id}>
         <div className="productsImg">
           <img
             alt="식물"
