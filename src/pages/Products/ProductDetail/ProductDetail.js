@@ -14,11 +14,45 @@ function ProductDetail() {
   console.log(params);
 
   // const [modal1, setModal1] = useState(false);
-  const [modal2, setModal2] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
+  const [modalText, setModalText] = useState('');
 
   const handleModal2 = e => {
-    setModal2(true);
+    setIsModalOpen(true);
+    fetch('장바구니 담긴 목록 API', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        userId: 1,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.filter(item => item.id === productId)) {
+          setModalText('동일한 상품이 담겨있습니다.');
+        } else {
+          fetch('장바구니 담는 API', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify({
+              userId: '',
+              plant_id: '',
+            }),
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.message === 'success') {
+                setModalText('장바구니에 상품이 담겼습니다');
+              }
+            });
+        }
+      });
   };
 
   const goToPage = path => {
@@ -93,14 +127,14 @@ function ProductDetail() {
 
   // ========== 난이도 dot 기능 구현 ========== //
 
-  const [num, setNum] = useState('Easy'); // difficulty 데이터 값 ?
-  // const setNum = difficultyList[key];
-
   const difficultyList = {
     Easy: 1,
     Normal: 2,
     Hard: 4,
   };
+  // 1. 백엔드에서 보내주는 difficulty 데이터 값인 Easy, Normal, Hard
+  // 2. difficultyList 라는 객체로 데이터 값(Easy, Normal, Hard) 숫자를 할당해준다!
+  // 3. 이 숫자를 dot 컴포넌트에 props 로 넘겨준다!
 
   // ========== 난이도 dot 기능 구현 ========== //
 
@@ -141,7 +175,7 @@ function ProductDetail() {
               <span>난이도</span>
               <DifficultyDot
                 key={difficultyList.key}
-                level={difficultyList[num]}
+                level={difficultyList[difficulty]}
               />
             </li>
             <li className="plantingCare">
@@ -195,16 +229,15 @@ function ProductDetail() {
           }
         />
       ) : ? } */}
-      {modal2 && (
+      {isModalOpen && (
         <Modal
-          goToCart={() => goToPage('cart')}
           component1={
             <p>
-              장바구니에 상품이 담겼습니다. <br />
+              {modalText} <br />
               장바구니로 이동하시겠습니까?
             </p>
           }
-          onClose={() => setModal2(false)}
+          onClose={() => setIsModalOpen(false)}
           component2={
             <div className="modalBtn btn2">
               <button onClick={() => goToPage('cart')}>이동</button>
