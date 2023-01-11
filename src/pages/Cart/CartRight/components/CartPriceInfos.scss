@@ -25,6 +25,7 @@
   .totalPriceInfo {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-top: 30px;
     font-size: 16px;
     color: $GRAY333;
@@ -32,5 +33,6 @@
 
   .numTotalPrice {
     font-weight: 700;
+    font-size: 20px;
   }
 }

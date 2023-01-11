@@ -1,6 +1,6 @@
 [
   {
-    "cart_id": 1,
+    "cart_id": 10,
     "plant_id": 1,
     "plant_name": "선인장",
     "plant_description": "선인장은 물을 주지 않으면 말라 죽습니다.",
@@ -9,7 +9,7 @@
     "plant_imgUrl": "https://user-images.githubusercontent.com/58460131/210945778-db264b50-ebe0-4289-80a7-7a236d5a3ed9.jpg"
   },
   {
-    "cart_id": 2,
+    "cart_id": 20,
     "plant_id": 2,
     "plant_name": "관엽식물",
     "plant_description": "관엽식물은 물을 주지 않으면 말라 죽습니다.",
@@ -18,7 +18,7 @@
     "plant_imgUrl": "https://user-images.githubusercontent.com/58460131/210945778-db264b50-ebe0-4289-80a7-7a236d5a3ed9.jpg"
   },
   {
-    "cart_id": 3,
+    "cart_id": 30,
     "plant_id": 3,
     "plant_name": "초당식물",
     "plant_description": "관엽식물은 물을 주지 않으면 말라 죽습니다.",

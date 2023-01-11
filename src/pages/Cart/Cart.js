@@ -6,7 +6,7 @@ import './Cart.scss';
 export default function Cart() {
   const [cartItems, setCartItems] = useState();
   const [cartTotalPrice, setCartTotalPrice] = useState();
-  const [selectedCatdIds, setSelectedCatdIds] = useState();
+  const [selectedCartIds, setSelectedCartIds] = useState([]);
 
   const option = {
     method: 'POST',
@@ -34,11 +34,27 @@ export default function Cart() {
   //     });
   // }, []);
 
-  const handleCheckBtn = cartId => {
-    // 배열안에 카트아이디 없으면 넣어주고
-    // 있으면 필터처리
-    // setSelectedCatdIds()
+  const selectAllItems = e => {
+    const isChecked = e.target.checked;
+    const allCartIds = cartItems.map(item => item.cart_id);
+    setSelectedCartIds(isChecked ? allCartIds : []);
   };
+
+  const selectSingleItem = (e, cartId) => {
+    console.log(cartId);
+    const hasCartId = selectedCartIds.includes(cartId);
+
+    if (hasCartId) {
+      const filteredList = selectedCartIds.filter(
+        selectedId => selectedId !== cartId
+      );
+      setSelectedCartIds(filteredList);
+    } else {
+      setSelectedCartIds([...selectedCartIds, cartId]);
+    }
+  };
+
+  console.log(selectedCartIds);
 
   useEffect(() => {
     fetch('/data/cart.json')
@@ -59,7 +75,11 @@ export default function Cart() {
       <div className="innerCart">
         <article className="cartLeft">
           <h2 className="titleArticle">장바구니</h2>
-          <WrapCart cartItems={cartItems} />
+          <WrapCart
+            cartItems={cartItems}
+            selectAllItems={selectAllItems}
+            selectSingleItem={selectSingleItem}
+          />
         </article>
         {cartItems && <CartRight cartTotalPrice={cartTotalPrice} />}
       </div>

@@ -3,25 +3,29 @@ import CartItem from '../CartItem/CartItem';
 import CheckBox from '../CheckBox/CheckBox';
 import './WrapCart.scss';
 
-export default function WrapCart({ cartItems }) {
-  const [selectedItems, setSelectedItems] = useState([]);
+export default function WrapCart({
+  cartItems,
+  selectAllItems,
+  selectSingleItem,
+}) {
+  // const [selectedItems, setSelectedItems] = useState([]);
 
-  const selectAllItems = () => {
-    const cartItemsIds = cartItems.map(item => item.id);
-    setSelectedItems(cartItemsIds);
-  };
+  // const selectAllItems = () => {
+  //   const cartItemsIds = cartItems.map(item => item.id);
+  //   setSelectedItems(cartItemsIds);
+  // };
 
-  const selectSingleItem = e => {
-    const { id, checked } = e.target;
-    if (!checked) {
-      setSelectedItems(prev => [...prev, parseInt(id)]);
-    } else {
-      let filteredList = selectedItems.filter(
-        selectedItemId => selectedItemId !== id
-      );
-      setSelectedItems(filteredList);
-    }
-  };
+  // const selectSingleItem = e => {
+  //   const { id, checked } = e.target;
+  //   if (!checked) {
+  //     setSelectedItems(prev => [...prev, parseInt(id)]);
+  //   } else {
+  //     let filteredList = selectedItems.filter(
+  //       selectedItemId => selectedItemId !== id
+  //     );
+  //     setSelectedItems(filteredList);
+  //   }
+  // };
 
   return (
     <div className="wrapCart">
@@ -31,7 +35,7 @@ export default function WrapCart({ cartItems }) {
             id="allCheck"
             className="all"
             label="전체선택"
-            onChange={selectAllItems}
+            selectItem={selectAllItems}
           />
           <ul className="cartList">
             {cartItems.map(cartItem => {

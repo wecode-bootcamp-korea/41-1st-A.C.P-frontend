@@ -19,48 +19,45 @@ export default function CartItem({
   const cartItemPrice = plant_quantity * parseInt(plant_price);
 
   const updateCartQuantity = quantity => {
-    alert('수량 변경!');
-
-    fetch('/data/cart.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        plant_id,
-        plant_quantity: quantity,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        // 성공시 카트아이템 다시 세팅
-        // setCartItems(data)
-      });
+    // fetch('/data/cart.json', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //   },
+    //   body: JSON.stringify({
+    //     plant_id,
+    //     plant_quantity: quantity,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     // 성공시 카트아이템 다시 세팅
+    //     // setCartItems(data)
+    //   });
   };
 
   const deleteCartItem = () => {
-    alert('삭제버튼 클릭!');
-    fetch('/data/cart.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        plant_id,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        // 성공시 카트아이템 다시 세팅
-        // setCartItems(data)
-      });
+    // fetch('/data/cart.json', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //   },
+    //   body: JSON.stringify({
+    //     plant_id,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     // 성공시 카트아이템 다시 세팅
+    //     // setCartItems(data)
+    //   });
   };
 
   return (
     <li className="cartItem">
-      <CheckBox id={cart_id} onChange={selectSingleItem} />
+      <CheckBox cartId={cart_id} selectItem={selectSingleItem} />
       <div className="wrapImg">
         <img src={plant_imgUrl} alt="" className="cartImg" />
       </div>
