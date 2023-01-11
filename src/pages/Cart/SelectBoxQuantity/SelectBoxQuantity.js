@@ -5,20 +5,21 @@ function SelectBoxQuantity({ updateCartQuantity }) {
   const [quantityBox, setQuantityBox] = useState(false);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
-  const showQuantityBox = e => {
-    setQuantityBox(!quantityBox);
-  };
-
   const handleSelectClick = e => {
     const quantity = e.target.value;
-    setSelectedQuantity(quantity);
     updateCartQuantity(quantity);
+
+    // UI로직
+    setSelectedQuantity(quantity);
     setQuantityBox(false);
   };
 
   return (
     <div className="selectBoxQuantity">
-      <button className="selectBox" onClick={showQuantityBox}>
+      <button
+        className="selectBox"
+        onClick={() => setQuantityBox(!quantityBox)}
+      >
         {selectedQuantity}
       </button>
       <div className="selectArrow">

@@ -1,12 +1,11 @@
 import React from 'react';
-import './CheckBox.scss';
+import './AllCheckBox.scss';
 
 export default function CheckBox({
   id,
   label,
   className,
   selectItem,
-  selectedCartIds,
   isAllChecked,
 }) {
   const handleChangeChk = e => {
@@ -20,9 +19,7 @@ export default function CheckBox({
         className="inpChk"
         id={id}
         onChange={handleChangeChk}
-        checked={
-          id === 'allCheck' ? isAllChecked : selectedCartIds.includes(id)
-        }
+        // checked={}
       />
       {label && (
         <label className="label" htmlFor={id}>

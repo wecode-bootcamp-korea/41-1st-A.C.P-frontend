@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CheckBox from '../CheckBox/CheckBox';
+import { fetchCart } from '../config';
 import SelectBoxQuantity from '../SelectBoxQuantity/SelectBoxQuantity';
 import './CartItem.scss';
 
@@ -15,49 +16,48 @@ export default function CartItem({
   },
   setCartItems,
   selectSingleItem,
+  selectedCartIds,
 }) {
-  const cartItemPrice = plant_quantity * parseInt(plant_price);
-
   const updateCartQuantity = quantity => {
-    // fetch('/data/cart.json', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     plant_id,
-    //     plant_quantity: quantity,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     // 성공시 카트아이템 다시 세팅
-    //     // setCartItems(data)
-    //   });
+    const fetchUrl = 'http://10.58.52.160:3000/carts';
+    const fetchData = {
+      plant_id,
+      plant_quantity: quantity,
+    };
+
+    fetchCart(fetchUrl, 'POST', fetchData)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        // 성공시 카트아이템 다시 세팅
+        // setCartItems(data)
+      });
   };
 
   const deleteCartItem = () => {
-    // fetch('/data/cart.json', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     plant_id,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     // 성공시 카트아이템 다시 세팅
-    //     // setCartItems(data)
-    //   });
+    const fetchUrl = 'http://10.58.52.160:3000/carts';
+    const fetchData = {
+      plant_id,
+    };
+
+    fetchCart(fetchUrl, 'POST', fetchData)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        // 성공시 카트아이템 다시 세팅
+        // setCartItems(data)
+      });
   };
+
+  const productPrice = plant_quantity * parseInt(plant_price);
 
   return (
     <li className="cartItem">
-      <CheckBox cartId={cart_id} selectItem={selectSingleItem} />
+      <CheckBox
+        id={cart_id}
+        selectItem={selectSingleItem}
+        selectedCartIds={selectedCartIds}
+      />
       <div className="wrapImg">
         <img src={plant_imgUrl} alt="" className="cartImg" />
       </div>
@@ -79,7 +79,7 @@ export default function CartItem({
           />
           <span className="priceInfo">
             <span className="titlePrice">주문금액</span>
-            <span className="numPrice">₩ {cartItemPrice.toLocaleString()}</span>
+            <span className="numPrice">₩ {productPrice.toLocaleString()}</span>
           </span>
         </div>
       </div>

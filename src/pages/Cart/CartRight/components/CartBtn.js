@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './CartBtn.scss';
 
-function CartBtn() {
+function CartBtn({ fetchOrder }) {
+  const handleOrderClick = () => {
+    fetchOrder();
+  };
+
   return (
     <div className="cartBtn">
-      <Link to="/ordered">
-        <button className="btn">주문하기</button>
-      </Link>
+      <button className="btn" onClick={handleOrderClick}>
+        주문하기
+      </button>
     </div>
   );
 }

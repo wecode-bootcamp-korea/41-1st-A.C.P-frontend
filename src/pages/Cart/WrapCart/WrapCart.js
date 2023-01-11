@@ -1,31 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CartItem from '../CartItem/CartItem';
-import CheckBox from '../CheckBox/CheckBox';
+import CheckBox from '../CheckBox copy/CheckBox';
 import './WrapCart.scss';
 
 export default function WrapCart({
   cartItems,
   selectAllItems,
   selectSingleItem,
+  selectedCartIds,
 }) {
-  // const [selectedItems, setSelectedItems] = useState([]);
-
-  // const selectAllItems = () => {
-  //   const cartItemsIds = cartItems.map(item => item.id);
-  //   setSelectedItems(cartItemsIds);
-  // };
-
-  // const selectSingleItem = e => {
-  //   const { id, checked } = e.target;
-  //   if (!checked) {
-  //     setSelectedItems(prev => [...prev, parseInt(id)]);
-  //   } else {
-  //     let filteredList = selectedItems.filter(
-  //       selectedItemId => selectedItemId !== id
-  //     );
-  //     setSelectedItems(filteredList);
-  //   }
-  // };
+  const allCartIdsLength = () => {
+    return cartItems.map(item => item.cart_id).length;
+  };
 
   return (
     <div className="wrapCart">
@@ -36,17 +22,20 @@ export default function WrapCart({
             className="all"
             label="전체선택"
             selectItem={selectAllItems}
+            isAllChecked={allCartIdsLength() === selectedCartIds.length}
           />
           <ul className="cartList">
-            {cartItems.map(cartItem => {
-              return (
-                <CartItem
-                  key={cartItem.cart_id}
-                  cartItem={cartItem}
-                  selectSingleItem={selectSingleItem}
-                />
-              );
-            })}
+            {cartItems &&
+              cartItems.map(cartItem => {
+                return (
+                  <CartItem
+                    key={cartItem.cart_id}
+                    cartItem={cartItem}
+                    selectedCartIds={selectedCartIds}
+                    selectSingleItem={selectSingleItem}
+                  />
+                );
+              })}
           </ul>
         </>
       ) : (
