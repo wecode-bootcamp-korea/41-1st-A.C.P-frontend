@@ -33,11 +33,11 @@ export default function MaterialsCate() {
           return (
             <ul key={id} className="categoryList">
               <li className="categoryTitle">{title}</li>
-              {categoryItems.map(item => {
+              {categoryItems.map(categoryTitle => {
                 return (
-                  <li key={item} className="categoryItems">
-                    <Link to={item.url} className="item">
-                      {item.title}
+                  <li key={categoryTitle} className="categoryItems">
+                    <Link to={categoryTitle.url} className="item">
+                      {categoryTitle.title}
                     </Link>
                   </li>
                 );
