@@ -23,7 +23,7 @@ export default function Products() {
   //     .then(res => res.json())
   //     .then(data => setProductList(data));
   // }, [searchParams]);
-
+  // 통신시 useEffect.
   useEffect(() => {
     fetch('/data/productData.json')
       .then(res => res.json())
@@ -32,27 +32,25 @@ export default function Products() {
   return (
     <>
       <div className="filter">
-        <div className="FilterOn">
-          <ul className="plantsFilter">
-            {species.map(function (categoryL, index) {
-              return (
-                //1. FilterData - species - categoryL의 관계
-                <li key={categoryL.id} className="plantFilter">
-                  <Link
-                    to={
-                      categoryL.id === 0
-                        ? '/products'
-                        : `/products?species=${categoryL.id}`
-                    }
-                    className="linkCategory"
-                  >
-                    {categoryL.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <ul className="plantsFilter">
+          {species.map(function (categoryL, index) {
+            return (
+              //1. FilterData - species - categoryL의 관계
+              <li key={categoryL.id} className="plantFilter">
+                <Link
+                  to={
+                    categoryL.id === 0
+                      ? '/products'
+                      : `/products?species=${categoryL.id}`
+                  }
+                  className="linkCategory"
+                >
+                  {categoryL.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
         <button
           className="filterButton"
           onClick={() => {

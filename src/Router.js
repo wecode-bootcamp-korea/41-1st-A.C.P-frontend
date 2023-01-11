@@ -7,6 +7,7 @@ import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Ordered from './pages/Ordered/Ordered';
+import Materials from './pages/Products/Materials/Materials';
 
 export default function Router() {
   return (
@@ -17,6 +18,7 @@ export default function Router() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Login />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/materials" element={<Materials />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
           <Route path="/ordered" element={<Ordered />} />

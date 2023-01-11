@@ -55,4 +55,5 @@ const FilterData = {
     },
   ],
 };
+
 export default FilterData;

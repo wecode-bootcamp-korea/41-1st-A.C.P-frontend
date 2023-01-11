@@ -8,16 +8,17 @@
   justify-content: space-between;
   padding: 0px 40px 0px 20px;
   box-sizing: border-box;
-
   .plantsFilter {
     margin-left: 40px;
     font-size: 16px;
     color: $GRAY333;
     display: inline-block;
     padding-top: 40px;
+    background-color: $bgColorPoint;
     cursor: pointer;
     .plantFilter {
       display: inline-block;
+      background-color: $bgColorPoint;
     }
     .linkCategory {
       font-size: 16px;
@@ -39,7 +40,7 @@
     width: 120px;
     border: 1px solid $GRAY333;
     margin-right: 20px;
-
+    margin-top: 30px;
     &:hover {
       cursor: pointer;
       color: white;
