@@ -13,12 +13,18 @@ function ProductDetail() {
 
   console.log(params);
 
-  // const [modal1, setModal1] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
   const [modalText, setModalText] = useState('');
 
-  const handleModal2 = e => {
+  const goToPage = path => {
+    navigate(`/${path}`);
+  };
+
+  // 장바구니 눌렀을 때, 장바구니에 담긴 목록을 백엔드에서 받아서 id 를 확인한 후, 있으면 setModalText('동일한 상품')
+  // 없으면 (else 부분), 장바구니에 담는 api를 불러와서 해당 상품정보를 body에 담은 후, 잘 담긴 메세지(success)를 받으면, setModalText('장바구니에 상품이 담겼습니다')!
+
+  const handleModal = e => {
     setIsModalOpen(true);
     fetch('장바구니 담긴 목록 API', {
       method: 'POST',
@@ -55,22 +61,9 @@ function ProductDetail() {
       });
   };
 
-  const goToPage = path => {
-    navigate(`/${path}`);
-  };
-
-  // ===== Mock Data 상품 정보 =====
-  // useEffect(() => {
-  //   fetch('data/productInfo.json')
-  //     .then(res => res.json())
-  //     .then(data => setProductInfo(data));
-  // }, []);
-
   // BE와 통신세팅 -> 상품리스트에서 클릭했을 때 요청되어, 상품상세에 데이터가 뿌려지는 fetch 코드
   // 성공 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   useEffect(() => {
-    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
-
     fetch(`http://10.58.52.135:3000/plants/${productId}`, {
       method: 'POST',
       headers: {
@@ -87,57 +80,14 @@ function ProductDetail() {
       });
   }, [productId]);
 
-  // BE와 통신세팅 -> 장바구니 버튼을 클릭했을 때, 장바구니에 담긴 상품들의 아이디와 일치하는게 있는지 조건 검사하고 결과를 받아야하는 fetch 코드, 동적라우팅은 상품리스트로!
-  const fetchCartBtn = e => {
-    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
-
-    fetch('http://10.58.52.135:3000/plants/1', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        plant_id: 1,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      }, []);
-  };
-
-  // BE와 통신세팅 -> 주문하기 버튼을 클릭했을 때, 해당 상품 아이디를 요청하여 오더페이지에 뿌려져야 되는 fetch 코드
-  const fetchOrderBtn = e => {
-    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
-
-    fetch('http://10.58.52.135:3000/plants/1', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        plant_id: 1,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      }, []);
-  };
-
-  // ========== 난이도 dot 기능 구현 ========== //
-
+  // ===== 난이도 dot 기능용 객체 ===== //
   const difficultyList = {
     Easy: 1,
     Normal: 2,
     Hard: 4,
   };
-  // 1. 백엔드에서 보내주는 difficulty 데이터 값인 Easy, Normal, Hard
-  // 2. difficultyList 라는 객체로 데이터 값(Easy, Normal, Hard) 숫자를 할당해준다!
-  // 3. 이 숫자를 dot 컴포넌트에 props 로 넘겨준다!
 
-  // ========== 난이도 dot 기능 구현 ========== //
-
+  // ===== 응답데이터 이름 ===== //
   const {
     id,
     plant_name,
@@ -186,14 +136,13 @@ function ProductDetail() {
           <div className="productDetailBtns">
             <button
               className="payBtn"
-              // onClick={fetchProductInfos}
               onClick={() => {
                 goToPage('order');
               }}
             >
               구매하기 &nbsp;{plant_price}
             </button>
-            <button className="cartBtn" onClick={handleModal2}>
+            <button className="cartBtn" onClick={handleModal}>
               장바구니
             </button>
           </div>
