@@ -15,6 +15,11 @@ export default function Products() {
   const navigate = useNavigate();
   console.log(searchParams.toString());
 
+  const defaultOffset = 6;
+  let offset = Number(searchParams.get('_offset')) || defaultOffset;
+  const maxLength = Math.floor(productList.length / defaultOffset);
+  const currentCount = offset / defaultOffset;
+
   useEffect(() => {
     navigate('/products');
   }, []);
@@ -35,6 +40,27 @@ export default function Products() {
       .then(res => res.json())
       .then(data => setProductList(data));
   }, []);
+
+  const handleMoreClick = () => {
+    if (productList.length > offset) {
+      offset += 6;
+      searchParams.set('_offset', offset);
+      setSearchParams(searchParams);
+
+      // url 변경 필요
+      fetch(
+        `http://10.58.52.135:3000/lists/filter?${searchParams.toString()}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+          },
+        }
+      )
+        .then(res => res.json())
+        .then(data => setProductList(data));
+    }
+  };
 
   return (
     <>
@@ -76,13 +102,10 @@ export default function Products() {
       <div className="button">
         <button
           className="btn"
-          onClick={() => {
-            setPlus(plus + 1);
-          }}
-          disabled={plus == 5 ? true : false}
+          onClick={handleMoreClick}
+          disabled={currentCount === maxLength && 'disabled'}
         >
-          {' '}
-          more ({plus}/5)
+          more ({currentCount}/{maxLength})
         </button>
       </div>
     </>

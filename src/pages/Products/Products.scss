@@ -104,9 +104,15 @@
     cursor: pointer;
     background-color: $bgColor;
     border: 0.5px solid rgba($GRAY666, 0.5);
+    transition: all 0.4s ease-in-out;
 
     &:hover {
       border: 0.5px solid $GRAY333;
+    }
+
+    &:disabled {
+      opacity: 0;
+      pointer-events: none;
     }
   }
 }

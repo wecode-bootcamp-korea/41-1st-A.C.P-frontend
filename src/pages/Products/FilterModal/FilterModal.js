@@ -43,12 +43,6 @@ function FilterModal({ categoryInfo }) {
                       {subCate.title}
                     </label>
                   </li>
-                  //   <Link
-
-                  //   className="filterCategoryS"
-                  //   to={`/products?${filterCate.category}=${subCate.id}`}
-                  // >
-                  // </Link>
                 );
               })}
             </ul>
