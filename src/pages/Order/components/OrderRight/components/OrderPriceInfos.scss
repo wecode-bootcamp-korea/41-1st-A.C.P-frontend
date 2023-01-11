@@ -1,0 +1,40 @@
+@import '../../../../../styles/variables.scss';
+
+.orderPriceInfos {
+  width: 70%;
+  margin: 0 auto;
+  padding-bottom: 30px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 120px;
+
+    font-size: 16px;
+    color: $GRAY333;
+
+    &:nth-child(2) {
+      padding: 30px 0;
+      border-bottom: 1px solid #d5d4c9;
+    }
+
+    &:nth-child(3) {
+      padding-top: 30px;
+      span {
+        &:last-child {
+          font-size: 20px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    span {
+      &:first-child {
+      }
+
+      &:last-child {
+      }
+    }
+  }
+}

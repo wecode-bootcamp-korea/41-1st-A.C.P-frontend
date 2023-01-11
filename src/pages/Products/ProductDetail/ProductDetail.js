@@ -210,25 +210,6 @@ function ProductDetail() {
           <p>신문지와 종이테이프만을 사용하여 정성스럽게 포장해드립니다</p>
         </div>
       </div>
-      {/* { 장바구니에 해당 상품 아이디가 있으면 ? (
-        <Modal
-          goToOrder={goToOrder}
-          goToCart={goToCart}
-          // text="( '아니오'를 클릭하시면, 바로 주문결제페이지로 이동합니다. )"
-          component1={
-            <p>
-              장바구니에 이미 동일한 상품이 있습니다. <br />
-              장바구니로 이동하시겠습니까?
-            </p>
-          }
-          onClose={() => setModal1(false)}
-          component2={
-            <div className="modalBtn">
-              <button onClick={goToPage(cart)}>이동</button>
-            </div>
-          }
-        />
-      ) : ? } */}
       {isModalOpen && (
         <Modal
           component1={
@@ -247,80 +228,6 @@ function ProductDetail() {
       )}
     </div>
   );
-}
-
-// const [difficultyDot, setDifficultyDot] = useState([
-//   false,
-//   false,
-//   false,
-//   false,
-//   false,
-// ]);
-
-// useEffect(() => {
-//   console.log('useEffect함수 실행했나요?');
-//   difficultyDotChange();
-// }, []);
-// const handleModal1 = e => {
-//   setModal1(true);
-// };
-
-// function difficultyDotChange() {
-//   console.log('함수실행중입니다..');
-//   switch (productInfo.difficulty) {
-//     case 'Easy':
-//       return setDifficultyDot([true, false, false, false, false]);
-//       break;
-//     case 'Normal':
-//       return setDifficultyDot([true, true, false, false, false]);
-//       break;
-//     case 'Hard':
-//       return setDifficultyDot([true, true, true, true, false]);
-//       break;
-//   }
-// }
-
-{
-  /* productInfo.difficulty === 'Easy' >>> 'difficultyDotFill' 1개 */
-}
-{
-  /* productInfo.difficulty === 'Nomal' >>> 'difficultyDotFill' 2개  */
-}
-{
-  /* productInfo.difficulty === 'Hard' >>> 'difficultyDotFill' 4개 */
-}
-
-{
-  /* <span
-                value={difficultyDot[0]}
-                className={`difficultyDot ${
-                  difficultyDot[0] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              />
-              <span
-                value={difficultyDot[1]}
-                className={`difficultyDot ${
-                  difficultyDot[1] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              />
-              <span
-                value={difficultyDot[2]}
-                className={`difficultyDot ${
-                  difficultyDot[2] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              />
-              <span
-                value={difficultyDot[3]}
-                className={`difficultyDot ${
-                  difficultyDot[3] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              />
-              <span
-                value={difficultyDot[4]}
-                className={`difficultyDot ${
-                  difficultyDot[4] ? 'difficultyDotFill' : 'difficultyDotEmpty'
-                } `}
-              /> */
 }
 
 export default ProductDetail;
