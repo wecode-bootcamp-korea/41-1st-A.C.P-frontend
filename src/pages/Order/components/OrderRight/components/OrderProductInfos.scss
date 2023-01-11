@@ -1,0 +1,55 @@
+@import '../../../../../styles/variables.scss';
+
+.orderProductInfos {
+  display: flex;
+  justify-content: space-between;
+
+  width: 71%;
+  margin: 0 auto;
+  padding: 15px 0 45px;
+  border-top: 2px solid $GRAY333;
+  // border-bottom: 1px solid $GRAY666;
+
+  .orderProductImg {
+    display: inline-block;
+    width: 50%;
+    margin-top: 30px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .orderProductMiniInfos {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 30px 0 0 30px;
+    padding-right: 80px;
+
+    .miniInfoDetail {
+      height: 235px;
+
+      p {
+        &:first-child {
+          font-size: 16px;
+          font-weight: 600;
+          color: $GRAY333;
+        }
+
+        &:last-child {
+          font-size: 14px;
+          color: $GRAY666;
+        }
+      }
+    }
+
+    .price {
+      margin-top: 5px;
+      color: $GRAY333;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}
