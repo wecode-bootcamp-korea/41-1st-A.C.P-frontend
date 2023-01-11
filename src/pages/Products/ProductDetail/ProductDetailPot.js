@@ -34,61 +34,62 @@ function ProductDetailPot() {
   useEffect(() => {
     // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
 
-    fetch(`http://10.58.52.135:3000/pots/${productId}`, {
-      method: 'POST',
+    fetch(`http://10.58.52.160:3000/pots/${productId}`, {
+      method: 'POST', // + 메소드가 GET 이면 body 생략
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        pot_id: 1,
+        pot_id: { productId },
       }),
     })
       .then(res => res.json())
       .then(data => {
-        setProductInfo(data);
-        console.log(data);
+        setProductInfo(data.data[0]);
       });
-  }, [productId]);
+  }, []);
+
+  console.log(productInfo);
 
   // BE와 통신세팅 -> 장바구니 버튼을 클릭했을 때, 장바구니에 담긴 상품들의 아이디와 일치하는게 있는지 조건 검사하고 결과를 받아야하는 fetch 코드, 동적라우팅은 상품리스트로!
-  const fetchCartBtn = e => {
-    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
+  // const fetchCartBtn = e => {
+  //   // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
 
-    fetch('http://10.58.52.135:3000/plants/1', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        plant_id: 1,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      }, []);
-  };
+  //   fetch('http://10.58.52.135:3000/plants/1', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //     body: JSON.stringify({
+  //       plant_id: 1,
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //     }, []);
+  // };
 
   // BE와 통신세팅 -> 주문하기 버튼을 클릭했을 때, 해당 상품 아이디를 요청하여 오더페이지에 뿌려져야 되는 fetch 코드
-  const fetchOrderBtn = e => {
-    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
+  // const fetchOrderBtn = e => {
+  //   // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
 
-    fetch('http://10.58.52.135:3000/plants/1', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        plant_id: 1,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      }, []);
-  };
+  //   fetch('http://10.58.52.135:3000/plants/1', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //     body: JSON.stringify({
+  //       plant_id: 1,
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //     }, []);
+  // };
 
-  const { id, pot_name, size, color, pot_price } = productInfo;
+  const { id, name, size, color, price } = productInfo;
 
   return (
     <div className="productDetailPot">
@@ -100,7 +101,7 @@ function ProductDetailPot() {
           />
         </div>
         <div className="productDetailInfos">
-          <h1>이태리 화분</h1>
+          <h1>{name}</h1>
           <ProductInfoPot key={id} size={size} color={color} />
           <div className="productDetailBtns">
             <button
@@ -109,7 +110,7 @@ function ProductDetailPot() {
                 goToPage('order');
               }}
             >
-              구매하기 &nbsp;25,000₩
+              구매하기 &nbsp;{parseInt(price)}₩
             </button>
             <button className="cartBtn" onClick={handleModal2}>
               장바구니
