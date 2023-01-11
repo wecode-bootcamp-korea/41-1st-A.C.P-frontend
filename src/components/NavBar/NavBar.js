@@ -1,14 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import PlantsCate from './PlantsCate';
 import MaterialsCate from './MaterialsCate';
 import './NavBar.scss';
 
 export default function NavBar() {
-  let [currentTab, setCurrentTab] = useState('');
-  let [closeBtn, setCloseBtn] = useState('closeBtn');
-  let [contentsNull, setContentsNull] = useState('contentsNull');
+  const [currentTab, setCurrentTab] = useState('');
+  const [closeBtn, setCloseBtn] = useState('closeBtn');
+  const [contentsNull, setContentsNull] = useState('contentsNull');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    menuTabClose();
+  }, [location.key]);
+
+  useEffect(() => {
+    isLogin();
+  }, []);
 
   const menuTabOpen = tab => {
     setContentsNull('contents');
@@ -19,6 +29,17 @@ export default function NavBar() {
   const menuTabClose = () => {
     setCloseBtn('closeBtn');
     setContentsNull('contentsNull');
+  };
+
+  const isLogin = () => {
+    const accessToken = localStorage.getItem('accessToken');
+    accessToken && setIsLoggedIn(true);
+  };
+
+  const handleLoginClick = e => {
+    isLoggedIn && e.preventDefault();
+    isLoggedIn && setIsLoggedIn(false);
+    isLoggedIn && localStorage.removeItem('accessToken');
   };
 
   return (
@@ -37,7 +58,9 @@ export default function NavBar() {
       </div>
 
       <div className="navBarRight">
-        <Link to="/login">Login</Link>
+        <Link to="/login" onClick={handleLoginClick}>
+          {isLoggedIn ? 'Logout' : 'Login'}
+        </Link>
         <Link to="/cart">Cart</Link>
         <Link to="/cart">Archive</Link>
       </div>
