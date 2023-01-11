@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import List from './List';
 import FilterData from './Data/FilterData';
 import FilterModal from './FilterModal/FilterModal';
@@ -12,6 +12,12 @@ export default function Products() {
   const { species, categoryInfo } = FilterData;
   const [productList, setProductList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  console.log(searchParams.toString());
+
+  useEffect(() => {
+    navigate('/products');
+  }, []);
 
   // useEffect(() => {
   //   fetch(`http://10.58.52.135:3000/lists/filter?${searchParams.toString()}`, {
@@ -29,6 +35,7 @@ export default function Products() {
       .then(res => res.json())
       .then(data => setProductList(data));
   }, []);
+
   return (
     <>
       <div className="filter">
