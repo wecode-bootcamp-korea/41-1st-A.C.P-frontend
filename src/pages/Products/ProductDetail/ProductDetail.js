@@ -143,6 +143,7 @@ function ProductDetail() {
               className="payBtn"
               onClick={() => {
                 localStorage.setItem('id', JSON.stringify(fakeData));
+                // 해당 상품 정보를 fakeData 자리에 넣어야함
                 goToPage('order');
               }}
             >
