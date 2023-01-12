@@ -1,6 +1,17 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/variables.scss';
 
+@keyframes smoothSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .plantsCate {
   width: 100%;
   height: 100vh;
@@ -9,9 +20,12 @@
   position: absolute;
   left: 0px;
   top: 80px;
+  animation-name: smoothSlide;
+  animation-duration: 0.5s;
 
   .logoPart {
     width: 19%;
+
     img {
       width: 80px;
       margin: 79px 0px 0px 50px;

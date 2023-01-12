@@ -18,8 +18,8 @@ export default function PlantsCate() {
               {categoryItems.map(bigCategoryTitle => {
                 return (
                   <li key={bigCategoryTitle} className="bigCategoryItems">
-                    <Link to="/products" className="bigItem">
-                      {bigCategoryTitle}
+                    <Link to={bigCategoryTitle.url} className="bigItem">
+                      {bigCategoryTitle.title}
                     </Link>
                   </li>
                 );
@@ -33,11 +33,11 @@ export default function PlantsCate() {
           return (
             <ul key={id} className="categoryList">
               <li className="categoryTitle">{title}</li>
-              {categoryItems.map(item => {
+              {categoryItems.map(categoryTitle => {
                 return (
-                  <li key={item} className="categoryItems">
-                    <Link to="/products" className="item">
-                      {item}
+                  <li key={categoryTitle} className="categoryItems">
+                    <Link to={categoryTitle.url} className="item">
+                      {categoryTitle.title}
                     </Link>
                   </li>
                 );
@@ -61,13 +61,13 @@ const BIG_CATE_MENU = [
     id: 1,
     title: '카테고리',
     categoryItems: [
-      '식물 모두 보기',
-      '천남성과',
-      '덩굴식물',
-      '양치식물',
-      '소철과 허브',
-      '선인장',
-      '목본류',
+      { title: '식물 모두 보기', url: '/products' },
+      { title: '천남성과', url: '/products?species=1' },
+      { title: '덩굴식물', url: '/products?species=2' },
+      { title: '양치식물', url: '/products?species=3' },
+      { title: '소철과 허브', url: '/products?species=4' },
+      { title: '선인장', url: '/products?species=5' },
+      { title: '목본류', url: '/products?species=6' },
     ],
   },
 ];
@@ -76,21 +76,41 @@ const CATE_MENU = [
   {
     id: 1,
     title: '위치',
-    categoryItems: ['Houseplant', 'Hanging', 'Desk', 'Window', 'Outdoor'],
+    categoryItems: [
+      { title: 'Houseplant', url: '/products?position=1' },
+      { title: 'Hanging', url: '/procucts?position=2' },
+      { title: 'Desk', url: 'products?position=3' },
+      { title: 'Window', url: 'products?position=4' },
+      { title: 'Outdoor', url: 'products?position=5' },
+    ],
   },
   {
     id: 2,
     title: '분위기',
-    categoryItems: ['Warm', 'Adorable', 'Cozy', 'Modern'],
+    categoryItems: [
+      { title: 'Warm', url: '/products?mood=1' },
+      { title: 'Adorable', url: '/products?mood=2' },
+      { title: 'Cozy', url: '/products?mood=3' },
+      { title: 'Modern', url: '/products?mood=4' },
+    ],
   },
   {
     id: 3,
     title: '크기',
-    categoryItems: ['miniature', '20 - 50cm', '50 - 100cm', '100 - 150cm'],
+    categoryItems: [
+      { title: 'miniature', url: '/products?size=1' },
+      { title: '20 - 50cm', url: '/products?size=2' },
+      { title: '50 - 100cm', url: '/products?size=3' },
+      { title: '100 - 150cm', url: '/products?size=4' },
+    ],
   },
   {
     id: 4,
     title: '난이도',
-    categoryItems: ['Easy', 'Normal', 'Hard'],
+    categoryItems: [
+      { title: 'Easy', url: '/products?difficulty=1' },
+      { title: 'Normal', url: '/products?difficulty=2' },
+      { title: 'Hard', url: '/products?difficulty=3' },
+    ],
   },
 ];

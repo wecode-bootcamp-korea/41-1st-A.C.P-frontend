@@ -18,8 +18,8 @@ export default function MaterialsCate() {
               {categoryItems.map(bigCategoryTitle => {
                 return (
                   <li key={bigCategoryTitle} className="bigCategoryItems">
-                    <Link to="/products" className="bigItem">
-                      {bigCategoryTitle}
+                    <Link to={bigCategoryTitle.url} className="bigItem">
+                      {bigCategoryTitle.title}
                     </Link>
                   </li>
                 );
@@ -33,11 +33,11 @@ export default function MaterialsCate() {
           return (
             <ul key={id} className="categoryList">
               <li className="categoryTitle">{title}</li>
-              {categoryItems.map(item => {
+              {categoryItems.map(categoryTitle => {
                 return (
-                  <li key={item} className="categoryItems">
-                    <Link to="/products" className="item">
-                      {item}
+                  <li key={categoryTitle} className="categoryItems">
+                    <Link to={categoryTitle.url} className="item">
+                      {categoryTitle.title}
                     </Link>
                   </li>
                 );
@@ -63,7 +63,12 @@ const BIG_CATE_MATERIALS = [
   {
     id: 1,
     title: '카테고리',
-    categoryItems: ['원예자재 모두 보기', '토분', '잎 영양제', '뿌리 영앙제'],
+    categoryItems: [
+      { title: '토분 모두보기', url: '/pots' },
+      { title: '영양제 모두보기', url: '/nutrients' },
+      { title: '잎 영양제', url: '/nutrients?type=1' },
+      { title: '뿌리 영앙제', url: '/nutrients?type=2' },
+    ],
   },
 ];
 
@@ -71,6 +76,10 @@ const CATE_MATERIALS = [
   {
     id: 1,
     title: '토분 지름',
-    categoryItems: ['10 - 20cm', '20 - 30cm', '30 - 40cm'],
+    categoryItems: [
+      { title: '10 - 20cm', url: '/pots?size=1' },
+      { title: '20 - 30cm', url: '/pots?size=2' },
+      { title: '30 - 40cm', url: '/pots?size=3' },
+    ],
   },
 ];

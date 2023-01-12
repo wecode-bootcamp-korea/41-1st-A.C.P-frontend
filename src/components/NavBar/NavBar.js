@@ -1,14 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import PlantsCate from './PlantsCate';
-import MaterialsCate from './MaterialsCate';
+import PlantsCate from './PlantsCate/PlantsCate';
+import MaterialsCate from './MaterialsCate/MaterialsCate';
+import Search from './Search/Search';
 import './NavBar.scss';
 
 export default function NavBar() {
-  let [currentTab, setCurrentTab] = useState('');
-  let [closeBtn, setCloseBtn] = useState('closeBtn');
-  let [contentsNull, setContentsNull] = useState('contentsNull');
+  const [currentTab, setCurrentTab] = useState('');
+  const [closeBtn, setCloseBtn] = useState('closeBtn');
+  const [contentsNull, setContentsNull] = useState('contentsNull');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    menuTabClose();
+  }, [location.key]);
+
+  useEffect(() => {
+    isLogin();
+  }, []);
 
   const menuTabOpen = tab => {
     setContentsNull('contents');
@@ -19,6 +30,24 @@ export default function NavBar() {
   const menuTabClose = () => {
     setCloseBtn('closeBtn');
     setContentsNull('contentsNull');
+  };
+
+  const isLogin = () => {
+    const accessToken = localStorage.getItem('accessToken');
+    accessToken && setIsLoggedIn(true);
+  };
+
+  const navigate = useNavigate();
+
+  const handleLoginClick = e => {
+    e.preventDefault();
+
+    if (isLoggedIn) {
+      localStorage.removeItem('accessToken');
+      setIsLoggedIn(false);
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -37,7 +66,7 @@ export default function NavBar() {
       </div>
 
       <div className="navBarRight">
-        <Link to="/login">Login</Link>
+        <div onClick={handleLoginClick}>{isLoggedIn ? 'Logout' : 'Login'}</div>
         <Link to="/cart">Cart</Link>
         <Link to="/cart">Archive</Link>
       </div>
@@ -50,4 +79,5 @@ const TAB_ARR = ['Plants', 'Materials', 'Search'];
 const MAPPING_OBJ = {
   Plants: <PlantsCate />,
   Materials: <MaterialsCate />,
+  Search: <Search />,
 };
