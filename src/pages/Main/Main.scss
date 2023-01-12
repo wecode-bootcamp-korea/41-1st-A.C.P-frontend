@@ -1,22 +1,15 @@
-@import '../../styles/variables.scss';
 @import '../../styles/mixin.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/common.scss';
+@import '../../styles/animation.scss';
 
 .blank {
   background-color: $bgColor;
   height: 250px;
 }
 
-.logoBar {
-  width: 100%;
-  height: 200px;
-  background-color: $bgColor;
-  display: flex;
-  align-items: center;
-
-  img {
-    width: 80px;
-    margin-left: 50px;
-  }
+.mainWrapper {
+  margin-top: 280px;
 }
 
 .mainImg {
@@ -24,6 +17,8 @@
   height: 650px;
   overflow: hidden;
   position: relative;
+  animation-name: smoothSlide;
+  animation-duration: 2s;
 
   img {
     width: 100%;
@@ -40,95 +35,9 @@
   margin-bottom: 60px;
 }
 
-.newProductsWrapper {
-  width: 100%;
-  height: 450px;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.mainGuideBox {
-  display: flex;
-  justify-content: space-between;
-
-  .mainGuideContentLeft {
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 70px;
-  }
-
-  .recommendationGuideImg {
-    width: 55%;
-    height: 450px;
-    position: relative;
-    overflow: hidden;
-
-    img {
-      position: absolute;
-      width: 100%;
-      top: -300px;
-    }
-  }
-}
-
-.mainGuideTitle {
-  font-size: 24px;
-  color: $GRAY333;
-}
-
-.mainGuideText {
-  font-size: 16px;
-  color: $GRAY666;
-}
-
-.mainNavigateBtn {
-  width: 250px;
-  font-size: 14px;
-  color: $GRAY333;
-  background: transparent;
-  border: 1px solid #d5d4c9;
-  padding: 20px 0px;
-
-  &:hover {
-    background: $GRAY252525;
-    color: $bgColorPoint;
-    cursor: pointer;
-  }
-}
-
-.mainDeliveryGuideBox {
-  display: flex;
-  justify-content: space-between;
-
-  .deliveryGuideImg {
-    width: 55%;
-    height: 450px;
-    position: relative;
-    overflow: hidden;
-
-    img {
-      position: absolute;
-      width: 130%;
-      top: -865px;
-      left: -30px;
-    }
-  }
-
-  .mainGuideContentRight {
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 90px;
-  }
-}
-
 .slideWrapper {
   width: 100%;
   overflow: hidden;
+  animation-name: smoothSlide;
+  animation-duration: 1s;
 }

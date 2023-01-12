@@ -1,14 +1,17 @@
-@import '../../styles/variables.scss';
-@import '../../styles/mixin.scss';
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
 
 .bottomSlide {
   position: relative;
 
-  .slideBox {
+  .slideBox,
+  .slideBoxRight {
     width: 200vw;
     display: flex;
     overflow: hidden;
-    transition: transform 0.5s;
+    transition: transform 1s;
     position: relative;
 
     .subscriptionBox {
@@ -38,6 +41,11 @@
     }
   }
 
+  .slideBoxRight {
+    transform: translateX(-50%);
+    transition: transform 1s;
+  }
+
   .slideBtn {
     top: 0;
     width: 100vw;
@@ -46,11 +54,10 @@
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    z-index: 1;
+    z-index: 90;
 
     .backBtn,
     .nextBtn {
-      color: white;
       background-color: transparent;
       border-style: none;
       margin: 0px 80px;

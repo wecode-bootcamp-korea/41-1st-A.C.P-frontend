@@ -1,0 +1,88 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
+
+.mainGuideBox {
+  display: flex;
+  justify-content: space-between;
+  animation-name: smoothSlide;
+  animation-duration: 1s;
+
+  .mainGuideContentLeft {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 110px;
+  }
+
+  .recommendationGuideImg {
+    width: 55%;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      width: 100%;
+      top: -300px;
+    }
+  }
+}
+
+.mainGuideTitle {
+  font-size: 24px;
+  color: $GRAY333;
+}
+
+.mainGuideText {
+  font-size: 16px;
+  color: $GRAY666;
+}
+
+.mainNavigateBtn {
+  width: 250px;
+  font-size: 14px;
+  color: $GRAY333;
+  background: transparent;
+  border: 1px solid #d5d4c9;
+  padding: 20px 0px;
+
+  &:hover {
+    background: $GRAY252525;
+    color: $bgColorPoint;
+    cursor: pointer;
+  }
+}
+
+.mainDeliveryGuideBox {
+  display: flex;
+  justify-content: space-between;
+  animation-name: smoothSlide;
+  animation-duration: 1s;
+
+  .deliveryGuideImg {
+    width: 55%;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      width: 130%;
+      top: -865px;
+      left: -30px;
+    }
+  }
+
+  .mainGuideContentRight {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 110px;
+  }
+}

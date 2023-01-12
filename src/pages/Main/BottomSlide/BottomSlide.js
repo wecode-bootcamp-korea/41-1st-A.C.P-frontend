@@ -1,18 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BottomSlide.scss';
 
 export default function BottomSlide() {
-  const nextSlide = () => {
-    document.querySelector('.slideBox').style.transform = 'translate(-100vw)';
-  };
-
-  const backSlide = () => {
-    document.querySelector('.slideBox').style.transform = 'translate(0vw)';
-  };
+  const [left, setLeft] = useState('');
 
   return (
     <div className="bottomSlide">
-      <div className="slideBox">
+      <div className={'slideBox' + left}>
         <div className="subscriptionBox">
           <img src="images/main/pot.jpg" alt="pot subscription" />
         </div>
@@ -21,10 +15,10 @@ export default function BottomSlide() {
         </div>
       </div>
       <div className="slideBtn">
-        <button className="backBtn" onClick={backSlide}>
+        <button className="backBtn" onClick={() => setLeft('')}>
           <img src="images/main/next.png" alt="back" className="back" />
         </button>
-        <button className="nextBtn" onClick={nextSlide}>
+        <button className="nextBtn" onClick={() => setLeft('Right')}>
           <img src="images/main/next.png" alt="next" className="next" />
         </button>
       </div>
