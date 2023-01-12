@@ -46,7 +46,9 @@ function CartPriceInfo({ totalPrice }) {
           </div>
           <div className="totalPriceInfo">
             <span>총 결제금액</span>
-            <span className="numTotalPrice">{totalProductsPrice}₩</span>
+            <span className="numTotalPrice">
+              {totalProductsPrice.toLocaleString()}₩
+            </span>
           </div>
         </div>
       </div>

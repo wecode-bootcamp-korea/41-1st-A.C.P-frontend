@@ -142,11 +142,7 @@ function ProductDetail() {
               }}
             >
               구매하기 &nbsp;
-              {plant_price}
-              {/* {`${Number(plant_price.split('.').join('')).toLocaleString()}`} */}
-              {/* {console.log(
-                Number(plant_price2.split('.').join('')).toLocaleString()
-              )} */}
+              {parseInt(plant_price).toLocaleString()}₩
             </button>
             <button className="cartBtn" onClick={handleModal}>
               장바구니

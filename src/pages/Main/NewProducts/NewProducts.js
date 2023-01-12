@@ -35,7 +35,9 @@ export default function NewProducts() {
                   </div>
                   <div className="newProductDetail">
                     <p className="newProductName">{plant_name}</p>
-                    <p className="newProductPrice">{plant_price}</p>
+                    <p className="newProductPrice">
+                      {parseInt(plant_price).toLocaleString()}₩
+                    </p>
                   </div>
                 </div>
               );
