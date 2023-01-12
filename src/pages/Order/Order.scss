@@ -1,0 +1,245 @@
+@import '../../styles/variables.scss';
+
+.order {
+  display: flex;
+  justify-content: space-around;
+  width: 80vw;
+  margin: 0 auto;
+
+  .orderLeft {
+    width: 100%;
+    margin: 100px 0 100px 100px;
+
+    .ordererInfos {
+      font-size: 16px;
+
+      h2 {
+        color: $GRAY333;
+      }
+
+      .infoInputs {
+        margin-top: 10px;
+
+        .orderTextInput {
+          position: relative;
+
+          input {
+            margin-top: 20px;
+            font-size: 16px;
+            width: 80%;
+            padding: 12px 0 8px;
+            border: none;
+            border-bottom: 1px solid #d5d4c9;
+            background: $bgColor;
+
+            outline: none;
+          }
+
+          label {
+            position: absolute;
+            top: 25px;
+            transition: all 0.3s ease;
+            left: 0;
+            color: $GRAY666;
+            font-size: 18px;
+            pointer-events: none;
+          }
+
+          &.move {
+            label {
+              position: absolute;
+              top: 5px;
+              font-size: 14px;
+              transition: all 0.3s ease;
+            }
+          }
+        }
+      }
+
+      ul {
+        margin-top: 20px;
+        font-size: 16px;
+
+        li {
+          width: 80%;
+          padding: 12px 0;
+          border-bottom: 1px solid #d5d4c9;
+
+          span {
+            display: block;
+            padding-bottom: 30px;
+          }
+
+          p {
+          }
+        }
+      }
+    }
+
+    .destinationInfos {
+      margin-top: 70px;
+      font-size: 16px;
+
+      h2 {
+        color: $GRAY333;
+      }
+
+      .infoInputs {
+        margin-top: 10px;
+
+        .orderTextInput {
+          position: relative;
+
+          input {
+            margin-top: 20px;
+            font-size: 16px;
+            width: 80%;
+            padding: 12px 0 8px;
+            border: none;
+            border-bottom: 1px solid #d5d4c9;
+            background: $bgColor;
+
+            outline: none;
+          }
+
+          label {
+            position: absolute;
+            top: 25px;
+            transition: all 0.3s ease;
+            left: 0;
+            color: $GRAY666;
+            font-size: 18px;
+            pointer-events: none;
+          }
+
+          &.move {
+            label {
+              position: absolute;
+              top: 5px;
+              font-size: 14px;
+              transition: all 0.3s ease;
+            }
+          }
+        }
+      }
+
+      ul {
+        margin-top: 20px;
+        font-size: 16px;
+
+        li {
+          width: 80%;
+          padding: 12px 0;
+          border-bottom: 1px solid #d5d4c9;
+
+          &:last-child {
+            border-bottom: 0;
+
+            span {
+              padding-bottom: 15px;
+            }
+
+            textarea {
+              width: 95%;
+              height: 100px;
+              padding: 10px;
+              border: 1px solid #d5d4c9;
+              background: #fffef2;
+              outline: none;
+              resize: none;
+
+              &::placeholder {
+                color: $GRAY666;
+              }
+            }
+          }
+
+          span {
+            display: block;
+            padding-bottom: 30px;
+          }
+
+          p {
+          }
+        }
+
+        .desiredWant {
+          position: relative;
+          border-bottom: 0;
+          padding-bottom: 0;
+
+          span {
+            padding-bottom: 15px;
+          }
+
+          .selectArrow {
+            position: absolute;
+            right: 20px;
+            top: 59px;
+            width: 12px;
+
+            img {
+              width: 100%;
+              cursor: pointer;
+            }
+          }
+
+          .selectDate {
+            display: none;
+            height: 80px;
+            border: 1px solid #d5d4c9;
+            margin-top: 5px;
+            overflow: scroll;
+
+            li {
+              padding: 2px 0;
+              margin: 0 auto;
+              border-bottom: 0;
+              text-align: center;
+
+              &:first-child {
+                padding-top: 10px;
+              }
+
+              &:last-child {
+                padding-bottom: 10px;
+              }
+            }
+
+            button {
+              border: none;
+              background: $bgColor;
+              font-size: 14px;
+              color: $GRAY666;
+              cursor: pointer;
+            }
+
+            &.show {
+              display: block;
+              height: 80px;
+              border: 1px solid #d5d4c9;
+              margin-top: 5px;
+              overflow: scroll;
+            }
+
+            &::-webkit-scrollbar {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .dateSelectBox {
+        width: 100%;
+        padding: 10px 10px;
+        border: 1px solid #d5d4c9;
+        background: $bgColor;
+
+        font-size: 14px;
+        color: $GRAY666;
+
+        cursor: pointer;
+      }
+    }
+  }
+}
