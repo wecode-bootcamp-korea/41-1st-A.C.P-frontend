@@ -1,6 +1,7 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/variables.scss';
 @import '../../styles/common.scss';
+@import '../../styles/animation.scss';
 
 .navBar {
   width: 100%;
@@ -11,6 +12,7 @@
   padding: 0px 50px;
   position: fixed;
   z-index: 100;
+  top: 0px;
 
   &:hover {
     cursor: pointer;

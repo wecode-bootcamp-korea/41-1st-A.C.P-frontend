@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import PlantsCate from './PlantsCate';
-import MaterialsCate from './MaterialsCate';
+import PlantsCate from './PlantsCate/PlantsCate';
+import MaterialsCate from './MaterialsCate/MaterialsCate';
+import Search from './Search/Search';
 import './NavBar.scss';
 
 export default function NavBar() {
@@ -36,10 +37,17 @@ export default function NavBar() {
     accessToken && setIsLoggedIn(true);
   };
 
+  const navigate = useNavigate();
+
   const handleLoginClick = e => {
-    isLoggedIn && e.preventDefault();
-    isLoggedIn && setIsLoggedIn(false);
-    isLoggedIn && localStorage.removeItem('accessToken');
+    e.preventDefault();
+
+    if (isLoggedIn) {
+      localStorage.removeItem('accessToken');
+      setIsLoggedIn(false);
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -58,9 +66,7 @@ export default function NavBar() {
       </div>
 
       <div className="navBarRight">
-        <Link to="/login" onClick={handleLoginClick}>
-          {isLoggedIn ? 'Logout' : 'Login'}
-        </Link>
+        <div onClick={handleLoginClick}>{isLoggedIn ? 'Logout' : 'Login'}</div>
         <Link to="/cart">Cart</Link>
         <Link to="/cart">Archive</Link>
       </div>
@@ -73,4 +79,5 @@ const TAB_ARR = ['Plants', 'Materials', 'Search'];
 const MAPPING_OBJ = {
   Plants: <PlantsCate />,
   Materials: <MaterialsCate />,
+  Search: <Search />,
 };
