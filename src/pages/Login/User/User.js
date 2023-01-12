@@ -76,12 +76,13 @@ export default function User({ title, children }) {
         .then(res => res.json())
         .then(data => {
           console.log(data);
+          if (title === '회원가입') {
+            navigate('/login');
+          }
           if (data.accessToken) {
-            alert('로그인 성공!');
             localStorage.setItem('accessToken', data.accessToken);
             navigate('/');
           }
-          throw new Error('로그인 실패!');
         });
     } else {
       alert('Validation Error!');
