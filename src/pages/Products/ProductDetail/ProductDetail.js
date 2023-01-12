@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import DifficultyDot from './DifficultyDot';
@@ -7,53 +7,58 @@ import './ProductDetail.scss';
 
 function ProductDetail() {
   const navigate = useNavigate();
-  const location = useLocation();
   const params = useParams();
   const productId = params.id;
-
-  console.log(params);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
   const [modalText, setModalText] = useState('');
 
-  const goToPage = path => {
-    navigate(`/${path}`);
+  // 임시 데이터
+  const fakeData = {
+    id: 1,
+    name: '바보',
+    price: '100',
   };
 
-  // 장바구니 눌렀을 때, 장바구니에 담긴 목록을 백엔드에서 받아서 id 를 확인한 후, 있으면 setModalText('동일한 상품')
+  const goToPage = path => {
+    navigate(`/${path}`, {
+      state: fakeData,
+    });
+  };
+
+  // 장바구니 눌렀을 때, 장바구니에 담긴 목록을 백엔드에서 받아서 id를 확인한 후, 있으면 setModalText('동일한 상품')
   // 없으면 (else 부분), 장바구니에 담는 api를 불러와서 해당 상품정보를 body에 담은 후, 잘 담긴 메세지(success)를 받으면, setModalText('장바구니에 상품이 담겼습니다')!
 
   const handleModal = e => {
     setIsModalOpen(true);
-    fetch('장바구니 담긴 목록 API', {
-      method: 'POST',
+    fetch('http://10.58.52.135:3000/carts', {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({
-        userId: 1,
-      }),
+      // body: JSON.stringify({
+      //   id: 1,
+      // }),
     })
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        if (data.filter(item => item.id === productId)) {
+        if (data.filter(item => item.id === 1)) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
-          fetch('장바구니 담는 API', {
+          fetch('http://10.58.52.135:3000/carts', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
             },
             body: JSON.stringify({
-              userId: '',
-              plant_id: '',
+              userId: 100,
             }),
           })
             .then(res => res.json())
             .then(data => {
-              if (data.message === 'success') {
+              if (data.message === 'upsert data to cart success!!') {
                 setModalText('장바구니에 상품이 담겼습니다');
               }
             });
@@ -137,10 +142,15 @@ function ProductDetail() {
             <button
               className="payBtn"
               onClick={() => {
+                localStorage.setItem('id', JSON.stringify(fakeData));
                 goToPage('order');
               }}
             >
-              구매하기 &nbsp;{plant_price}
+              구매하기 &nbsp;
+              {/* {`${Number(plant_price.split('.').join('')).toLocaleString()}`} */}
+              {/* {console.log(
+                Number(plant_price2.split('.').join('')).toLocaleString()
+              )} */}
             </button>
             <button className="cartBtn" onClick={handleModal}>
               장바구니
