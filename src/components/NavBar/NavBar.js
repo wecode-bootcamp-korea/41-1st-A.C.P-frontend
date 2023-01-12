@@ -19,7 +19,7 @@ export default function NavBar() {
 
   useEffect(() => {
     isLogin();
-  }, []);
+  }, [location]);
 
   const menuTabOpen = tab => {
     setContentsNull('contents');
