@@ -1,5 +1,6 @@
 const FilterData = {
   species: [
+    { id: 0, name: '식물 모두 보기' },
     { id: 1, name: '천남성과' },
     { id: 2, name: '덩굴식물' },
     { id: 3, name: '양치식물' },
@@ -11,7 +12,8 @@ const FilterData = {
     {
       id: 1,
       name: '사이즈',
-      category: [
+      category: 'sizes',
+      categoryList: [
         { id: 1, title: 'Mini' },
         { id: 2, title: '20-40' },
         { id: 3, title: '40-100' },
@@ -21,7 +23,8 @@ const FilterData = {
     {
       id: 2,
       name: '위치',
-      category: [
+      category: 'positions',
+      categoryList: [
         { id: 1, title: 'Houseplant' },
         { id: 2, title: 'Hanging' },
         { id: 3, title: 'Table' },
@@ -32,7 +35,8 @@ const FilterData = {
     {
       id: 3,
       name: '난이도',
-      category: [
+      category: 'difficulty',
+      categoryList: [
         { id: 1, title: 'Easy' },
         { id: 2, title: 'Normal' },
         { id: 3, title: 'Hard' },
@@ -41,7 +45,8 @@ const FilterData = {
     {
       id: 4,
       name: '분위기',
-      category: [
+      category: 'mood',
+      categoryList: [
         { id: 1, title: 'Adorable' },
         { id: 2, title: 'Warm' },
         { id: 3, title: 'Modern' },
@@ -50,4 +55,5 @@ const FilterData = {
     },
   ],
 };
+
 export default FilterData;

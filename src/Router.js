@@ -10,6 +10,7 @@ import ProductDetailNutrient from './pages/Products/ProductDetail/ProductDetailN
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Ordered from './pages/Ordered/Ordered';
+import Materials from './pages/Materials/Materials';
 
 export default function Router() {
   return (
