@@ -1,31 +1,19 @@
 import React, { useState } from 'react';
 import './SelectBoxQuantity.scss';
 
-function SelectBoxQuantity({
-  cartId,
-  productId,
-  cartItems,
-  productQuantity,
-  setCartItems,
-}) {
+function SelectBoxQuantity({ cartId, cartItems, quantity, setCartItems }) {
   const [quantityBox, setQuantityBox] = useState(false);
-  const [selectedQuantity, setSelectedQuantity] = useState(productQuantity);
+  const [selectedQuantity, setSelectedQuantity] = useState(quantity);
 
-  console.log(cartItems);
   const handleSelectClick = quantity => {
     // 통신시 필요한 내용
     // updateCartQuantity(quantity);
-    const newCart = [...cartItems];
-    newCart.filter(item => item.cart_id === cartId);
-    const nutrients = newCart[0].nutrients[0].nutrient_quantity;
-    const plants = newCart[0].plants[0].plants_quantity;
-    const pots = newCart[0].pots[0].pots_quantity;
-
-    console.log(nutrients, plants, pots);
 
     // UI로직
-    setCartItems();
-    // setSelectedQuantity(quantity);
+    const newCart = [...cartItems];
+    newCart.find(item => item.cart_id === cartId).data.quantity = quantity;
+    setCartItems(newCart);
+    setSelectedQuantity(quantity);
     setQuantityBox(false);
   };
 

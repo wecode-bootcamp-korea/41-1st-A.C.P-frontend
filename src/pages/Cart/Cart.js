@@ -32,8 +32,15 @@ export default function Cart() {
   // }, []);
 
   useEffect(() => {
-    fetch('http://10.58.52.135:3000/carts')
-      // fetch('/data/cart.json')
+    // fetch('http://10.58.52.135:3000/carts', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //     Authorization: localStorage.getItem('accessToken'),
+    //   },
+    // })
+
+    fetch('/data/cart.json')
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -43,21 +50,22 @@ export default function Cart() {
           const plantsData = item.plants[0].name !== null && item.plants[0];
           const potsData = item.pots[0].name !== null && item.pots[0];
 
-          // console.log(objKey);
-          const presentData = nutrientsData || plantsData || potsData;
+          const categoryList = Object.keys(item).slice(1); // ['nutrients', 'plants', 'pots']
+          const categoryIndex =
+            (item.nutrients[0].name !== null && '0') ||
+            (item.plants[0].name !== null && '1') ||
+            (item.pots[0].name !== null && '2');
 
-          console.log(presentData);
-          const objKey = Object.keys(presentData);
-          const category = objKey[3].slice(0, objKey[3].indexOf('_'));
+          const presentData = nutrientsData || plantsData || potsData;
 
           return {
             cart_id: item.cart_id,
             data: {
-              category: category,
+              category: categoryList[parseInt(categoryIndex)],
               description: presentData.description,
               name: presentData.name,
-              quantity: presentData[`${category}_quantity`],
-              id: presentData[`${category}s_id`],
+              quantity: presentData.quantity,
+              id: presentData.id,
               price: presentData.price,
             },
           };
@@ -65,7 +73,7 @@ export default function Cart() {
 
         console.log(newData);
 
-        // setCartItems(newData);
+        setCartItems(newData);
 
         // const itemTotalPrice = data.reduce(
         //   (acc, curr) => acc + parseInt(curr.plant_price),

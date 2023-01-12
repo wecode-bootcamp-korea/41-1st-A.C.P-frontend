@@ -5,8 +5,8 @@
       {
         "name": "nutrients1",
         "description": "description1",
-        "nutrients_id": 1,
-        "nutrient_quantity": 1,
+        "id": 1,
+        "quantity": 1,
         "price": 20000
       }
     ],
@@ -14,8 +14,8 @@
       {
         "name": null,
         "description": null,
-        "plant_id": null,
-        "plant_quantity": null,
+        "id": null,
+        "quantity": null,
         "price": null
       }
     ],
@@ -23,8 +23,8 @@
       {
         "description": null,
         "name": null,
-        "pots_id": null,
-        "pot_quantity": null,
+        "id": null,
+        "quantity": null,
         "price": null
       }
     ]
@@ -35,8 +35,8 @@
       {
         "name": null,
         "description": null,
-        "nutrients_id": null,
-        "nutrient_quantity": null,
+        "id": null,
+        "quantity": null,
         "price": null
       }
     ],
@@ -44,8 +44,8 @@
       {
         "name": "plant2",
         "description": "description2",
-        "plant_id": 2,
-        "plant_quantity": 2,
+        "id": 2,
+        "quantity": 2,
         "price": 30000
       }
     ],
@@ -53,8 +53,8 @@
       {
         "description": null,
         "name": null,
-        "pots_id": null,
-        "pot_quantity": null,
+        "id": null,
+        "quantity": null,
         "price": null
       }
     ]
@@ -65,8 +65,8 @@
       {
         "description": null,
         "name": null,
-        "nutrients_id": null,
-        "nutrient_quantity": null,
+        "id": null,
+        "quantity": null,
         "price": null
       }
     ],
@@ -74,8 +74,8 @@
       {
         "description": null,
         "name": null,
-        "plant_id": null,
-        "plant_quantity": null,
+        "id": null,
+        "quantity": null,
         "price": null
       }
     ],
@@ -83,8 +83,8 @@
       {
         "name": "pots3",
         "description": "description3",
-        "pots_id": 3,
-        "pot_quantity": 5,
+        "id": 3,
+        "quantity": 5,
         "price": 100000
       }
     ]

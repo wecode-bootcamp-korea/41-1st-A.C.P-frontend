@@ -11,15 +11,17 @@ export default function CartItem({
   selectSingleItem,
   selectedCartIds,
   calcProductPrice,
-  setDefaultTotalPrice,
 }) {
   const { cart_id, data } = cartItem;
+  const { name, description, id, quantity, price } = data;
+
+  // console.log('cartItem', cartItem);
 
   const updateCartQuantity = quantity => {
     const fetchUrl = 'http://10.58.52.160:3000/carts';
     const fetchData = {
       // plant_id,
-      plant_quantity: quantity,
+      // plant_quantity: quantity,
     };
 
     fetchCart(fetchUrl, 'POST', fetchData)
@@ -51,20 +53,7 @@ export default function CartItem({
   const deleteCartItem = () => {};
   // const updateCartQuantity = () => {};
 
-  // 상품 정보 확인
-  const productName = nutrients[0]?.name || plants[0]?.name || pots[0]?.name;
-  const productDescription =
-    nutrients[0]?.description || plants[0]?.description || pots[0]?.description;
-  const productId =
-    nutrients[0]?.nutrients_id || plants[0]?.plant_id || pots[0]?.pots_id;
-  const productQuantity =
-    nutrients[0]?.nutrient_quantity ||
-    plants[0]?.plant_quantity ||
-    pots[0]?.pot_quantity;
-  const productPrice =
-    nutrients[0]?.price || plants[0]?.price || pots[0]?.price;
-
-  const totalProductPrice = productQuantity * parseInt(productPrice);
+  const totalProductPrice = quantity * parseInt(price);
 
   return (
     <li className="cartItem">
@@ -72,8 +61,8 @@ export default function CartItem({
         id={cart_id}
         selectItem={selectSingleItem}
         selectedCartIds={selectedCartIds}
-        productQuantity={productQuantity}
-        productPrice={productPrice}
+        quantity={quantity}
+        price={price}
         calcProductPrice={calcProductPrice}
       />
       <div className="wrapImg">
@@ -81,17 +70,16 @@ export default function CartItem({
       </div>
       <div className="wrapInfo">
         <div className="boxTitle">
-          <strong className="title">{productName}</strong>
-          <p className="description">{productDescription}</p>
+          <strong>{name}</strong>
+          <p className="description">{description}</p>
         </div>
         <div className="boxPrice">
           <SelectBoxQuantity
             cartId={cart_id}
-            productId={productId}
+            id={id}
             cartItems={cartItems}
-            productQuantity={productQuantity}
+            quantity={quantity}
             setCartItems={setCartItems}
-
             // updateCartQuantity={updateCartQuantity}
           />
           <span className="priceInfo">
@@ -102,9 +90,9 @@ export default function CartItem({
           </span>
         </div>
       </div>
-      {/* <button type="button" className="btnDelete" onClick={deleteCartItem}>
+      <button type="button" className="btnDelete">
         <img src="/images/common/close_btn.png" alt="X" width={12} />
-      </button> */}
+      </button>
     </li>
   );
 }
