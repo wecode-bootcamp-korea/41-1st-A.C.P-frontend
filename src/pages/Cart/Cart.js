@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import CartRight from './CartRight/CartRight';
-import WrapCart from './WrapCart/WrapCart';
+import CartProducts from './CartProducts/CartProducts';
+import CartPriceInfo from './CartPriceInfo/CartPriceInfo';
 import './Cart.scss';
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState();
-  const [cartTotalPrice, setCartTotalPrice] = useState();
+  const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [selectedCartIds, setSelectedCartIds] = useState([]);
+  const [defaultTotalPrice, setDefaultTotalPrice] = useState(0);
 
   // useEffect(() => {
-  //   fetch('http://10.58.52.160:3000/carts')
-  //     .then(res => res.json())
+  //   // const fetchUrl = 'http://10.58.52.160:3000/carts';
+  //   const fetchUrl = '/data/cart.json';
+
+  //   fetch(fetchUrl)
+  //     .then(res => {
+  //       console.log(res);
+  //       res.json();
+  //     })
   //     .then(data => {
   //       console.log(data);
-  //       // console.log(data.data[0]);
-  //       // data.data[0].nutrients[0].name !== null && setCartItems(data);
-  //       // data.data[0].plants[0].name !== null && setCartItems(data);
-  //       // data.data[0].pots[0].name !== null && setCartItems(data);
   //       setCartItems(data);
 
   //       // const itemTotalPrice = data.reduce(
@@ -24,21 +27,51 @@ export default function Cart() {
   //       //   0
   //       // );
 
-  //       // setCartTotalPrice(itemTotalPrice);
+  //       // setDefaultTotalPrice(itemTotalPrice);
   //     });
   // }, []);
 
   useEffect(() => {
-    fetch('/data/cart.json')
+    fetch('http://10.58.52.135:3000/carts')
+      // fetch('/data/cart.json')
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        setCartItems(data);
-        const itemTotalPrice = data.reduce(
-          (acc, curr) => acc + parseInt(curr.plant_price),
-          0
-        );
-        setCartTotalPrice(itemTotalPrice);
+        const newData = data.map(item => {
+          const nutrientsData =
+            item.nutrients[0].name !== null && item.nutrients[0];
+          const plantsData = item.plants[0].name !== null && item.plants[0];
+          const potsData = item.pots[0].name !== null && item.pots[0];
+
+          // console.log(objKey);
+          const presentData = nutrientsData || plantsData || potsData;
+
+          console.log(presentData);
+          const objKey = Object.keys(presentData);
+          const category = objKey[3].slice(0, objKey[3].indexOf('_'));
+
+          return {
+            cart_id: item.cart_id,
+            data: {
+              category: category,
+              description: presentData.description,
+              name: presentData.name,
+              quantity: presentData[`${category}_quantity`],
+              id: presentData[`${category}s_id`],
+              price: presentData.price,
+            },
+          };
+        });
+
+        console.log(newData);
+
+        // setCartItems(newData);
+
+        // const itemTotalPrice = data.reduce(
+        //   (acc, curr) => acc + parseInt(curr.plant_price),
+        //   0
+        // );
+        // setDefaultTotalPrice(itemTotalPrice);
       });
   }, []);
 
@@ -46,9 +79,15 @@ export default function Cart() {
     const isChecked = e.target.checked;
     const allCartIds = cartItems.map(item => item.cart_id);
     setSelectedCartIds(isChecked ? allCartIds : []);
+    if (isChecked) {
+      // 총 상품가격 0원 초기화
+    } else {
+      // 모든 상품가격 + quauntity 더해서 set
+    }
+    // setTotalPrice(prev => prev - quantity * price);
   };
 
-  const selectSingleItem = (e, cartId) => {
+  const selectSingleItem = (e, cartId, quantity, price) => {
     // console.log(cartId);
     const hasCartId = selectedCartIds.includes(cartId);
 
@@ -57,27 +96,36 @@ export default function Cart() {
         selectedId => selectedId !== cartId
       );
       setSelectedCartIds(filteredList);
+      setTotalPrice(prev => prev - quantity * price);
     } else {
       setSelectedCartIds([...selectedCartIds, cartId]);
+      setTotalPrice(prev => prev + quantity * price);
     }
   };
+
+  const calcProductPrice = (id, quantity, price) => {
+    setTotalPrice(prev => prev + quantity * price);
+  };
+
+  // console.log('totalPrice', totalPrice);
+  // const cartTotalPrice =  // 체크된 상품 수량 * 가격 // 모두 더하기
 
   return (
     <section className={`cart${cartItems ? '' : ' empty'}`}>
       <div className="innerCart">
-        <article className="cartLeft">
-          <h2 className="titleArticle">장바구니</h2>
-          <WrapCart
-            cartItems={cartItems}
-            selectAllItems={selectAllItems}
-            selectedCartIds={selectedCartIds}
-            selectSingleItem={selectSingleItem}
-          />
-        </article>
+        <CartProducts
+          cartItems={cartItems}
+          setCartItems={setCartItems}
+          selectAllItems={selectAllItems}
+          selectSingleItem={selectSingleItem}
+          selectedCartIds={selectedCartIds}
+          calcProductPrice={calcProductPrice}
+          setDefaultTotalPrice={setDefaultTotalPrice}
+        />
         {cartItems && (
-          <CartRight
+          <CartPriceInfo
             selectedCartIds={selectedCartIds}
-            cartTotalPrice={cartTotalPrice}
+            totalPrice={totalPrice}
           />
         )}
       </div>

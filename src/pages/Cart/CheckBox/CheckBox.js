@@ -8,9 +8,11 @@ export default function CheckBox({
   selectItem,
   selectedCartIds,
   isAllChecked,
+  productQuantity,
+  productPrice,
 }) {
   const handleChangeChk = e => {
-    selectItem(e, id);
+    selectItem(e, id, productQuantity, productPrice);
   };
 
   return (
