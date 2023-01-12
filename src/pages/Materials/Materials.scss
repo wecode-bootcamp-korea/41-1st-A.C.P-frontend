@@ -80,9 +80,13 @@
     height: 600px;
     margin-top: 100px;
     .materialImg {
+      overflow: hidden;
       width: auto;
       height: 90%;
       cursor: pointer;
+      .img {
+        width: 100%;
+      }
     }
   }
   .materialsInfo {

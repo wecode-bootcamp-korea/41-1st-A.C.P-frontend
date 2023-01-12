@@ -17,7 +17,7 @@ function MaterialList({ materialList }) {
               <div className="materialImg">
                 {/* <img>{item.img}</img> */}
                 <Link to={`/materials/${item.id}`}>
-                  <img src={item.img} alt={item.name} />
+                  <img src={item.img_url} alt={item.name} className="img" />
                 </Link>
               </div>
               <div className="materialsInfo">

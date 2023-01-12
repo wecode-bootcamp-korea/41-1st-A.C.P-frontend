@@ -6,7 +6,7 @@
       "size": null,
       "color": "노랑",
       "price": "25000",
-      "img_url": "null",
+      "img_url": "/images/productDetail/img04.jpg",
       "diameter": "10-20cm"
     },
     {
@@ -15,7 +15,7 @@
       "size": null,
       "color": "노랑",
       "price": "25000",
-      "img_url": "null",
+      "img_url": "/images/productDetail/img02.jpg",
       "diameter": "10-20cm"
     },
     {
@@ -24,7 +24,7 @@
       "size": null,
       "color": "노랑",
       "price": "25000",
-      "img_url": "null",
+      "img_url": "/images/productDetail/img03.jpg",
       "diameter": "10-20cm"
     },
     {
@@ -33,7 +33,7 @@
       "size": null,
       "color": "노랑",
       "price": "25000",
-      "img_url": "null"
+      "img_url": "/images/productDetail/img05.jpg"
     },
     {
       "id": 5,
@@ -41,7 +41,7 @@
       "size": null,
       "color": "노랑",
       "price": "25000",
-      "img_url": "null"
+      "img_url": "/images/productDetail/img07.jpg"
     },
     {
       "id": 6,
@@ -49,7 +49,7 @@
       "size": null,
       "color": "노랑",
       "price": "25000",
-      "img_url": "null"
+      "img_url": "/images/productDetail/img09.jpg"
     },
     {
       "id": 7,
@@ -57,7 +57,7 @@
       "size": null,
       "color": "노랑",
       "price": "25000",
-      "img_url": "null"
+      "img_url": "/images/productDetail/img10.jpg"
     }
   ]
 }
