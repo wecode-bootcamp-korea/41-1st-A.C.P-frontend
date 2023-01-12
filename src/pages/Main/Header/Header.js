@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <div className="header">
       <Link to="/">
-        <img src="images/common/img_logo_b.png" alt="plait_logo" />
+        <img src="/images/common/img_logo_b.png" alt="plait_logo" />
       </Link>
     </div>
   );

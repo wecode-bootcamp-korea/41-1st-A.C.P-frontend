@@ -104,10 +104,7 @@ function ProductDetail() {
     <div className="productDetail">
       <div className="productDetailTop">
         <div className="productDetailImage">
-          <img
-            src="images/productDetail/productDetail_img_01.jpg"
-            alt="상품이미지"
-          />
+          <img src="/images/productDetail/img01.jpg" alt="상품이미지" />
         </div>
         <div className="productDetailInfos">
           <h1>{plant_name}</h1>
