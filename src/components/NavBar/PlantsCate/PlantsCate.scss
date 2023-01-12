@@ -1,0 +1,92 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
+
+.plantsCate {
+  width: 100%;
+  height: 100vh;
+  background-color: #f0efe0;
+  display: flex;
+  position: absolute;
+  left: 0px;
+  top: 80px;
+  animation-name: smoothSlide;
+  animation-duration: 0.5s;
+
+  .logoPart {
+    width: 19%;
+
+    img {
+      width: 80px;
+      margin: 79px 0px 0px 50px;
+    }
+  }
+
+  .categoryLeft {
+    width: 15%;
+    height: 80%;
+
+    .categoryList {
+      margin-top: 90px;
+
+      .bigCategoryTitle {
+        font-size: 16px;
+        font-weight: 600;
+        color: $GRAY333;
+      }
+
+      .bigCategoryItems {
+        margin-top: 7px;
+
+        .bigItem {
+          font-size: 16px;
+          color: $GRAY333;
+        }
+      }
+    }
+  }
+}
+
+.bigItem {
+  font-size: 16px;
+  color: $GRAY333;
+}
+
+.categoryRight {
+  width: 25%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .categoryList {
+    width: 50%;
+    margin-top: 90px;
+
+    .categoryTitle {
+      font-size: 16px;
+      color: $GRAY333;
+    }
+
+    .categoryItems {
+      margin-top: 7px;
+    }
+  }
+}
+
+.menuImage {
+  width: 41%;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+
+  .plantMenuImage {
+    position: relative;
+    width: 80%;
+
+    img {
+      position: absolute;
+      height: 100%;
+    }
+  }
+}

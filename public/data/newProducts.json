@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "productName": "쉐프렐라 70cm",
+    "productPrice": "90,000",
+    "productImg": "/images/main/newproduct/schefflera.jpeg",
+    "imgAlt": "쉐프렐라_70cm",
+    "productPage": "/products"
+  },
+  {
+    "id": 2,
+    "productName": "녹태고 60cm",
+    "productPrice": "70,000",
+    "productImg": "/images/main/newproduct/silverdollar.jpeg",
+    "imgAlt": "녹태고_60cm",
+    "productPage": "/products"
+  },
+  {
+    "id": 3,
+    "productName": "수채화 고무나무 150cm",
+    "productPrice": "700,000",
+    "productImg": "/images/main/newproduct/ficus2.jpeg",
+    "imgAlt": "수채화_고무나무_150cm",
+    "productPage": "/products"
+  }
+]
