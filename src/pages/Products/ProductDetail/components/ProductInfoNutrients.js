@@ -1,11 +1,11 @@
 import React from 'react';
 
-function ProductInfoNutrients({ species }) {
+function ProductInfoNutrients({ type }) {
   return (
     <ul>
       <li className="productInfo">
         <span>종류</span>
-        <p>잎 영양제</p>
+        <p>{type}</p>
       </li>
       <li className="productInfo">
         <span>용량</span>

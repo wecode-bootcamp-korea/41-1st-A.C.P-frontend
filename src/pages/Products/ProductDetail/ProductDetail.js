@@ -23,13 +23,11 @@ function ProductDetail() {
 
   const goToPage = path => {
     navigate(`/${path}`, {
-      state: fakeData,
+      state: productInfo,
     });
   };
 
-  // 장바구니 눌렀을 때, 장바구니에 담긴 목록을 백엔드에서 받아서 id를 확인한 후, 있으면 setModalText('동일한 상품')
-  // 없으면 (else 부분), 장바구니에 담는 api를 불러와서 해당 상품정보를 body에 담은 후, 잘 담긴 메세지(success)를 받으면, setModalText('장바구니에 상품이 담겼습니다')!
-
+  // // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
     setIsModalOpen(true);
     fetch('http://10.58.52.135:3000/carts', {
@@ -37,9 +35,6 @@ function ProductDetail() {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      // body: JSON.stringify({
-      //   id: 1,
-      // }),
     })
       .then(res => res.json())
       .then(data => {
@@ -67,16 +62,15 @@ function ProductDetail() {
   };
 
   // BE와 통신세팅 -> 상품리스트에서 클릭했을 때 요청되어, 상품상세에 데이터가 뿌려지는 fetch 코드
-  // 성공 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   useEffect(() => {
     fetch(`http://10.58.52.135:3000/plants/${productId}`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({
-        plant_id: 1,
-      }),
+      // body: JSON.stringify({
+      //   plant_id: 1,
+      // }),
     })
       .then(res => res.json())
       .then(data => {
@@ -92,7 +86,7 @@ function ProductDetail() {
     Hard: 4,
   };
 
-  // ===== 응답데이터 이름 ===== //
+  // ===== 응답데이터 객체 구조 할당 ===== //
   const {
     id,
     plant_name,
@@ -142,12 +136,13 @@ function ProductDetail() {
             <button
               className="payBtn"
               onClick={() => {
-                localStorage.setItem('id', JSON.stringify(fakeData));
+                localStorage.setItem('id', JSON.stringify(productInfo));
                 // 해당 상품 정보를 fakeData 자리에 넣어야함
                 goToPage('order');
               }}
             >
               구매하기 &nbsp;
+              {plant_price}
               {/* {`${Number(plant_price.split('.').join('')).toLocaleString()}`} */}
               {/* {console.log(
                 Number(plant_price2.split('.').join('')).toLocaleString()

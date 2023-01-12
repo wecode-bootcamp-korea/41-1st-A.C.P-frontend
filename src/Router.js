@@ -26,7 +26,6 @@ export default function Router() {
             path="/materials/nutrients/:id"
             element={<ProductDetailNutrient />}
           />
-          {/* <Route path="/productDetail" element={<ProductDetail />} /> */}
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
           <Route path="/ordered" element={<Ordered />} />

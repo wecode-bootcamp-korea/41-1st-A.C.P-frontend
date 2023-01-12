@@ -9,11 +9,10 @@ function OrderProductInfos({ data }) {
       </div>
       <div className="orderProductMiniInfos">
         <div className="miniInfoDetail">
-          <p>{data.name}</p>
-          <p>제품 상세 정보</p>
+          <p>{data.plant_name}</p>
         </div>
         <div>
-          <p className="price">{data.price}₩</p>
+          <p className="price">{data.plant_price}₩</p>
         </div>
       </div>
     </div>
