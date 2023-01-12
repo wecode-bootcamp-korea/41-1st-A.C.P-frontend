@@ -14,13 +14,33 @@
     font-size: 16px;
     color: $GRAY333;
 
-    &:nth-child(2) {
-      padding: 30px 0;
-      border-bottom: 1px solid #d5d4c9;
+    &.deliveryCost {
+      padding-bottom: 0;
+      border-bottom: none;
     }
 
-    &:nth-child(3) {
+    &.point {
+      padding-bottom: 30px;
+      border-bottom: 1px solid #d5d4c9;
+      span {
+        &:last-child {
+          font-weight: 400;
+        }
+      }
+    }
+
+    &.totalPrice {
       padding-top: 30px;
+      span {
+        &:last-child {
+          font-size: 20px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    &.restPoint {
+      padding-top: 18px;
       span {
         &:last-child {
           font-size: 20px;
