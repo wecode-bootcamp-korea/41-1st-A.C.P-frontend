@@ -16,21 +16,8 @@
     height: 100%;
   }
 
-  .cartLeft {
-    width: 60%;
-    min-width: 600px;
-    padding: 80px 70px 80px 90px;
-    box-sizing: border-box;
-
-    .titleArticle {
-      font-size: 32px;
-      color: $GRAY333;
-      border-bottom: 1px solid $borderColor;
-    }
-  }
   .cartRight {
     width: 40%;
-    background-color: cornflowerblue;
   }
 
   .txtCart {

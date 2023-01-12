@@ -1,26 +1,92 @@
 [
   {
-    "id": 1,
-    "name": "선인장",
-    "description": "선인장은 물을 주지 않으면 말라 죽습니다.",
-    "price": "10000",
-    "quantity": 1,
-    "imgUrl": "https://user-images.githubusercontent.com/58460131/210945778-db264b50-ebe0-4289-80a7-7a236d5a3ed9.jpg"
+    "cart_id": 10,
+    "nutrients": [
+      {
+        "name": "nutrients1",
+        "description": "description1",
+        "id": 1,
+        "quantity": 1,
+        "price": 20000
+      }
+    ],
+    "plants": [
+      {
+        "name": null,
+        "description": null,
+        "id": null,
+        "quantity": null,
+        "price": null
+      }
+    ],
+    "pots": [
+      {
+        "description": null,
+        "name": null,
+        "id": null,
+        "quantity": null,
+        "price": null
+      }
+    ]
   },
   {
-    "id": 2,
-    "name": "관엽식물",
-    "description": "관엽식물은 물을 주지 않으면 말라 죽습니다.",
-    "price": "30000",
-    "quantity": 1,
-    "imgUrl": "https://user-images.githubusercontent.com/58460131/210945778-db264b50-ebe0-4289-80a7-7a236d5a3ed9.jpg"
+    "cart_id": 20,
+    "nutrients": [
+      {
+        "name": null,
+        "description": null,
+        "id": null,
+        "quantity": null,
+        "price": null
+      }
+    ],
+    "plants": [
+      {
+        "name": "plant2",
+        "description": "description2",
+        "id": 2,
+        "quantity": 2,
+        "price": 30000
+      }
+    ],
+    "pots": [
+      {
+        "description": null,
+        "name": null,
+        "id": null,
+        "quantity": null,
+        "price": null
+      }
+    ]
   },
   {
-    "id": 3,
-    "name": "초당식물",
-    "description": "관엽식물은 물을 주지 않으면 말라 죽습니다.",
-    "price": "20000",
-    "quantity": 1,
-    "imgUrl": "https://user-images.githubusercontent.com/58460131/210945778-db264b50-ebe0-4289-80a7-7a236d5a3ed9.jpg"
+    "cart_id": 30,
+    "nutrients": [
+      {
+        "description": null,
+        "name": null,
+        "id": null,
+        "quantity": null,
+        "price": null
+      }
+    ],
+    "plants": [
+      {
+        "description": null,
+        "name": null,
+        "id": null,
+        "quantity": null,
+        "price": null
+      }
+    ],
+    "pots": [
+      {
+        "name": "pots3",
+        "description": "description3",
+        "id": 3,
+        "quantity": 5,
+        "price": 100000
+      }
+    ]
   }
 ]

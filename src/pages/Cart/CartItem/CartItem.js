@@ -1,38 +1,99 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CheckBox from '../CheckBox/CheckBox';
+import { fetchCart } from '../config';
 import SelectBoxQuantity from '../SelectBoxQuantity/SelectBoxQuantity';
 import './CartItem.scss';
 
 export default function CartItem({
-  cartItem: { id, name, description, price, quantity, imgUrl },
+  cartItem,
+  cartItems,
   setCartItems,
+  selectSingleItem,
+  selectedItems,
+  setTotalPrice,
 }) {
-  const updateCartQuantity = () => {
-    // id와 일치하는 상품 quantity 변경 후 setData로 재렌더링;
+  const { cart_id, data } = cartItem;
+  const { description, id, name, price, quantity } = data;
+
+  // console.log('quantity', quantity);
+
+  // console.log('cartItem', cartItem);
+
+  const updateCartQuantity = quantity => {
+    const fetchUrl = 'http://10.58.52.160:3000/carts';
+    const fetchData = {
+      // plant_id,
+      // plant_quantity: quantity,
+    };
+
+    fetchCart(fetchUrl, 'POST', fetchData)
+      .then(res => res.json())
+      .then(data => {
+        // if (data.message === 'success') {
+        //   setCartItems;
+        // }
+        // 성공시 카트아이템 다시 세팅
+        // setCartItems(data)
+      });
   };
 
-  const deleteCartItem = () => {
-    // id 값 전달해서 해당 상품 삭제된 cartList 다시 setData후 렌더링;
-  };
+  // const deleteCartItem = () => {
+  //   const fetchUrl = 'http://10.58.52.160:3000/carts';
+  //   const fetchData = {
+  //     plant_id,
+  //   };
+
+  //   fetchCart(fetchUrl, 'POST', fetchData)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       // 성공시 카트아이템 다시 세팅
+  //       // setCartItems(data)
+  //     });
+  // };
+
+  const [cartItemPrice, setCartItemPrice] = useState(0);
+
+  useEffect(() => {
+    setCartItemPrice(quantity * parseInt(price));
+  }, [quantity, price]);
+
+  console.log('cartItem Component', cartItemPrice);
 
   return (
     <li className="cartItem">
-      <CheckBox id={`check${id}`} />
+      <CheckBox
+        id={cart_id}
+        selectItem={selectSingleItem}
+        selectedItems={selectedItems}
+        cartItemPrice={cartItemPrice}
+        data={data}
+      />
       <div className="wrapImg">
-        <img src={imgUrl} alt="" className="cartImg" width={170} />
+        <img src="" alt="" className="cartImg" />
       </div>
       <div className="wrapInfo">
         <div className="boxTitle">
-          <strong className="title">{name}</strong>
+          <strong>{name}</strong>
           <p className="description">{description}</p>
         </div>
         <div className="boxPrice">
-          <SelectBoxQuantity />
+          <SelectBoxQuantity
+            cartId={cart_id}
+            id={id}
+            cartItems={cartItems}
+            price={price}
+            quantity={quantity}
+            cartItemPrice={cartItemPrice}
+            setCartItemPrice={setCartItemPrice}
+            setCartItems={setCartItems}
+            // updateCartQuantity={updateCartQuantity}
+            //
+            setTotalPrice={setTotalPrice}
+          />
           <span className="priceInfo">
             <span className="titlePrice">주문금액</span>
-            <span className="numPrice">
-              ₩ {parseInt(price).toLocaleString()}
-            </span>
+            <span className="numPrice">₩ {cartItemPrice}</span>
           </span>
         </div>
       </div>

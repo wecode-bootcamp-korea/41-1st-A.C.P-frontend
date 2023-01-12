@@ -1,0 +1,36 @@
+@import '../../../styles/variables.scss';
+
+.cartProducts {
+  width: 60%;
+  min-width: 600px;
+  padding: 80px 70px 80px 90px;
+  box-sizing: border-box;
+
+  .titleArticle {
+    font-size: 32px;
+    color: $GRAY333;
+    border-bottom: 1px solid $borderColor;
+  }
+
+  .wrapCart {
+    .cartList {
+      overflow-y: auto;
+      height: 620px;
+      margin-top: 16px;
+      padding: 60px 30px 0 0;
+      border-top: 1px solid rgba($borderColor, 0.4);
+
+      &::-webkit-scrollbar {
+        display: none;
+        width: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 12px;
+        background-color: $borderColor;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: $bgColor;
+      }
+    }
+  }
+}

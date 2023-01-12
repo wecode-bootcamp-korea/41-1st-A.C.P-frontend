@@ -1,0 +1,63 @@
+@import '../../../styles/variables.scss';
+
+.cartPriceInfo {
+  width: 40%;
+  background: $bgColorPoint;
+
+  .innerInfo {
+    width: 100%;
+  }
+
+  .boxPriceInfo {
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+
+    .wrapPriceInfo {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 120px;
+      font-size: 16px;
+      color: $GRAY333;
+    }
+
+    .deliveryCost {
+      display: flex;
+      justify-content: space-between;
+      padding: 30px 0;
+      font-size: 16px;
+      color: $GRAY333;
+      border-bottom: 1px solid #d5d4c9;
+    }
+
+    .totalPriceInfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      font-size: 16px;
+      color: $GRAY333;
+    }
+
+    .numTotalPrice {
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
+
+  .cartBtn {
+    margin-top: 10px;
+    text-align: center;
+
+    .btn {
+      width: 70%;
+      border: none;
+      padding: 22px 0;
+      background: $GRAY333;
+
+      color: $bgColor;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+}

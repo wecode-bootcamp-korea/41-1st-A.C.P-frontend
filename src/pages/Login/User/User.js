@@ -3,9 +3,9 @@ import CheckBox from './CheckBox/CheckBox';
 import TextInput from './TextInput/TextInput';
 import { GET_USER_INFO_API, RESIST_USER_INFO_API } from '../../../config';
 import { LOGIN_INPUT_LIST, SIGNUP_INPUT_LIST } from './uidata';
-import { fetchData } from './config';
+import { fetchApi } from './config';
 import './User.scss';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const initialUserInfo = {
   email: '',
@@ -18,10 +18,15 @@ export default function User({ title, children }) {
   const [userInfo, setUserInfo] = useState(initialUserInfo);
   const [passwordType, setPasswordType] = useState('password');
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setUserInfo(initialUserInfo);
-  }, [location.pathname]);
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      alert('이미 로그인이 되어있습니다.');
+      navigate('/');
+    }
+  }, []);
 
   const idValid = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
   const pwValid = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/;
@@ -50,12 +55,34 @@ export default function User({ title, children }) {
               phoneNumber: userInfo.phoneNumber,
             };
 
-      const res = fetchData(
-        title === '로그인' ? GET_USER_INFO_API : RESIST_USER_INFO_API,
-        'POST',
-        userData
-      );
-      const data = res.json();
+      // const res = fetchData(
+      //   title === '로그인' ? GET_USER_INFO_API : RESIST_USER_INFO_API,
+      //   'POST',
+      //   userData
+      // );
+      // const data = res.json();
+      let fetchUrl =
+        title === '로그인'
+          ? 'http://10.58.52.135:3000/users/signIn'
+          : 'http://10.58.52.135:3000/users/signUp';
+
+      fetch(fetchUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(userData),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if (data.accessToken) {
+            alert('로그인 성공!');
+            localStorage.setItem('accessToken', data.accessToken);
+            navigate('/');
+          }
+          throw new Error('로그인 실패!');
+        });
     } else {
       alert('Validation Error!');
     }

@@ -1,22 +1,48 @@
 import React, { useState } from 'react';
 import './SelectBoxQuantity.scss';
 
-function SelectBoxQuantity() {
+function SelectBoxQuantity({
+  cartId,
+  cartItems,
+  price,
+  quantity,
+  setCartItems,
+  setCartItemPrice,
+  setTotalPrice,
+}) {
   const [quantityBox, setQuantityBox] = useState(false);
-  const [quantity, setQuantity] = useState('1');
+  const [selectedQuantity, setSelectedQuantity] = useState(quantity);
 
-  const showQuantityBox = e => {
-    setQuantityBox(!quantityBox);
+  const handleSelectClick = quantity => {
+    // 통신시 필요한 내용
+    // updateCartQuantity(quantity);
+
+    // 체크된 상태에서 수량이 변경되면 quantity 변경 -> cartItemPrice 변경 -> 체크된 상태에서 수량 변경시
+
+    // UI로직
+    const newCart = [...cartItems];
+    newCart.find(item => item.cart_id === cartId).data.quantity = quantity;
+    setCartItems(newCart);
+
+    console.log('selectBox', quantity, parseInt(price));
+    setSelectedQuantity(quantity);
+    setQuantityBox(false);
+
+    //
+    setTotalPrice(prev => prev + price * quantity);
   };
 
   return (
     <div className="selectBoxQuantity">
-      <button className="selectBox" onClick={showQuantityBox}>
-        {quantity}
+      <button
+        className="selectBox"
+        onClick={() => setQuantityBox(!quantityBox)}
+      >
+        {selectedQuantity}
       </button>
       <div className="selectArrow">
         <img
-          src="images/order/productDetail_bottom_arrow.png"
+          src="images/cart/productDetail_bottom_arrow.png"
           alt="선택리스트 창 열기 버튼"
           className="imgIcon"
         />
@@ -26,11 +52,10 @@ function SelectBoxQuantity() {
           return (
             <li key={data.id} className="itemSelect">
               <button
+                type="button"
                 className="btnSelect"
-                onClick={e => {
-                  setQuantity(data.quantity);
-                  setQuantityBox(false);
-                }}
+                onClick={() => handleSelectClick(data.quantity)}
+                value={data.quantity}
               >
                 {data.quantity}
               </button>
