@@ -2,15 +2,21 @@ import React from 'react';
 import './CheckBox.scss';
 
 export default function CheckBox({
-  id,
+  id, // allCheck || cartId
+  data,
   label,
   className,
   selectItem,
-  selectedCartIds,
+  selectedItems,
   isAllChecked,
+  cartItemPrice,
 }) {
   const handleChangeChk = e => {
-    selectItem(e, id);
+    if (id === 'allCheck') {
+      selectItem(e, id);
+    } else {
+      selectItem(e, id, data.id, data.category, data.quantity, cartItemPrice);
+    }
   };
 
   return (
@@ -21,7 +27,9 @@ export default function CheckBox({
         id={id}
         onChange={handleChangeChk}
         checked={
-          id === 'allCheck' ? isAllChecked : selectedCartIds.includes(id)
+          id === 'allCheck'
+            ? isAllChecked
+            : selectedItems.some(item => item.cartId === id)
         }
       />
       {label && (

@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
 import './SelectBoxQuantity.scss';
 
-function SelectBoxQuantity({ updateCartQuantity }) {
+function SelectBoxQuantity({
+  cartId,
+  cartItems,
+  price,
+  quantity,
+  setCartItems,
+  setCartItemPrice,
+  setTotalPrice,
+}) {
   const [quantityBox, setQuantityBox] = useState(false);
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [selectedQuantity, setSelectedQuantity] = useState(quantity);
 
-  const handleSelectClick = e => {
-    const quantity = e.target.value;
-    updateCartQuantity(quantity);
+  const handleSelectClick = quantity => {
+    // 통신시 필요한 내용
+    // updateCartQuantity(quantity);
+
+    // 체크된 상태에서 수량이 변경되면 quantity 변경 -> cartItemPrice 변경 -> 체크된 상태에서 수량 변경시
 
     // UI로직
+    const newCart = [...cartItems];
+    newCart.find(item => item.cart_id === cartId).data.quantity = quantity;
+    setCartItems(newCart);
+
+    console.log('selectBox', quantity, parseInt(price));
     setSelectedQuantity(quantity);
     setQuantityBox(false);
+
+    //
+    setTotalPrice(prev => prev + price * quantity);
   };
 
   return (
@@ -36,7 +54,7 @@ function SelectBoxQuantity({ updateCartQuantity }) {
               <button
                 type="button"
                 className="btnSelect"
-                onClick={handleSelectClick}
+                onClick={() => handleSelectClick(data.quantity)}
                 value={data.quantity}
               >
                 {data.quantity}

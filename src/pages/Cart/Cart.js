@@ -1,83 +1,126 @@
 import React, { useEffect, useState } from 'react';
-import CartRight from './CartRight/CartRight';
-import WrapCart from './WrapCart/WrapCart';
+import CartProducts from './CartProducts/CartProducts';
+import CartPriceInfo from './CartPriceInfo/CartPriceInfo';
 import './Cart.scss';
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState();
-  const [cartTotalPrice, setCartTotalPrice] = useState();
-  const [selectedCartIds, setSelectedCartIds] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('http://10.58.52.160:3000/carts')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       // console.log(data.data[0]);
-  //       // data.data[0].nutrients[0].name !== null && setCartItems(data);
-  //       // data.data[0].plants[0].name !== null && setCartItems(data);
-  //       // data.data[0].pots[0].name !== null && setCartItems(data);
-  //       setCartItems(data);
-
-  //       // const itemTotalPrice = data.reduce(
-  //       //   (acc, curr) => acc + parseInt(curr.price),
-  //       //   0
-  //       // );
-
-  //       // setCartTotalPrice(itemTotalPrice);
-  //     });
-  // }, []);
+  const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
-    fetch('/data/cart.json')
+    // fetch('http://10.58.52.135:3000/carts', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //     Authorization: localStorage.getItem('accessToken'),
+    //   },
+    // })
+
+    // fetch('/data/cart.json')
+    fetch('http://10.58.52.135:3000/carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+    })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        setCartItems(data);
-        const itemTotalPrice = data.reduce(
-          (acc, curr) => acc + parseInt(curr.plant_price),
-          0
-        );
-        setCartTotalPrice(itemTotalPrice);
+        console.log('origin data : ', data);
+        const newData = data.map(item => {
+          const nutrientsData =
+            item.nutrients[0].name !== null && item.nutrients[0];
+          const plantsData = item.plants[0].name !== null && item.plants[0];
+          const potsData = item.pots[0].name !== null && item.pots[0];
+
+          const categoryList = Object.keys(item).slice(1); // ['nutrients', 'plants', 'pots']
+          const categoryIndex =
+            (item.nutrients[0].name !== null && '0') ||
+            (item.plants[0].name !== null && '1') ||
+            (item.pots[0].name !== null && '2');
+
+          const presentData = nutrientsData || plantsData || potsData;
+
+          return {
+            cart_id: item.cart_id,
+            data: {
+              category: categoryList[parseInt(categoryIndex)],
+              description: presentData.description,
+              name: presentData.name,
+              quantity: presentData.quantity,
+              id: presentData.id,
+              price: presentData.price,
+            },
+          };
+        });
+        setCartItems(newData);
       });
   }, []);
 
   const selectAllItems = e => {
     const isChecked = e.target.checked;
-    const allCartIds = cartItems.map(item => item.cart_id);
-    setSelectedCartIds(isChecked ? allCartIds : []);
+    const newArr = [...cartItems];
+
+    const allCartInfo = newArr.map(item => {
+      const category = item.data.category.slice(0, -1);
+      return {
+        cartId: item.cart_id,
+        data: {
+          [`${category}Id`]: item.data.id,
+          [`${category}Quantity`]: item.data.quantity,
+        },
+      };
+    });
+
+    setSelectedItems(isChecked ? allCartInfo : []);
   };
 
-  const selectSingleItem = (e, cartId) => {
-    // console.log(cartId);
-    const hasCartId = selectedCartIds.includes(cartId);
+  const selectSingleItem = (
+    e,
+    cartId,
+    productId,
+    category,
+    quantity,
+    cartItemPrice
+  ) => {
+    const hasSelectedItem = selectedItems.find(item => item.cartId === cartId);
+    const cate = category.slice(0, -1);
 
-    if (hasCartId) {
-      const filteredList = selectedCartIds.filter(
-        selectedId => selectedId !== cartId
-      );
-      setSelectedCartIds(filteredList);
+    let obj = {
+      cartId,
+      data: {
+        [`${cate}Id`]: productId,
+        [`${cate}Quantity`]: quantity,
+      },
+    };
+
+    if (hasSelectedItem) {
+      const filteredList = selectedItems.filter(item => item.cartId !== cartId);
+      setSelectedItems(filteredList);
+      setTotalPrice(prev => prev - cartItemPrice);
     } else {
-      setSelectedCartIds([...selectedCartIds, cartId]);
+      setSelectedItems([...selectedItems, obj]);
+      setTotalPrice(prev => prev + cartItemPrice);
     }
   };
 
   return (
     <section className={`cart${cartItems ? '' : ' empty'}`}>
       <div className="innerCart">
-        <article className="cartLeft">
-          <h2 className="titleArticle">장바구니</h2>
-          <WrapCart
-            cartItems={cartItems}
-            selectAllItems={selectAllItems}
-            selectedCartIds={selectedCartIds}
-            selectSingleItem={selectSingleItem}
-          />
-        </article>
+        <CartProducts
+          cartItems={cartItems}
+          setCartItems={setCartItems}
+          selectAllItems={selectAllItems}
+          selectSingleItem={selectSingleItem}
+          selectedItems={selectedItems}
+          //
+          setTotalPrice={setTotalPrice}
+        />
         {cartItems && (
-          <CartRight
-            selectedCartIds={selectedCartIds}
-            cartTotalPrice={cartTotalPrice}
+          <CartPriceInfo
+            selectedItems={selectedItems}
+            totalPrice={totalPrice}
           />
         )}
       </div>
