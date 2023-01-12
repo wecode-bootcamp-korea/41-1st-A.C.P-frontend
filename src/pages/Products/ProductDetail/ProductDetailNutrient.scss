@@ -1,0 +1,105 @@
+@import '../../../styles/variables.scss';
+
+.productDetailNutrient {
+  padding-top: 90px;
+  background: $bgColor;
+
+  .productDetailTop {
+    display: flex;
+    justify-content: space-around;
+
+    width: 80vw;
+    margin: 0 auto;
+    padding-left: 110px;
+
+    .productDetailImage {
+      width: 600px;
+      height: 700px;
+
+      text-align: center;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        margin-top: -120px;
+      }
+    }
+
+    .productDetailInfos {
+      width: 50%;
+      margin-left: 100px;
+      margin-top: 50px;
+
+      color: $GRAY333;
+
+      h1 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      ul {
+        margin-top: 20px;
+        font-size: 16px;
+
+        li {
+          width: 400px;
+          padding: 12px 0;
+          border-bottom: 1px solid #d5d4c9;
+          // background: rgba(0, 0, 0, 0.1);
+
+          span {
+            display: block;
+            padding-bottom: 13px;
+          }
+
+          p {
+            font-size: 14px;
+            color: $GRAY666;
+          }
+        }
+
+        li:nth-child(1) {
+          border-top: 2px solid $GRAY333;
+        }
+      }
+
+      .productDetailBtns {
+        display: flex;
+        justify-content: space-between;
+
+        width: 400px;
+        margin-top: 30px;
+
+        button {
+          width: 49%;
+          padding: 20px;
+          border: none;
+          background: $GRAY333;
+          font-size: 16px;
+          font-weight: 600;
+          color: $bgColor;
+          cursor: pointer;
+        }
+
+        .payBtn {
+          width: 49%;
+          padding: 20px;
+          border: 1px solid $GRAY333;
+          background: $GRAY333;
+          font-size: 16px;
+          color: $bgColor;
+          cursor: pointer;
+        }
+
+        .cartBtn {
+          border: 1px solid $GRAY333;
+          background: $bgColor;
+          color: $GRAY333;
+        }
+      }
+    }
+  }
+}
