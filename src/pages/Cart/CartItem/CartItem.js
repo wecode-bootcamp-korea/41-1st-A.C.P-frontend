@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CheckBox from '../CheckBox/CheckBox';
 import { fetchCart } from '../config';
 import SelectBoxQuantity from '../SelectBoxQuantity/SelectBoxQuantity';
@@ -9,11 +9,13 @@ export default function CartItem({
   cartItems,
   setCartItems,
   selectSingleItem,
-  selectedCartIds,
-  calcProductPrice,
+  selectedItems,
+  setTotalPrice,
 }) {
   const { cart_id, data } = cartItem;
-  const { name, description, id, quantity, price } = data;
+  const { description, id, name, price, quantity } = data;
+
+  // console.log('quantity', quantity);
 
   // console.log('cartItem', cartItem);
 
@@ -50,20 +52,22 @@ export default function CartItem({
   //     });
   // };
 
-  const deleteCartItem = () => {};
-  // const updateCartQuantity = () => {};
+  const [cartItemPrice, setCartItemPrice] = useState(0);
 
-  const totalProductPrice = quantity * parseInt(price);
+  useEffect(() => {
+    setCartItemPrice(quantity * parseInt(price));
+  }, [quantity, price]);
+
+  console.log('cartItem Component', cartItemPrice);
 
   return (
     <li className="cartItem">
       <CheckBox
         id={cart_id}
         selectItem={selectSingleItem}
-        selectedCartIds={selectedCartIds}
-        quantity={quantity}
-        price={price}
-        calcProductPrice={calcProductPrice}
+        selectedItems={selectedItems}
+        cartItemPrice={cartItemPrice}
+        data={data}
       />
       <div className="wrapImg">
         <img src="" alt="" className="cartImg" />
@@ -78,15 +82,18 @@ export default function CartItem({
             cartId={cart_id}
             id={id}
             cartItems={cartItems}
+            price={price}
             quantity={quantity}
+            cartItemPrice={cartItemPrice}
+            setCartItemPrice={setCartItemPrice}
             setCartItems={setCartItems}
             // updateCartQuantity={updateCartQuantity}
+            //
+            setTotalPrice={setTotalPrice}
           />
           <span className="priceInfo">
             <span className="titlePrice">주문금액</span>
-            <span className="numPrice">
-              ₩ {totalProductPrice.toLocaleString()}
-            </span>
+            <span className="numPrice">₩ {cartItemPrice}</span>
           </span>
         </div>
       </div>

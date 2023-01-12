@@ -6,8 +6,7 @@ import './Cart.scss';
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [selectedCartIds, setSelectedCartIds] = useState([]);
-  const [defaultTotalPrice, setDefaultTotalPrice] = useState(0);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   // useEffect(() => {
   //   // const fetchUrl = 'http://10.58.52.160:3000/carts';
@@ -40,10 +39,17 @@ export default function Cart() {
     //   },
     // })
 
-    fetch('/data/cart.json')
+    // fetch('/data/cart.json')
+    fetch('http://10.58.52.135:3000/carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+    })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        console.log('origin data : ', data);
         const newData = data.map(item => {
           const nutrientsData =
             item.nutrients[0].name !== null && item.nutrients[0];
@@ -70,53 +76,56 @@ export default function Cart() {
             },
           };
         });
-
-        console.log(newData);
-
         setCartItems(newData);
-
-        // const itemTotalPrice = data.reduce(
-        //   (acc, curr) => acc + parseInt(curr.plant_price),
-        //   0
-        // );
-        // setDefaultTotalPrice(itemTotalPrice);
       });
   }, []);
 
   const selectAllItems = e => {
     const isChecked = e.target.checked;
-    const allCartIds = cartItems.map(item => item.cart_id);
-    setSelectedCartIds(isChecked ? allCartIds : []);
-    if (isChecked) {
-      // 총 상품가격 0원 초기화
+    const newArr = [...cartItems];
+
+    const allCartInfo = newArr.map(item => {
+      const category = item.data.category.slice(0, -1);
+      return {
+        cartId: item.cart_id,
+        data: {
+          [`${category}Id`]: item.data.id,
+          [`${category}Quantity`]: item.data.quantity,
+        },
+      };
+    });
+
+    setSelectedItems(isChecked ? allCartInfo : []);
+  };
+
+  const selectSingleItem = (
+    e,
+    cartId,
+    productId,
+    category,
+    quantity,
+    cartItemPrice
+  ) => {
+    const hasSelectedItem = selectedItems.find(item => item.cartId === cartId);
+    const cate = category.slice(0, -1);
+
+    let obj = {
+      cartId,
+      data: {
+        [`${cate}Id`]: productId,
+        [`${cate}Quantity`]: quantity,
+      },
+    };
+
+    if (hasSelectedItem) {
+      const filteredList = selectedItems.filter(item => item.cartId !== cartId);
+      setSelectedItems(filteredList);
+      setTotalPrice(prev => prev - cartItemPrice);
     } else {
-      // 모든 상품가격 + quauntity 더해서 set
-    }
-    // setTotalPrice(prev => prev - quantity * price);
-  };
-
-  const selectSingleItem = (e, cartId, quantity, price) => {
-    // console.log(cartId);
-    const hasCartId = selectedCartIds.includes(cartId);
-
-    if (hasCartId) {
-      const filteredList = selectedCartIds.filter(
-        selectedId => selectedId !== cartId
-      );
-      setSelectedCartIds(filteredList);
-      setTotalPrice(prev => prev - quantity * price);
-    } else {
-      setSelectedCartIds([...selectedCartIds, cartId]);
-      setTotalPrice(prev => prev + quantity * price);
+      setSelectedItems([...selectedItems, obj]);
+      setTotalPrice(prev => prev + cartItemPrice);
     }
   };
-
-  const calcProductPrice = (id, quantity, price) => {
-    setTotalPrice(prev => prev + quantity * price);
-  };
-
-  // console.log('totalPrice', totalPrice);
-  // const cartTotalPrice =  // 체크된 상품 수량 * 가격 // 모두 더하기
 
   return (
     <section className={`cart${cartItems ? '' : ' empty'}`}>
@@ -126,13 +135,13 @@ export default function Cart() {
           setCartItems={setCartItems}
           selectAllItems={selectAllItems}
           selectSingleItem={selectSingleItem}
-          selectedCartIds={selectedCartIds}
-          calcProductPrice={calcProductPrice}
-          setDefaultTotalPrice={setDefaultTotalPrice}
+          selectedItems={selectedItems}
+          //
+          setTotalPrice={setTotalPrice}
         />
         {cartItems && (
           <CartPriceInfo
-            selectedCartIds={selectedCartIds}
+            selectedItems={selectedItems}
             totalPrice={totalPrice}
           />
         )}

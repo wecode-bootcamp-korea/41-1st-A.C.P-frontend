@@ -8,14 +8,18 @@ export default function CartProducts({
   setCartItems,
   selectAllItems,
   selectSingleItem,
-  selectedCartIds,
-  calcProductPrice,
-  setDefaultTotalPrice,
+  selectedItems,
+  //
+  setTotalPrice,
 }) {
-  const allCartIdsLength = () => {
-    return cartItems.map(item => item.cart_id).length;
-  };
+  // const allCartIdsLength = () => {
+  //   return cartItems.map(item => item.cart_id).length;
+  // };
 
+  const isAllChecked =
+    selectedItems.length > 0 && cartItems.length === selectedItems.length;
+
+  console.log('isAllChecked', isAllChecked);
   return (
     <article className="cartProducts">
       <h2 className="titleArticle">장바구니</h2>
@@ -28,7 +32,7 @@ export default function CartProducts({
               className="all"
               label="전체선택"
               selectItem={selectAllItems}
-              isAllChecked={allCartIdsLength() === selectedCartIds.length}
+              isAllChecked={isAllChecked} // 상품리스트 개수와 selectedItem 개수가 같으면 true or false
             />
             <ul className="cartList">
               {cartItems &&
@@ -39,10 +43,10 @@ export default function CartProducts({
                       cartItem={cartItem}
                       cartItems={cartItems}
                       setCartItems={setCartItems}
-                      selectedCartIds={selectedCartIds}
+                      selectedItems={selectedItems}
                       selectSingleItem={selectSingleItem}
-                      calcProductPrice={calcProductPrice}
-                      setDefaultTotalPrice={setDefaultTotalPrice}
+                      //
+                      setTotalPrice={setTotalPrice}
                     />
                   );
                 })}

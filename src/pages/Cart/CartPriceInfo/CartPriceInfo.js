@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 // import { fetchCart } from '../config';
 import './CartPriceInfo.scss';
 
-function CartPriceInfo({ selectedCartIds, totalPrice }) {
+function CartPriceInfo({ totalPrice }) {
   const navigate = useNavigate();
 
   // const fetchOrder = () => {

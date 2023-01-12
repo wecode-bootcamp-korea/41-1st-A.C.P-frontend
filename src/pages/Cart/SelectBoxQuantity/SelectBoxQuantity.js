@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import './SelectBoxQuantity.scss';
 
-function SelectBoxQuantity({ cartId, cartItems, quantity, setCartItems }) {
+function SelectBoxQuantity({
+  cartId,
+  cartItems,
+  price,
+  quantity,
+  setCartItems,
+  setCartItemPrice,
+  setTotalPrice,
+}) {
   const [quantityBox, setQuantityBox] = useState(false);
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
 
@@ -9,12 +17,19 @@ function SelectBoxQuantity({ cartId, cartItems, quantity, setCartItems }) {
     // 통신시 필요한 내용
     // updateCartQuantity(quantity);
 
+    // 체크된 상태에서 수량이 변경되면 quantity 변경 -> cartItemPrice 변경 -> 체크된 상태에서 수량 변경시
+
     // UI로직
     const newCart = [...cartItems];
     newCart.find(item => item.cart_id === cartId).data.quantity = quantity;
     setCartItems(newCart);
+
+    console.log('selectBox', quantity, parseInt(price));
     setSelectedQuantity(quantity);
     setQuantityBox(false);
+
+    //
+    setTotalPrice(prev => prev + price * quantity);
   };
 
   return (
