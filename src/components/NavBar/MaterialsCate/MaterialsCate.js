@@ -64,10 +64,10 @@ const BIG_CATE_MATERIALS = [
     id: 1,
     title: '카테고리',
     categoryItems: [
-      { title: '토분 모두보기', url: '/pots' },
-      { title: '영양제 모두보기', url: '/nutrients' },
-      { title: '잎 영양제', url: '/nutrients?type=1' },
-      { title: '뿌리 영앙제', url: '/nutrients?type=2' },
+      { title: '토분 모두보기', url: '/materials' },
+      { title: '영양제 모두보기', url: '/materials?nutrients' },
+      { title: '잎 영양제', url: '/materials?nutrients=1' },
+      { title: '뿌리 영앙제', url: '/materials?nutrients=2' },
     ],
   },
 ];

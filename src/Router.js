@@ -7,10 +7,10 @@ import Products from './pages/Products/Products';
 import ProductDetail from './pages/Products/ProductDetail/ProductDetail';
 import ProductDetailPot from './pages/Products/ProductDetail/ProductDetailPot';
 import ProductDetailNutrient from './pages/Products/ProductDetail/ProductDetailNutrient';
+import Materials from './pages/Materials/Materials';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Ordered from './pages/Ordered/Ordered';
-import Materials from './pages/Materials/Materials';
 
 export default function Router() {
   return (
@@ -22,6 +22,7 @@ export default function Router() {
           <Route path="/signup" element={<Login />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/materials" element={<Materials />} />
           <Route path="/materials/pots/:id" element={<ProductDetailPot />} />
           <Route
             path="/materials/nutrients/:id"
