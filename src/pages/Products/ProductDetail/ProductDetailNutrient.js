@@ -88,7 +88,7 @@ function ProductDetailNutrient() {
       <div className="productDetailTop">
         <div className="productDetailImage">
           <img
-            src="images/productDetail/productDetail_img_01.jpg"
+            src="/images/productDetail/productDetail_img_01.jpg"
             alt="상품이미지"
           />
         </div>

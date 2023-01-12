@@ -22,7 +22,9 @@ function MaterialList({ materialList }) {
               </div>
               <div className="materialsInfo">
                 <h2 className="materialTitle">{item.name}</h2>
-                <p className="materialPrice">{item.price}</p>
+                <p className="materialPrice">
+                  {parseInt(item.price).toLocaleString()}₩
+                </p>
               </div>
             </div>
           );
