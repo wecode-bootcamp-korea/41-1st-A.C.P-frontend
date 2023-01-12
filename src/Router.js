@@ -8,7 +8,7 @@ import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Order from './pages/Order/Order';
 import Ordered from './pages/Ordered/Ordered';
-import Materials from './pages/Products/Materials/Materials';
+import Materials from './pages/Materials/Materials';
 
 export default function Router() {
   return (

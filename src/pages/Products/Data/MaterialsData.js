@@ -1,7 +1,7 @@
 const MaterialsData = {
   materialData: [
-    { id: 0, name: '원예자재 모두 보기' },
-    { id: 1, name: '토분' },
+    { id: 0, name: '토분' },
+    { id: 1, name: '영양제 모두 보기' },
     { id: 2, name: '잎 영양제' },
     { id: 3, name: '뿌리영양제' },
   ],
