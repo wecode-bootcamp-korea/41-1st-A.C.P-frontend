@@ -7,14 +7,13 @@ import './Main.scss';
 
 export default function Main() {
   return (
-    <di className="main">
+    <div className="main">
       <Header />
       <div className="mainWrapper">
         <div className="mainImg">
           <img src="images/main/main2.jpg" alt="mainImage" />
         </div>
         <div className="blank" />
-        <div className="newProductsTitle">New Plants for You</div>
         <NewProducts />
         <div className="blank" />
         <ServiceIntro />
@@ -23,6 +22,6 @@ export default function Main() {
           <BottomSlide />
         </div>
       </div>
-    </di>
+    </div>
   );
 }
