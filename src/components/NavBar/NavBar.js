@@ -53,8 +53,8 @@ export default function NavBar() {
   return (
     <nav className="navBar">
       <ul className="navBarLeft">
-        {TAB_ARR.map((tab, index) => (
-          <li className="menuTab" key={index} onClick={() => menuTabOpen(tab)}>
+        {TAB_ARR.map(tab => (
+          <li className="menuTab" key={tab} onClick={() => menuTabOpen(tab)}>
             {tab}
           </li>
         ))}

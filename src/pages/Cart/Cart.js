@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CartProducts from './CartProducts/CartProducts';
 import CartPriceInfo from './CartPriceInfo/CartPriceInfo';
+import { GET_CART_API } from '../../config';
 import './Cart.scss';
 
 export default function Cart() {
@@ -40,7 +41,7 @@ export default function Cart() {
     // })
 
     fetch('/data/cart.json')
-      // fetch('http://10.58.52.135:3000/carts', {
+      // fetch(GET_CART_API, {
       //   method: 'POST',
       //   headers: {
       //     'Content-Type': 'application/json;charset=utf-8',

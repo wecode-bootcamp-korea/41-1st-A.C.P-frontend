@@ -2,7 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './FilterModal.scss';
 
-function FilterModal({ categoryInfo }) {
+function FilterModal({ categoryInfo, fetchQueryData }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleChkClick = (category, id) => {
@@ -20,6 +20,10 @@ function FilterModal({ categoryInfo }) {
       searchParams.append(category, id);
       setSearchParams(searchParams);
     }
+
+    const queryString = searchParams.toString();
+    console.log(queryString);
+    fetchQueryData(queryString);
   };
 
   return (

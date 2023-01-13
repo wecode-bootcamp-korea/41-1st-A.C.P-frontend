@@ -35,7 +35,7 @@ const FilterData = {
     {
       id: 3,
       name: '난이도',
-      category: 'difficulty',
+      category: 'difficultys',
       categoryList: [
         { id: 1, title: 'Easy' },
         { id: 2, title: 'Normal' },
@@ -45,7 +45,7 @@ const FilterData = {
     {
       id: 4,
       name: '분위기',
-      category: 'mood',
+      category: 'moods',
       categoryList: [
         { id: 1, title: 'Adorable' },
         { id: 2, title: 'Warm' },

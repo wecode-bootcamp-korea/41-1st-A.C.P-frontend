@@ -39,9 +39,9 @@ export default function Products() {
       .then(data => setProductList(data.plantsList));
   };
 
-  const fetchQueryData = () => {
-    console.log(searchParams.toString());
-    fetch(`${GET_PLANTS_API}?${searchParams.toString()}`, {
+  const fetchQueryData = queryString => {
+    console.log(`http://10.58.52.135:3000/plants?${queryString}`);
+    fetch(`http://10.58.52.135:3000/plants?${queryString}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -101,7 +101,12 @@ export default function Products() {
           필터
         </button>
       </div>
-      {modal ? <FilterModal categoryInfo={categoryInfo} /> : null}
+      {modal ? (
+        <FilterModal
+          categoryInfo={categoryInfo}
+          fetchQueryData={fetchQueryData}
+        />
+      ) : null}
       <div className="productsMain">
         <List productList={productList} />
       </div>

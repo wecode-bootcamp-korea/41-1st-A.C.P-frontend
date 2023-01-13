@@ -13,7 +13,7 @@ export default function MaterialsCate() {
       <div className="categoryLeft">
         {BIG_CATE_MATERIALS.map(({ id, title, categoryItems }) => {
           return (
-            <ul key={id} className="categoryList">
+            <ul key={title} className="categoryList">
               <li className="bigCategoryTitle">{title}</li>
               {categoryItems.map(bigCategoryTitle => {
                 return (
@@ -31,7 +31,7 @@ export default function MaterialsCate() {
       <div className="categoryRight">
         {CATE_MATERIALS.map(({ id, title, categoryItems }) => {
           return (
-            <ul key={id} className="categoryList">
+            <ul key={title} className="categoryList">
               <li className="categoryTitle">{title}</li>
               {categoryItems.map(categoryTitle => {
                 return (
