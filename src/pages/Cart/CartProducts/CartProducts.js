@@ -19,6 +19,26 @@ export default function CartProducts({
   const isAllChecked =
     selectedItems.length > 0 && cartItems.length === selectedItems.length;
 
+  const deleteCartItem = cartId => {
+    // 통신
+    // const fetchUrl = 'http://10.58.52.160:3000/carts';
+    // const fetchData = {
+    //   plant_id,
+    // };
+    // fetchCart(fetchUrl, 'POST', fetchData)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     // 성공시 카트아이템 다시 세팅
+    //     // setCartItems(data)
+    //   });
+    // UI 변경
+    // 클릭시 카트아이디 확인 후 필터링, set
+    let newArr = [...cartItems];
+    newArr = newArr.filter(item => item.cart_id !== cartId);
+    setCartItems(newArr);
+  };
+
   console.log('isAllChecked', isAllChecked);
   return (
     <article className="cartProducts">
@@ -47,6 +67,7 @@ export default function CartProducts({
                       selectSingleItem={selectSingleItem}
                       //
                       setTotalPrice={setTotalPrice}
+                      deleteCartItem={deleteCartItem}
                     />
                   );
                 })}

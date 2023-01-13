@@ -11,6 +11,7 @@ export default function CartItem({
   selectSingleItem,
   selectedItems,
   setTotalPrice,
+  deleteCartItem,
 }) {
   const { cart_id, data } = cartItem;
   const { description, id, name, price, quantity } = data;
@@ -36,21 +37,6 @@ export default function CartItem({
         // setCartItems(data)
       });
   };
-
-  // const deleteCartItem = () => {
-  //   const fetchUrl = 'http://10.58.52.160:3000/carts';
-  //   const fetchData = {
-  //     plant_id,
-  //   };
-
-  //   fetchCart(fetchUrl, 'POST', fetchData)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       // 성공시 카트아이템 다시 세팅
-  //       // setCartItems(data)
-  //     });
-  // };
 
   const [cartItemPrice, setCartItemPrice] = useState(0);
 
@@ -97,7 +83,11 @@ export default function CartItem({
           </span>
         </div>
       </div>
-      <button type="button" className="btnDelete">
+      <button
+        type="button"
+        className="btnDelete"
+        onClick={() => deleteCartItem(cart_id)}
+      >
         <img src="/images/common/close_btn.png" alt="X" width={12} />
       </button>
     </li>

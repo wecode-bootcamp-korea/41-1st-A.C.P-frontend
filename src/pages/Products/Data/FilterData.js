@@ -35,11 +35,11 @@ const FilterData = {
     {
       id: 3,
       name: '난이도',
-      category: 'difficultys',
+      category: 'difficulties',
       categoryList: [
-        { id: 1, title: 'Easy' },
+        { id: 1, title: 'Hard' },
         { id: 2, title: 'Normal' },
-        { id: 3, title: 'Hard' },
+        { id: 3, title: 'Easy' },
       ],
     },
     {
