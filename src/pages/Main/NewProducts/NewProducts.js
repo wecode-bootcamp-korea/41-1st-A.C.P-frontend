@@ -26,13 +26,16 @@ export default function NewProducts() {
             {newProducts.map(newProductsInfo => {
               const { plant_id, plant_name, plant_price, plant_img } =
                 newProductsInfo;
-              const imgPlaceHoldit = 'https://via.placeholder.com/600x900';
+              const imgPlaceHoldit = 'https://via.placeholder.com/600x300';
 
               return (
                 <div key={plant_id} className="newProductBox">
                   <div className="newProductImg">
                     <Link to={`/products/${plant_id}`}>
-                      <img src={imgPlaceHoldit} alt="plant_img" />
+                      <img
+                        src={`/images/productDetail/img0${plant_id + 2}.jpg`}
+                        alt="plant_img"
+                      />
                     </Link>
                   </div>
                   <div className="newProductDetail">

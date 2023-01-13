@@ -16,16 +16,21 @@ export default function Products() {
   const navigate = useNavigate();
 
   const defaultLimit = 6;
-  let limit = Number(searchParams.get('_limit')) || defaultLimit;
+  const maxProductLength = 41;
+  let limit = Number(searchParams.get('limit')) || defaultLimit;
   const currentCount = limit / defaultLimit;
-  const maxLength = Math.floor(productList.length / defaultLimit) || 1;
+  const maxLength = Math.ceil(maxProductLength / defaultLimit) || 1;
+  console.log(maxLength);
 
   useEffect(() => {
     navigate('/products');
   }, []);
 
   useEffect(() => {
-    fetchProductData();
+    searchParams.set('offset', 0);
+    searchParams.set('limit', 6);
+    setSearchParams(searchParams);
+    fetchQueryData(searchParams);
   }, []);
 
   const fetchProductData = () => {
@@ -52,11 +57,12 @@ export default function Products() {
   };
 
   const handleMoreClick = () => {
-    if (productList.length > offset) {
-      offset += 6;
-      searchParams.set('_offset', offset);
+    if (maxProductLength > limit) {
+      limit += 6;
+      searchParams.set('offset', 0);
+      searchParams.set('limit', limit);
       setSearchParams(searchParams);
-      fetchQueryData();
+      fetchQueryData(searchParams);
     }
   };
 
@@ -66,6 +72,8 @@ export default function Products() {
     setSearchParams(searchParams);
     fetchQueryData();
   };
+
+  console.log(productList);
 
   return (
     <>

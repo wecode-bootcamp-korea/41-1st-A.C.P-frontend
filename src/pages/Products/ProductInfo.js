@@ -6,7 +6,7 @@ function ProductInfo({ item }) {
 
   const { plant_id, plant_images, plant_name, plant_price } = item;
 
-  const imgUrl2 = '/images/productDetail/img03.jpg';
+  const imgUrl2 = '/images/productDetail/img04.jpg';
 
   console.log(plant_id);
 
@@ -19,7 +19,9 @@ function ProductInfo({ item }) {
             src={
               isHover
                 ? imgUrl2
-                : `/images/productDetail/img0${plant_id + 1}.jpg`
+                : `/images/productDetail/img${
+                    plant_id < 10 ? `0${plant_id}` : plant_id
+                  }.jpg`
             }
             onMouseOver={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
