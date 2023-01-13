@@ -39,14 +39,14 @@ export default function Cart() {
     //   },
     // })
 
-    // fetch('/data/cart.json')
-    fetch('http://10.58.52.135:3000/carts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('accessToken'),
-      },
-    })
+    fetch('/data/cart.json')
+      // fetch('http://10.58.52.135:3000/carts', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=utf-8',
+      //     Authorization: localStorage.getItem('accessToken'),
+      //   },
+      // })
       .then(res => res.json())
       .then(data => {
         console.log('origin data : ', data);

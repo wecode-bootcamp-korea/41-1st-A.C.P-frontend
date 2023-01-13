@@ -5,11 +5,11 @@ function ProductInfoPot({ size, color }) {
     <ul>
       <li className="productInfo">
         <span>크기</span>
-        <p>{size}</p>
+        <p>20 - 50cm</p>
       </li>
       <li className="productInfo">
         <span>색상</span>
-        <p>{color}</p>
+        <p>Brown</p>
       </li>
     </ul>
   );

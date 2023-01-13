@@ -3,7 +3,6 @@ import CheckBox from './CheckBox/CheckBox';
 import TextInput from './TextInput/TextInput';
 import { GET_USER_INFO_API, RESIST_USER_INFO_API } from '../../../config';
 import { LOGIN_INPUT_LIST, SIGNUP_INPUT_LIST } from './uidata';
-import { fetchApi } from './config';
 import './User.scss';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
@@ -55,16 +54,8 @@ export default function User({ title, children }) {
               phoneNumber: userInfo.phoneNumber,
             };
 
-      // const res = fetchData(
-      //   title === '로그인' ? GET_USER_INFO_API : RESIST_USER_INFO_API,
-      //   'POST',
-      //   userData
-      // );
-      // const data = res.json();
       let fetchUrl =
-        title === '로그인'
-          ? 'http://10.58.52.135:3000/users/signIn'
-          : 'http://10.58.52.135:3000/users/signUp';
+        title === '로그인' ? GET_USER_INFO_API : RESIST_USER_INFO_API;
 
       fetch(fetchUrl, {
         method: 'POST',

@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { GET_PLANTS_API } from '../../config';
 import List from './List';
 import FilterData from './Data/FilterData';
 import FilterModal from './FilterModal/FilterModal';
@@ -27,16 +28,9 @@ export default function Products() {
     fetchProductData();
   }, []);
 
-  // 통신시 useEffect.
-  useEffect(() => {
-    fetch('/data/productData.json')
-      .then(res => res.json())
-      .then(data => setProductList(data));
-  }, []);
-
   const fetchProductData = () => {
-    fetch(`http://10.58.52.135:3000/plants}`, {
-      method: 'POST',
+    fetch(GET_PLANTS_API, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
@@ -46,8 +40,9 @@ export default function Products() {
   };
 
   const fetchQueryData = () => {
-    fetch(`http://10.58.52.135:3000/plants?${searchParams.toString()}`, {
-      method: 'POST',
+    console.log(searchParams.toString());
+    fetch(`${GET_PLANTS_API}?${searchParams.toString()}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
@@ -63,6 +58,13 @@ export default function Products() {
       setSearchParams(searchParams);
       fetchQueryData();
     }
+  };
+
+  const handleLinkCategory = id => {
+    setModal(false);
+    searchParams.set('species', id === 0 ? '' : id);
+    setSearchParams(searchParams);
+    fetchQueryData();
   };
 
   return (
@@ -81,7 +83,7 @@ export default function Products() {
                         : `/products?species=${categoryL.id}`
                     }
                     className="linkCategory"
-                    onClick={() => setModal(true)}
+                    onClick={() => handleLinkCategory(categoryL.id)}
                   >
                     {categoryL.name}
                   </Link>

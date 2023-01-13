@@ -70,7 +70,7 @@ export default function CartItem({
         data={data}
       />
       <div className="wrapImg">
-        <img src="" alt="" className="cartImg" />
+        <img src="/images/productDetail/img03.jpg" alt="" className="cartImg" />
       </div>
       <div className="wrapInfo">
         <div className="boxTitle">

@@ -20,7 +20,9 @@ function ProductInfo({ item }) {
 
       <div className="productsInfo">
         <h2 className="productsTitle">{item.plant_name}</h2>
-        <p className="productsPrice">{item.plant_price}</p>
+        <p className="productsPrice">
+          {parseInt(item.plant_price).toLocaleString()}₩
+        </p>
       </div>
     </div>
   );

@@ -83,24 +83,21 @@ function ProductDetailPot() {
     <div className="productDetailPot">
       <div className="productDetailTop">
         <div className="productDetailImage">
-          <img
-            src="/images/productDetail/productDetail_img_01.jpg"
-            alt="상품이미지"
-          />
+          <img src="/images/productDetail/img09.jpg" alt="상품이미지" />
         </div>
         <div className="productDetailInfos">
-          <h1>{name}</h1>
+          <h1>이태리 토분</h1>
           <ProductInfoPot key={id} size={size} color={color} />
           <div className="productDetailBtns">
             <button
               className="payBtn"
               onClick={() => {
-                localStorage.setItem('id', JSON.stringify(fakeData));
+                localStorage.setItem('id', JSON.stringify(productInfo));
                 // 해당 상품 정보를 fakeData 자리에 넣어야함
                 goToPage('order');
               }}
             >
-              구매하기 &nbsp;{parseInt(price)}₩
+              구매하기 &nbsp;80,000₩
             </button>
             <button className="cartBtn" onClick={handleModal}>
               장바구니

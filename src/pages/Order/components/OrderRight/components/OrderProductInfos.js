@@ -12,7 +12,10 @@ function OrderProductInfos({ data }) {
           <p>{data.plant_name}</p>
         </div>
         <div>
-          <p className="price">{data.plant_price}₩</p>
+          <p className="price">
+            {parseInt(data.plant_price).toLocaleString()}₩
+          </p>
+          {/* {parseInt(plant_price).toLocaleString()}₩ */}
         </div>
       </div>
     </div>

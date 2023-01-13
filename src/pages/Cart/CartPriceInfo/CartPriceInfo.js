@@ -38,11 +38,11 @@ function CartPriceInfo({ totalPrice }) {
         <div className="boxPriceInfo">
           <div className="wrapPriceInfo">
             <span>총 주문금액</span>
-            <span>{totalPrice}₩</span>
+            <span>{totalPrice.toLocaleString()}₩</span>
           </div>
           <div className="deliveryCost">
             <span>배송비</span>
-            <span>{shipFee}₩</span>
+            <span>{shipFee.toLocaleString()}₩</span>
           </div>
           <div className="totalPriceInfo">
             <span>총 결제금액</span>
