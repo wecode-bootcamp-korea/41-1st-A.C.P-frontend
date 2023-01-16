@@ -1,7 +1,7 @@
 import React from 'react';
 import './OrderProductInfos.scss';
 
-function OrderProductInfos({ data }) {
+function OrderProductInfos({ plantName, plantPrice }) {
   return (
     <div className="orderProductInfos">
       <div className="orderProductImg">
@@ -9,12 +9,10 @@ function OrderProductInfos({ data }) {
       </div>
       <div className="orderProductMiniInfos">
         <div className="miniInfoDetail">
-          <p>{data.plant_name}</p>
+          <p>{plantName}</p>
         </div>
         <div>
-          <p className="price">
-            {parseInt(data.plant_price).toLocaleString()}₩
-          </p>
+          <p className="price">{parseInt(plantPrice).toLocaleString()}₩</p>
           {/* {parseInt(plant_price).toLocaleString()}₩ */}
         </div>
       </div>

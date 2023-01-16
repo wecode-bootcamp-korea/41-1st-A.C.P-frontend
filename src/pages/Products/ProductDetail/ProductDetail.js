@@ -65,14 +65,14 @@ function ProductDetail() {
 
   // BE와 통신세팅 -> 상품리스트에서 클릭했을 때 요청되어, 상품상세에 데이터가 뿌려지는 fetch 코드
   useEffect(() => {
+    // scrollTop
+    window.scrollTo(0, 0);
+
     fetch(`http://10.58.52.135:3000/plants/${productId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      // body: JSON.stringify({
-      //   plant_id: 1,
-      // }),
     })
       .then(res => res.json())
       .then(data => {
@@ -135,7 +135,6 @@ function ProductDetail() {
             <button
               className="payBtn"
               onClick={() => {
-                localStorage.setItem('id', JSON.stringify(productInfo));
                 // 해당 상품 정보를 fakeData 자리에 넣어야함
                 goToPage('order');
               }}

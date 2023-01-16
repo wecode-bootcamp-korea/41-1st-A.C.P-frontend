@@ -32,7 +32,8 @@ function ProductDetailNutrient() {
 
   // BE와 통신세팅 -> 상품리스트에서 클릭했을 때 요청되어, 상품상세에 데이터가 뿌려지는 fetch 코드
   useEffect(() => {
-    // e.preventDefault(); // <- 태그 고유의 동작을 중단시키는 함수
+    // scrollTop
+    window.scrollTo(0, 0);
 
     fetch(`http://10.58.52.135:3000/nutrients/${productId}`, {
       method: 'GET',

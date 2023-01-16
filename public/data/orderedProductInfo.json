@@ -5,6 +5,22 @@
     "name": "여인초",
     "quantity": "1",
     "destination": "서울특별시 선릉로 위워크타워 1층",
-    "date": "2023/01/12"
+    "date": "2023/01/28"
+  },
+  {
+    "id": 2,
+    "orderNum": "00002",
+    "name": "여인초",
+    "quantity": "1",
+    "destination": "서울특별시 선릉로 위워크타워 1층",
+    "date": "2023/01/29"
+  },
+  {
+    "id": 3,
+    "orderNum": "00003",
+    "name": "독일 토분",
+    "quantity": "3",
+    "destination": "서울특별시 선릉로 위워크타워 1층",
+    "date": "2023/01/30"
   }
 ]

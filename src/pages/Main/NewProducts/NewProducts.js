@@ -6,13 +6,13 @@ export default function NewProducts() {
   const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
-    // fetch(`http://10.58.52.135:3000/plants/main?sort=new&offset=0&limit=6`, {
-    //   method: 'GET',
-    // })
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     setNewProducts(result.plantsList);
-    //   });
+    fetch(`http://10.58.52.135:3000/plants/main?sort=new&offset=0&limit=6`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(result => {
+        setNewProducts(result.plantsList);
+      });
   }, []);
 
   const [slideName, setSlideName] = useState('');
@@ -52,7 +52,7 @@ export default function NewProducts() {
         <div className="slideBtn">
           <button className="backBtn">
             <img
-              src="images/main/next_ivory.png"
+              src="/images/main/next_ivory.png"
               alt="back"
               className="back"
               onClick={() => setSlideName('')}
@@ -60,7 +60,7 @@ export default function NewProducts() {
           </button>
           <button className="nextBtn">
             <img
-              src="images/main/next_ivory.png"
+              src="/images/main/next_ivory.png"
               alt="next"
               className="next"
               onClick={() => setSlideName('Right')}

@@ -15,21 +15,17 @@ function ProductDetailPot() {
   const [productInfo, setProductInfo] = useState([]);
   const [modalText, setModalText] = useState('');
 
-  // 임시 데이터
-  const fakeData = {
-    id: 1,
-    name: '바보',
-    price: '100',
-  };
-
   const goToPage = path => {
     navigate(`/${path}`, {
-      state: fakeData,
+      state: productInfo,
     });
   };
 
   // BE와 통신세팅 -> 상품리스트에서 클릭했을 때 요청되어, 상품상세에 데이터가 뿌려지는 fetch 코드
   useEffect(() => {
+    // scrollTop
+    window.scrollTo(0, 0);
+
     fetch(`http://10.58.52.135:3000/pots/${productId}`, {
       method: 'GET', // + 메소드가 GET 이면 body 생략
       headers: {
@@ -92,7 +88,6 @@ function ProductDetailPot() {
             <button
               className="payBtn"
               onClick={() => {
-                localStorage.setItem('id', JSON.stringify(productInfo));
                 // 해당 상품 정보를 fakeData 자리에 넣어야함
                 goToPage('order');
               }}

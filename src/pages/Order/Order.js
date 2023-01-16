@@ -1,43 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import InfoInput from './components/InfoInput';
 import OrderRight from './components/OrderRight/OrderRight';
 import './Order.scss';
 
 export default function Order() {
-  // const params = useParams();
-  // const orderId = params.id;
-
-  // console.log(orderId);
-
   const [dateBox, setDateBox] = useState(false);
   const [date, setDate] = useState('날짜 선택');
-  const [orderProduct, setOrderProduct] = useState('');
 
   const showDateBox = e => {
     setDateBox(!dateBox);
   };
-
-  // BE와 통신세팅 -> 상품상세에서 주문하기 버튼 누를 시, 오더페이지에 데이터가 뿌려지는 fetch 코드
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.135:3000/plants/1`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body: JSON.stringify({
-  //       plant_id: 1,
-  //     }),
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setOrderProduct(data);
-  //       console.log(data);
-  //     });
-  // }, []);
-
-  // const { id, price, image, product_name, product_size, product_species } =
-  //   orderProduct;
 
   return (
     <div className="order">
