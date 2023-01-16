@@ -1,7 +1,9 @@
-@import '../../styles/mixin.scss';
-@import '../../styles/variables.scss';
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
 
-.materialsCate {
+.plantsCate {
   width: 100%;
   height: 100vh;
   background-color: #f0efe0;
@@ -14,6 +16,7 @@
 
   .logoPart {
     width: 19%;
+
     img {
       width: 80px;
       margin: 79px 0px 0px 50px;

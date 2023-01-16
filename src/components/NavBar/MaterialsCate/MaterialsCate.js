@@ -1,8 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './MaterialsCate.scss';
 
 export default function MaterialsCate() {
+  const navigate = useNavigate();
+
+  const setMaterialSort = id => {
+    if (id === 1) {
+      navigate('/pots');
+    } else if (id === 2) {
+      navigate('/nutrients');
+    } else {
+      navigate(`/nutrients?type=${id - 2}`);
+    }
+  };
+
+  const setPotSort = id => {
+    navigate(`/pots?type=${id}`);
+  };
+
   return (
     <div className="materialsCate">
       <div className="logoPart">
@@ -15,12 +31,12 @@ export default function MaterialsCate() {
           return (
             <ul key={id} className="categoryList">
               <li className="bigCategoryTitle">{title}</li>
-              {categoryItems.map(bigCategoryTitle => {
+              {categoryItems.map(({ id, title }) => {
                 return (
-                  <li key={bigCategoryTitle} className="bigCategoryItems">
-                    <Link to={bigCategoryTitle.url} className="bigItem">
-                      {bigCategoryTitle.title}
-                    </Link>
+                  <li key={id} className="bigCategoryItems">
+                    <p className="bigItem" onClick={() => setMaterialSort(id)}>
+                      {title}
+                    </p>
                   </li>
                 );
               })}
@@ -33,12 +49,12 @@ export default function MaterialsCate() {
           return (
             <ul key={id} className="categoryList">
               <li className="categoryTitle">{title}</li>
-              {categoryItems.map(categoryTitle => {
+              {categoryItems.map(({ id, title }) => {
                 return (
-                  <li key={categoryTitle} className="categoryItems">
-                    <Link to={categoryTitle.url} className="item">
-                      {categoryTitle.title}
-                    </Link>
+                  <li key={id} className="categoryItems">
+                    <p className="item" onClick={() => setPotSort(id)}>
+                      {title}
+                    </p>
                   </li>
                 );
               })}
@@ -64,10 +80,10 @@ const BIG_CATE_MATERIALS = [
     id: 1,
     title: '카테고리',
     categoryItems: [
-      { title: '토분 모두보기', url: '/pots' },
-      { title: '영양제 모두보기', url: '/nutrients' },
-      { title: '잎 영양제', url: '/nutrients?type=1' },
-      { title: '뿌리 영앙제', url: '/nutrients?type=2' },
+      { id: 1, title: '토분 모두보기' },
+      { id: 2, title: '영양제 모두보기' },
+      { id: 3, title: '잎 영양제' },
+      { id: 4, title: '뿌리 영앙제' },
     ],
   },
 ];
@@ -77,9 +93,9 @@ const CATE_MATERIALS = [
     id: 1,
     title: '토분 지름',
     categoryItems: [
-      { title: '10 - 20cm', url: '/pots?size=1' },
-      { title: '20 - 30cm', url: '/pots?size=2' },
-      { title: '30 - 40cm', url: '/pots?size=3' },
+      { id: 1, title: '10 - 20cm' },
+      { id: 2, title: '20 - 30cm' },
+      { id: 3, title: '30 - 40cm' },
     ],
   },
 ];
