@@ -1,6 +1,6 @@
 import React from 'react';
-import CheckBox from './CheckBox';
-import SelectBox from './SelectBox';
+import CheckBox from '../CheckBox/CheckBox';
+import SelectBox from '../SelectBox/SelectBox';
 
 export default function CartItem({
   item,

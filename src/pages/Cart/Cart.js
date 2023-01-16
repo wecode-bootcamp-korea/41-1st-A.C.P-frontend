@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CartWrap from './components/CartWrap';
+import CartWrap from './components/CartWrap/CartWrap';
 import CartPriceInfo from './components/CartPriceInfo/CartPriceInfo';
 import { cartDataRefactor, fetchApi } from './config';
 import './Cart.scss';
@@ -7,6 +7,11 @@ import './Cart.scss';
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
+
+  const totalPrice = selectedItems.reduce(
+    (acc, curr) => acc + curr.itemPrice,
+    0
+  );
 
   useEffect(() => {
     getCartItems();
@@ -17,11 +22,6 @@ export default function Cart() {
     const data = cartDataRefactor(result);
     setCartItems(data);
   };
-
-  const totalPrice = selectedItems.reduce(
-    (acc, curr) => acc + curr.itemPrice,
-    0
-  );
 
   return (
     <section className="cart">

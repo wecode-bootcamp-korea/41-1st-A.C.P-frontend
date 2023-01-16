@@ -1,6 +1,6 @@
 import React from 'react';
-import CartItem from './CartItem';
-import CheckBox from './CheckBox';
+import CartItem from '../CartItem/CartItem';
+import CheckBox from '../CheckBox/CheckBox';
 
 export default function CartWrap({
   cartItems,
