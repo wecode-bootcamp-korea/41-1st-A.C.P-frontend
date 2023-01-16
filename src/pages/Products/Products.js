@@ -22,10 +22,7 @@ export default function Products() {
   const maxLength = Math.ceil(maxProductLength / defaultLimit) || 1;
 
   useEffect(() => {
-    navigate('/products');
-  }, []);
-
-  useEffect(() => {
+    // navigate('/products');
     searchParams.set('offset', 0);
     searchParams.set('limit', 6);
     setSearchParams(searchParams);
@@ -65,10 +62,18 @@ export default function Products() {
   };
 
   const handleLinkCategory = id => {
-    setModal(false);
+    console.log('click category', id);
+    searchParams.set('offset', 0);
+    searchParams.set('limit', 6);
     searchParams.set('species', id === 0 ? '' : id);
     setSearchParams(searchParams);
-    fetchQueryData();
+    fetchQueryData(searchParams);
+    setModal(false);
+    // to={
+    //     categoryL.id === 0
+    //     ? '/products?offset=0&limit=6'
+    //     : `/products?offset=0&limit=6&species=${categoryL.id}`
+    // }
   };
 
   return (
@@ -81,11 +86,6 @@ export default function Products() {
                 //1. FilterData - species - categoryL의 관계
                 <li key={categoryL.id} className="plantFilter">
                   <Link
-                    to={
-                      categoryL.id === 0
-                        ? '/products'
-                        : `/products?species=${categoryL.id}`
-                    }
                     className="linkCategory"
                     onClick={() => handleLinkCategory(categoryL.id)}
                   >

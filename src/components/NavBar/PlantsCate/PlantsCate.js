@@ -7,14 +7,15 @@ export default function PlantsCate({ menuTabClose }) {
 
   const setBigCateSort = (category, id) => {
     if (id === 0) {
-      navigate('/products');
+      navigate('/products?offset=0&limit=6');
     } else {
-      navigate(`/products?${category}=${id}`);
+      navigate(`/products?offset=0&limit=6&${category}=${id}`);
     }
   };
 
   const setSmallCateSort = (category, id) => {
-    navigate(`/products?${category}=${id}`);
+    console.log('small cate!!');
+    navigate(`/products?offset=0&limit=6&${category}=${id}`);
   };
 
   return (

@@ -21,6 +21,7 @@ export default function Cart() {
   const getCartItems = async () => {
     // const result = await fetchApi('/data/cart.json');
     const result = await fetchApi(GET_CART_API);
+    console.log(result);
     const data = cartDataRefactor(result);
     setCartItems(data);
   };

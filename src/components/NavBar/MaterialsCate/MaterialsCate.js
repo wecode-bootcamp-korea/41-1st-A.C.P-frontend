@@ -7,11 +7,11 @@ export default function MaterialsCate() {
 
   const setMaterialSort = id => {
     if (id === 1) {
-      navigate('/pots');
+      navigate('/materials');
     } else if (id === 2) {
-      navigate('/nutrients');
+      navigate('/materials?nutirents');
     } else {
-      navigate(`/nutrients?type=${id - 2}`);
+      navigate(`/materials?nutrients=${id - 2}`);
     }
   };
 
