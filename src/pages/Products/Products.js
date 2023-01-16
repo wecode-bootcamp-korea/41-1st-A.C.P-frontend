@@ -18,9 +18,6 @@ export default function Products() {
   const [productList, setProductList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  console.log(location);
 
   const defaultLimit = 6;
   const maxProductLength = 41;

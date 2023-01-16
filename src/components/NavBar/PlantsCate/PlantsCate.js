@@ -14,7 +14,6 @@ export default function PlantsCate({ menuTabClose }) {
   };
 
   const setSmallCateSort = (category, id) => {
-    console.log('small cate!!');
     navigate(`/products?offset=0&limit=6&${category}=${id}`);
   };
 
