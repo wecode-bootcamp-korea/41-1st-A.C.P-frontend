@@ -15,7 +15,7 @@ export default function NavBar() {
 
   useEffect(() => {
     menuTabClose();
-  }, [location.key]);
+  }, [location]);
 
   useEffect(() => {
     isLogin();
