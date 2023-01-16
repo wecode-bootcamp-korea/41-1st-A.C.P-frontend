@@ -67,6 +67,7 @@ export default function User({ title, children }) {
         .then(data => {
           console.log(data);
           if (title === '회원가입') {
+            setUserInfo(initialUserInfo);
             navigate('/login');
           }
           if (data.accessToken) {
