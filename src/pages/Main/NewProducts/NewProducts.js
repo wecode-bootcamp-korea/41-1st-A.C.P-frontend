@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FETCH_PLANTS_API } from '../../../config';
 import './NewProducts.scss';
 
 export default function NewProducts() {
   const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://43.201.37.226:3000/plants/main?sort=new&offset=0&limit=6`, {
+    fetch(`${FETCH_PLANTS_API}/main?sort=new&offset=0&limit=6`, {
       method: 'GET',
     })
       .then(response => response.json())

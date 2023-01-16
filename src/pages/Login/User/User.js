@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import CheckBox from './CheckBox/CheckBox';
 import TextInput from './TextInput/TextInput';
-import { GET_USER_INFO_API, RESIST_USER_INFO_API } from '../../../config';
+import { FETCH_SIGN_IN_API, FETCH_SIGN_UP_API } from '../../../config';
 import { LOGIN_INPUT_LIST, SIGNUP_INPUT_LIST } from './uidata';
 import { fetchApi } from './config';
 import './User.scss';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const initialUserInfo = {
   email: '',
@@ -17,7 +17,6 @@ const initialUserInfo = {
 export default function User({ title, children }) {
   const [userInfo, setUserInfo] = useState(initialUserInfo);
   const [passwordType, setPasswordType] = useState('password');
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,8 +54,7 @@ export default function User({ title, children }) {
               phoneNumber: userInfo.phoneNumber,
             };
 
-      let fetchUrl =
-        title === '로그인' ? GET_USER_INFO_API : RESIST_USER_INFO_API;
+      let fetchUrl = title === '로그인' ? FETCH_SIGN_IN_API : FETCH_SIGN_UP_API;
 
       fetch(fetchUrl, {
         method: 'POST',

@@ -12,7 +12,7 @@ function Modal({ onClose, component1, component2 }) {
         {component1}
         {component2}
         <div className="closeX" onClick={handleCloseX}>
-          <img src="/images/productDetail/close_btn.png" alt="닫기" />
+          <img src="/images/common/close_btn.png" alt="닫기" />
         </div>
       </div>
     </div>

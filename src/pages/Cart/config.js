@@ -30,6 +30,7 @@ export const fetchApi = async (url, method = 'GET', fetchdata) => {
 };
 
 export const cartDataRefactor = fetchResultData => {
+  console.log(fetchResultData);
   return fetchResultData.map(item => {
     const nutrientsData = item.nutrients[0].name !== null && item.nutrients[0];
     const plantsData = item.plants[0].name !== null && item.plants[0];
@@ -43,6 +44,8 @@ export const cartDataRefactor = fetchResultData => {
 
     const presentData = nutrientsData || plantsData || potsData;
     const itemPrice = presentData.quantity * presentData.price;
+
+    console.log(typeof itemPrice, itemPrice);
 
     return {
       cart_id: item.cart_id,

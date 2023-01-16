@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FETCH_CART_API, FETCH_PLANTS_API } from '../../../config';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import DifficultyDot from './DifficultyDot';
@@ -23,7 +24,7 @@ function ProductDetail() {
   // // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
     setIsModalOpen(true);
-    fetch('http://43.201.37.226:3000/carts', {
+    fetch(FETCH_CART_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -35,7 +36,7 @@ function ProductDetail() {
         if (data.filter(item => item.id === 1)) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
-          fetch('http://43.201.37.226:3000/carts', {
+          fetch(FETCH_CART_API, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
@@ -60,7 +61,7 @@ function ProductDetail() {
     // scrollTop
     window.scrollTo(0, 0);
 
-    fetch(`http://43.201.37.226:3000/plants/${productId}`, {
+    fetch(`${FETCH_PLANTS_API}/${productId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
