@@ -21,7 +21,7 @@ export default function PlantsCate({ menuTabClose }) {
     <div className="plantsCate">
       <div className="logoPart">
         <Link to="/">
-          <img src="images/common/img_logo_b.png" alt="logo" />
+          <img src="/images/common/img_logo_b.png" alt="logo" />
         </Link>
       </div>
       <div className="categoryLeft">
@@ -68,7 +68,7 @@ export default function PlantsCate({ menuTabClose }) {
       </div>
       <div className="menuImage">
         <div className="plantMenuImage">
-          <img src="images/nav/plants_menu_img.jpg" alt="plant_menu_img" />
+          <img src="/images/nav/plants_menu_img.jpg" alt="plant_menu_img" />
         </div>
       </div>
     </div>

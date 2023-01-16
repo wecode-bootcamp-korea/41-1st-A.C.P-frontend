@@ -8,18 +8,18 @@ export default function BottomSlide() {
     <div className="bottomSlide">
       <div className={'slideBox' + left}>
         <div className="subscriptionBox">
-          <img src="images/main/pot.jpg" alt="pot subscription" />
+          <img src="/images/main/pot.jpg" alt="pot subscription" />
         </div>
         <div className="nutrientsBox">
-          <img src="images/main/leaf.jpg" alt="nutrients subscription" />
+          <img src="/images/main/leaf.jpg" alt="nutrients subscription" />
         </div>
       </div>
       <div className="slideBtn">
         <button className="backBtn" onClick={() => setLeft('')}>
-          <img src="images/main/next.png" alt="back" className="back" />
+          <img src="/images/main/next.png" alt="back" className="back" />
         </button>
         <button className="nextBtn" onClick={() => setLeft('Right')}>
-          <img src="images/main/next.png" alt="next" className="next" />
+          <img src="/images/main/next.png" alt="next" className="next" />
         </button>
       </div>
     </div>

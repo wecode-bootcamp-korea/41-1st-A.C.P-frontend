@@ -23,7 +23,7 @@ export default function MaterialsCate() {
     <div className="materialsCate">
       <div className="logoPart">
         <Link to="/">
-          <img src="images/common/img_logo_b.png" alt="logo" />
+          <img src="/images/common/img_logo_b.png" alt="logo" />
         </Link>
       </div>
       <div className="categoryLeft">
@@ -66,7 +66,7 @@ export default function MaterialsCate() {
       <div className="menuImage">
         <div className="plantMenuImage">
           <img
-            src="images/nav/materials_list_img.jpg"
+            src="/images/nav/materials_list_img.jpg"
             alt="materials_menu_img"
           />
         </div>

@@ -8,7 +8,7 @@ export default function Search() {
       <div className="searchLeftBox">
         <div className="logoPart">
           <Link to="/">
-            <img src="images/common/img_logo_b.png" alt="logo" />
+            <img src="/images/common/img_logo_b.png" alt="logo" />
           </Link>
         </div>
         <input type="text" className="searchInput" placeholder="Search" />
@@ -35,7 +35,7 @@ export default function Search() {
       </div>
       <div className="menuImage">
         <div className="searchImage">
-          <img src="images/nav/search_img.jpg" alt="search_img" />
+          <img src="/images/nav/search_img.jpg" alt="search_img" />
         </div>
       </div>
     </div>

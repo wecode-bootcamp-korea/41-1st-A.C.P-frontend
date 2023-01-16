@@ -5,7 +5,7 @@ function OrderProductInfos({ plantName, plantPrice }) {
   return (
     <div className="orderProductInfos">
       <div className="orderProductImg">
-        <img src="images/order/productDetail_img_01.jpg" alt="상품이미지" />
+        <img src="/images/order/productDetail_img_01.jpg" alt="상품이미지" />
       </div>
       <div className="orderProductMiniInfos">
         <div className="miniInfoDetail">

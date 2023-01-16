@@ -34,7 +34,7 @@ export default function Order() {
               <button className="dateSelectBox">{date}</button>
               <div className="selectArrow">
                 <img
-                  src="images/order/productDetail_bottom_arrow.png"
+                  src="/images/order/productDetail_bottom_arrow.png"
                   alt="선택리스트 창 열기 버튼"
                 />
               </div>

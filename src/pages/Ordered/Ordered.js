@@ -35,7 +35,7 @@ function Ordered({ state }) {
     <div className="ordered">
       <div className="orderedTop">
         <div className="orderedLogo">
-          <img src="images/ordered/logo(252525).png" alt="로고" />
+          <img src="/images/ordered/logo(252525).png" alt="로고" />
         </div>
         <h2>
           고객님의 주문이 완료되었습니다.

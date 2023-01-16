@@ -21,13 +21,13 @@ export default function ServiceIntro() {
           </Link>
         </div>
         <div className="recommendationGuideImg">
-          <img src="images/main/recommendation.jpg" alt="mainImage" />
+          <img src="/images/main/recommendation.jpg" alt="mainImage" />
         </div>
       </div>
       <div className="blank" />
       <div className="mainDeliveryGuideBox">
         <div className="deliveryGuideImg">
-          <img src="images/main/delivery.jpg" alt="delivery" />
+          <img src="/images/main/delivery.jpg" alt="delivery" />
         </div>
         <div className="mainGuideContentRight">
           <p className="mainGuideTitle">

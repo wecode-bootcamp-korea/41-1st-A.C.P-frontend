@@ -11,7 +11,7 @@ export default function Main() {
       <Header />
       <div className="mainWrapper">
         <div className="mainImg">
-          <img src="images/main/main2.jpg" alt="mainImage" />
+          <img src="/images/main/main2.jpg" alt="mainImage" />
         </div>
         <div className="blank" />
         <NewProducts />

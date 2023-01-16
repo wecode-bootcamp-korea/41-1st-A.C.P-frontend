@@ -62,7 +62,7 @@ export default function NavBar() {
       <div className={contentsNull}>{MAPPING_OBJ[currentTab]}</div>
       <div className={closeBtn} onClick={menuTabClose}>
         닫기
-        <img src="images/nav/close_btn.png" alt="close_Btn" />
+        <img src="/images/nav/close_btn.png" alt="close_Btn" />
       </div>
 
       <div className="navBarRight">
