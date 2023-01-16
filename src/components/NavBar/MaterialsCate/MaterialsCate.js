@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './MaterialsCate.scss';
 
-export default function MaterialsCate() {
+export default function MaterialsCate({ menuTabClose }) {
   const navigate = useNavigate();
 
   const setMaterialSort = id => {
@@ -34,7 +34,13 @@ export default function MaterialsCate() {
               {categoryItems.map(({ id, title }) => {
                 return (
                   <li key={id} className="bigCategoryItems">
-                    <p className="bigItem" onClick={() => setMaterialSort(id)}>
+                    <p
+                      className="bigItem"
+                      onClick={() => {
+                        menuTabClose();
+                        setMaterialSort(id);
+                      }}
+                    >
                       {title}
                     </p>
                   </li>
@@ -52,7 +58,13 @@ export default function MaterialsCate() {
               {categoryItems.map(({ id, title }) => {
                 return (
                   <li key={id} className="categoryItems">
-                    <p className="item" onClick={() => setPotSort(id)}>
+                    <p
+                      className="item"
+                      onClick={() => {
+                        menuTabClose();
+                        setPotSort(id);
+                      }}
+                    >
                       {title}
                     </p>
                   </li>

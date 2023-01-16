@@ -7,9 +7,9 @@ export default function PlantsCate({ menuTabClose }) {
 
   const setBigCateSort = (category, id) => {
     if (id === 0) {
-      navigate('/products');
+      navigate('/plants');
     } else {
-      navigate(`/products?${category}=${id}`);
+      navigate(`/plants?${category}=${id}`);
     }
   };
 
@@ -34,7 +34,10 @@ export default function PlantsCate({ menuTabClose }) {
                   <li key={id} className="bigCategoryItems">
                     <p
                       className="bigItem"
-                      onClick={() => setBigCateSort(category, id)}
+                      onClick={() => {
+                        menuTabClose();
+                        setBigCateSort(category, id);
+                      }}
                     >
                       {title}
                     </p>
@@ -55,7 +58,10 @@ export default function PlantsCate({ menuTabClose }) {
                   <li key={id} className="categoryItems">
                     <p
                       className="item"
-                      onClick={() => setSmallCateSort(category, id)}
+                      onClick={() => {
+                        menuTabClose();
+                        setSmallCateSort(category, id);
+                      }}
                     >
                       {title}
                     </p>

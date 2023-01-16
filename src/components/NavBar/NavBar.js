@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import PlantsCate from './PlantsCate/PlantsCate';
 import MaterialsCate from './MaterialsCate/MaterialsCate';
 import Search from './Search/Search';
@@ -11,11 +10,6 @@ export default function NavBar() {
   const [closeBtn, setCloseBtn] = useState('closeBtn');
   const [contentsNull, setContentsNull] = useState('contentsNull');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    menuTabClose();
-  }, [location]);
 
   useEffect(() => {
     isLogin();
@@ -59,7 +53,9 @@ export default function NavBar() {
           </li>
         ))}
       </ul>
-      <div className={contentsNull}>{MAPPING_OBJ[currentTab]}</div>
+      <div className={contentsNull}>
+        {MAPPING_OBJ[currentTab] && MAPPING_OBJ[currentTab](menuTabClose)}
+      </div>
       <div className={closeBtn} onClick={menuTabClose}>
         닫기
         <img src="images/nav/close_btn.png" alt="close_Btn" />
@@ -77,7 +73,7 @@ export default function NavBar() {
 const TAB_ARR = ['Plants', 'Materials', 'Search'];
 
 const MAPPING_OBJ = {
-  Plants: <PlantsCate />,
-  Materials: <MaterialsCate />,
-  Search: <Search />,
+  Plants: menuTabClose => <PlantsCate menuTabClose={menuTabClose} />,
+  Materials: menuTabClose => <MaterialsCate menuTabClose={menuTabClose} />,
+  Search: menuTabClose => <Search menuTabClose={menuTabClose} />,
 };

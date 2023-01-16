@@ -1,0 +1,9 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
+
+.searchResult {
+  width: 27.5vw;
+  border: 1px solid red;
+}
