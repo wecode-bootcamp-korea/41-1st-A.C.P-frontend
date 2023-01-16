@@ -14,13 +14,6 @@ function ProductDetail() {
   const [productInfo, setProductInfo] = useState([]);
   const [modalText, setModalText] = useState('');
 
-  // 임시 데이터
-  const fakeData = {
-    id: 1,
-    name: '바보',
-    price: '100',
-  };
-
   const goToPage = path => {
     navigate(`/${path}`, {
       state: productInfo,
@@ -30,7 +23,7 @@ function ProductDetail() {
   // // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
     setIsModalOpen(true);
-    fetch('http://10.58.52.135:3000/carts', {
+    fetch('http://43.201.37.226:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -39,11 +32,10 @@ function ProductDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.filter(item => item.id === 1)) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
-          fetch('http://10.58.52.135:3000/carts', {
+          fetch('http://43.201.37.226:3000/carts', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
@@ -68,7 +60,7 @@ function ProductDetail() {
     // scrollTop
     window.scrollTo(0, 0);
 
-    fetch(`http://10.58.52.135:3000/plants/${productId}`, {
+    fetch(`http://43.201.37.226:3000/plants/${productId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -106,7 +98,7 @@ function ProductDetail() {
     <div className="productDetail">
       <div className="productDetailTop">
         <div className="productDetailImage">
-          <img src="/images/productDetail/img01.jpg" alt="상품이미지" />
+          <img src="/images/productDetail/img03.jpg" alt="상품이미지" />
         </div>
         <div className="productDetailInfos">
           <h1>{plant_name}</h1>
@@ -135,7 +127,6 @@ function ProductDetail() {
             <button
               className="payBtn"
               onClick={() => {
-                // 해당 상품 정보를 fakeData 자리에 넣어야함
                 goToPage('order');
               }}
             >

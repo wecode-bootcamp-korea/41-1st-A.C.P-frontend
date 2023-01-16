@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modal from './components/Modal';
 import ProductInfoNutrients from './components/ProductInfoNutrients';
 import './ProductDetailNutrient.scss';
@@ -7,26 +7,15 @@ import './ProductDetailNutrient.scss';
 function ProductDetailNutrient() {
   const navigate = useNavigate();
   const params = useParams();
-  const location = useLocation();
   const productId = params.id;
-
-  console.log(location);
-  console.log(params);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
   const [modalText, setModalText] = useState('');
 
-  // 임시 데이터
-  const fakeData = {
-    id: 1,
-    name: '바보',
-    price: '100',
-  };
-
   const goToPage = path => {
     navigate(`/${path}`, {
-      state: fakeData,
+      state: productInfo,
     });
   };
 
@@ -35,7 +24,7 @@ function ProductDetailNutrient() {
     // scrollTop
     window.scrollTo(0, 0);
 
-    fetch(`http://10.58.52.135:3000/nutrients/${productId}`, {
+    fetch(`http://43.201.37.226:3000/nutrients/${productId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -51,7 +40,7 @@ function ProductDetailNutrient() {
   // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
     setIsModalOpen(true);
-    fetch('http://10.58.52.135:3000/carts', {
+    fetch('http://43.201.37.226:3000/carts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -59,17 +48,16 @@ function ProductDetailNutrient() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.filter(item => item.id === 1)) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
-          fetch('http://10.58.52.135:3000/carts', {
+          fetch('http://43.201.37.226:3000/carts', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
             },
             body: JSON.stringify({
-              userId: 100,
+              userId: 1,
             }),
           })
             .then(res => res.json())
@@ -100,8 +88,6 @@ function ProductDetailNutrient() {
             <button
               className="payBtn"
               onClick={() => {
-                localStorage.setItem('id', JSON.stringify(fakeData));
-                // 해당 상품 정보를 fakeData 자리에 넣어야함
                 goToPage('order');
               }}
             >

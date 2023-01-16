@@ -16,7 +16,7 @@ function Ordered({ state }) {
 
   // BE와 통신세팅 -> 오더페이지에서 넘어온 데이터 뿌려주는 fetch 코드
   const fetchOrderedTable = e => {
-    fetch('http://10.58.52.135:3000/ordered/1', {
+    fetch('http://43.201.37.226:3000/ordered/1', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

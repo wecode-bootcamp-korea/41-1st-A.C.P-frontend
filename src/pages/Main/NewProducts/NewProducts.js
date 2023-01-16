@@ -6,7 +6,7 @@ export default function NewProducts() {
   const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.52.135:3000/plants/main?sort=new&offset=0&limit=6`, {
+    fetch(`http://43.201.37.226:3000/plants/main?sort=new&offset=0&limit=6`, {
       method: 'GET',
     })
       .then(response => response.json())

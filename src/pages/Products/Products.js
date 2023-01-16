@@ -22,7 +22,6 @@ export default function Products() {
   const maxLength = Math.ceil(maxProductLength / defaultLimit) || 1;
 
   useEffect(() => {
-    // navigate('/products');
     searchParams.set('offset', 0);
     searchParams.set('limit', 6);
     setSearchParams(searchParams);
@@ -41,7 +40,7 @@ export default function Products() {
   };
 
   const fetchQueryData = queryString => {
-    fetch(`http://10.58.52.135:3000/plants?${queryString}`, {
+    fetch(`http://43.201.37.226:3000/plants?${queryString}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -62,18 +61,12 @@ export default function Products() {
   };
 
   const handleLinkCategory = id => {
-    console.log('click category', id);
     searchParams.set('offset', 0);
     searchParams.set('limit', 6);
     searchParams.set('species', id === 0 ? '' : id);
     setSearchParams(searchParams);
     fetchQueryData(searchParams);
     setModal(false);
-    // to={
-    //     categoryL.id === 0
-    //     ? '/products?offset=0&limit=6'
-    //     : `/products?offset=0&limit=6&species=${categoryL.id}`
-    // }
   };
 
   return (

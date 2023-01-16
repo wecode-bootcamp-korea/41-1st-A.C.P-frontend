@@ -30,7 +30,7 @@ function Materials() {
   // };
 
   // const fetchQueryData = () => {
-  //   fetch(`http://10.58.52.135:3000/lists/filter?${searchParams.toString()}`, {
+  //   fetch(`http://43.201.37.226:3000/lists/filter?${searchParams.toString()}`, {
   //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json;charset=utf-8',
