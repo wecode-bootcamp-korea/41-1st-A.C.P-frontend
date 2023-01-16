@@ -2,7 +2,6 @@
   display: flex;
 
   &.all {
-    margin-top: 16px;
     align-items: center;
 
     .label {
@@ -10,7 +9,7 @@
     }
   }
 
-  & + .wrapImg {
+  & + .imgWrap {
     margin-left: 8px;
   }
 
