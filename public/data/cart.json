@@ -3,20 +3,20 @@
     "cart_id": 10,
     "nutrients": [
       {
+        "name": "nutrients1",
+        "description": "description1",
+        "id": 1,
+        "quantity": 1,
+        "price": 20000
+      }
+    ],
+    "plants": [
+      {
         "name": null,
         "description": null,
         "id": null,
         "quantity": null,
         "price": null
-      }
-    ],
-    "plants": [
-      {
-        "name": "광휘식물",
-        "description": "온도 : 100도",
-        "id": 2,
-        "quantity": 2,
-        "price": 30000
       }
     ],
     "pots": [
@@ -33,20 +33,20 @@
     "cart_id": 20,
     "nutrients": [
       {
-        "name": "서윤식물",
-        "description": "아카이브",
-        "id": 1,
-        "quantity": 1,
-        "price": 20000
-      }
-    ],
-    "plants": [
-      {
         "name": null,
         "description": null,
         "id": null,
         "quantity": null,
         "price": null
+      }
+    ],
+    "plants": [
+      {
+        "name": "plant2",
+        "description": "description2",
+        "id": 2,
+        "quantity": 2,
+        "price": 30000
       }
     ],
     "pots": [

@@ -3,6 +3,7 @@ import CheckBox from './CheckBox/CheckBox';
 import TextInput from './TextInput/TextInput';
 import { GET_USER_INFO_API, RESIST_USER_INFO_API } from '../../../config';
 import { LOGIN_INPUT_LIST, SIGNUP_INPUT_LIST } from './uidata';
+import { fetchApi } from './config';
 import './User.scss';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
