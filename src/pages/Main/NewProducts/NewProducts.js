@@ -7,7 +7,7 @@ export default function NewProducts() {
 
   useEffect(() => {
     fetch(`http://10.58.52.135:3000/plants/main?sort=new&offset=0&limit=6`, {
-      method: 'POST',
+      method: 'GET',
     })
       .then(response => response.json())
       .then(result => {
