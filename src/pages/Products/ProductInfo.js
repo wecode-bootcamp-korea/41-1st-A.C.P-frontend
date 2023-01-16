@@ -8,8 +8,6 @@ function ProductInfo({ item }) {
 
   const imgUrl2 = '/images/productDetail/img04.jpg';
 
-  console.log(plant_id);
-
   return (
     <div className="productInfo">
       <div className="productsImg">

@@ -20,7 +20,6 @@ export default function Products() {
   let limit = Number(searchParams.get('limit')) || defaultLimit;
   const currentCount = limit / defaultLimit;
   const maxLength = Math.ceil(maxProductLength / defaultLimit) || 1;
-  console.log(maxLength);
 
   useEffect(() => {
     navigate('/products');
@@ -45,7 +44,6 @@ export default function Products() {
   };
 
   const fetchQueryData = queryString => {
-    console.log(`http://10.58.52.135:3000/plants?${queryString}`);
     fetch(`http://10.58.52.135:3000/plants?${queryString}`, {
       method: 'GET',
       headers: {
@@ -72,8 +70,6 @@ export default function Products() {
     setSearchParams(searchParams);
     fetchQueryData();
   };
-
-  console.log(productList);
 
   return (
     <>

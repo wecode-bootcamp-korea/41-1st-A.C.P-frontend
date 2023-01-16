@@ -1,6 +1,12 @@
 export const fetchApi = async (url, method = 'GET', fetchdata) => {
   if (method === 'GET') {
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+    });
     if (res.ok) {
       return res.json();
     }
@@ -11,6 +17,7 @@ export const fetchApi = async (url, method = 'GET', fetchdata) => {
     method,
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
+      Authorization: localStorage.getItem('accessToken'),
     },
     body: JSON.stringify(fetchdata),
   });

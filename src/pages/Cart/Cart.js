@@ -3,6 +3,7 @@ import CartWrap from './components/CartWrap/CartWrap';
 import CartPriceInfo from './components/CartPriceInfo/CartPriceInfo';
 import { cartDataRefactor, fetchApi } from './config';
 import './Cart.scss';
+import { GET_CART_API } from '../../config';
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -18,7 +19,8 @@ export default function Cart() {
   }, []);
 
   const getCartItems = async () => {
-    const result = await fetchApi('/data/cart.json');
+    // const result = await fetchApi('/data/cart.json');
+    const result = await fetchApi(GET_CART_API);
     const data = cartDataRefactor(result);
     setCartItems(data);
   };

@@ -31,9 +31,10 @@ function ProductDetail() {
   const handleModal = e => {
     setIsModalOpen(true);
     fetch('http://10.58.52.135:3000/carts', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
       },
     })
       .then(res => res.json())
@@ -46,6 +47,7 @@ function ProductDetail() {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
+              Authorization: localStorage.getItem('accessToken'),
             },
             body: JSON.stringify({
               userId: 100,
