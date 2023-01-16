@@ -19,10 +19,7 @@ export default function Cart() {
   }, []);
 
   const getCartItems = async () => {
-<<<<<<< Updated upstream
     // const result = await fetchApi('/data/cart.json');
-=======
->>>>>>> Stashed changes
     const result = await fetchApi(GET_CART_API);
     const data = cartDataRefactor(result);
     setCartItems(data);
