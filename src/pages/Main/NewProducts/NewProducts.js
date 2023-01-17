@@ -25,9 +25,7 @@ export default function NewProducts() {
         <div className="newProductsWindow">
           <div className={'newProductsSlide' + slideName}>
             {newProducts.map(newProductsInfo => {
-              const { plant_id, plant_name, plant_price, plant_img } =
-                newProductsInfo;
-              const imgPlaceHoldit = 'https://via.placeholder.com/600x300';
+              const { plant_id, plant_name, plant_price } = newProductsInfo;
 
               return (
                 <div key={plant_id} className="newProductBox">
