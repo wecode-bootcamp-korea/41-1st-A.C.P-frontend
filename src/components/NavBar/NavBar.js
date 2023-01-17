@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import PlantsCate from './PlantsCate/PlantsCate';
 import MaterialsCate from './MaterialsCate/MaterialsCate';
 import Search from './Search/Search';
@@ -11,9 +11,11 @@ export default function NavBar() {
   const [contentsNull, setContentsNull] = useState('contentsNull');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const location = useLocation;
+
   useEffect(() => {
     isLogin();
-  }, []);
+  }, [location]);
 
   const menuTabOpen = tab => {
     setContentsNull('contents');
@@ -47,18 +49,19 @@ export default function NavBar() {
   return (
     <nav className="navBar">
       <ul className="navBarLeft">
-        {TAB_ARR.map((tab, index) => (
-          <li className="menuTab" key={index} onClick={() => menuTabOpen(tab)}>
+        {TAB_ARR.map(tab => (
+          <li className="menuTab" key={tab} onClick={() => menuTabOpen(tab)}>
             {tab}
           </li>
         ))}
       </ul>
       <div className={contentsNull}>
-        {MAPPING_OBJ[currentTab] && MAPPING_OBJ[currentTab](menuTabClose)}
+        {MAPPING_OBJ[currentTab] &&
+          MAPPING_OBJ[currentTab](menuTabClose, closeBtn)}
       </div>
       <div className={closeBtn} onClick={menuTabClose}>
         닫기
-        <img src="images/nav/close_btn.png" alt="close_Btn" />
+        <img src="/images/nav/close_btn.png" alt="close_Btn" />
       </div>
 
       <div className="navBarRight">
@@ -75,5 +78,7 @@ const TAB_ARR = ['Plants', 'Materials', 'Search'];
 const MAPPING_OBJ = {
   Plants: menuTabClose => <PlantsCate menuTabClose={menuTabClose} />,
   Materials: menuTabClose => <MaterialsCate menuTabClose={menuTabClose} />,
-  Search: menuTabClose => <Search menuTabClose={menuTabClose} />,
+  Search: (menuTabClose, closeBtn) => (
+    <Search menuTabClose={menuTabClose} closeBtn={closeBtn} />
+  ),
 };

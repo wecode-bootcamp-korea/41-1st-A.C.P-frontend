@@ -17,7 +17,7 @@
   z-index: 100;
 
   .searchLeftBox {
-    width: 31.5vw;
+    width: 45%;
 
     .logoPart {
       width: 19%;
@@ -61,20 +61,21 @@
     }
   }
 
-  .menuImage {
-    width: 41vw;
-    overflow: hidden;
-    display: flex;
-    justify-content: flex-end;
+  // .menuImage {
+  //   width: 32%;
+  //   overflow: hidden;
 
-    .searchImage {
-      position: relative;
-      width: 80%;
+  //   .searchImage {
+  //     position: relative;
+  //     width: 100%;
+  //     display: flex;
+  //     justify-content: flex-end;
 
-      img {
-        position: absolute;
-        height: 100%;
-      }
-    }
-  }
+  //     img {
+  //       position: absolute;
+  //       right: -90px;
+  //       width: 120%;
+  //     }
+  //   }
+  // }
 }

@@ -7,22 +7,27 @@ export default function PlantsCate({ menuTabClose }) {
 
   const setBigCateSort = (category, id) => {
     if (id === 0) {
-      navigate('/products');
+      navigate('/products?offset=0&limit=6');
     } else {
-      navigate(`/products?${category}=${id}`);
+      navigate(`/products?offset=0&limit=6&${category}=${id}`);
     }
   };
 
   const setSmallCateSort = (category, id) => {
-    navigate(`/products?${category}=${id}`);
+    navigate(`/products?offset=0&limit=6&${category}=${id}`);
   };
 
   return (
     <div className="plantsCate">
       <div className="logoPart">
-        <Link to="/">
-          <img src="images/common/img_logo_b.png" alt="logo" />
-        </Link>
+        <img
+          src="/images/common/img_logo_b.png"
+          alt="logo"
+          onClick={() => {
+            menuTabClose();
+            navigate('/');
+          }}
+        />
       </div>
       <div className="categoryLeft">
         {BIG_CATE_MENU.map(({ id, title, categoryItems }) => {
@@ -72,10 +77,9 @@ export default function PlantsCate({ menuTabClose }) {
           );
         })}
       </div>
-
       <div className="menuImage">
         <div className="plantMenuImage">
-          <img src="images/nav/plants_menu_img.jpg" alt="plant_menu_img" />
+          <img src="/images/nav/plants_menu_img.jpg" alt="plant_menu_img" />
         </div>
       </div>
     </div>

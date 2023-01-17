@@ -7,11 +7,11 @@ export default function MaterialsCate({ menuTabClose }) {
 
   const setMaterialSort = id => {
     if (id === 1) {
-      navigate('/pots');
+      navigate('/materials');
     } else if (id === 2) {
-      navigate('/nutrients');
+      navigate('/materials?nutirents');
     } else {
-      navigate(`/nutrients?type=${id - 2}`);
+      navigate(`/materials?nutrients=${id - 2}`);
     }
   };
 
@@ -22,14 +22,19 @@ export default function MaterialsCate({ menuTabClose }) {
   return (
     <div className="materialsCate">
       <div className="logoPart">
-        <Link to="/">
-          <img src="images/common/img_logo_b.png" alt="logo" />
-        </Link>
+        <img
+          src="/images/common/img_logo_b.png"
+          alt="logo"
+          onClick={() => {
+            menuTabClose();
+            navigate('/');
+          }}
+        />
       </div>
       <div className="categoryLeft">
         {BIG_CATE_MATERIALS.map(({ id, title, categoryItems }) => {
           return (
-            <ul key={id} className="categoryList">
+            <ul key={title} className="categoryList">
               <li className="bigCategoryTitle">{title}</li>
               {categoryItems.map(({ id, title }) => {
                 return (
@@ -53,7 +58,7 @@ export default function MaterialsCate({ menuTabClose }) {
       <div className="categoryRight">
         {CATE_MATERIALS.map(({ id, title, categoryItems }) => {
           return (
-            <ul key={id} className="categoryList">
+            <ul key={title} className="categoryList">
               <li className="categoryTitle">{title}</li>
               {categoryItems.map(({ id, title }) => {
                 return (
@@ -78,7 +83,7 @@ export default function MaterialsCate({ menuTabClose }) {
       <div className="menuImage">
         <div className="plantMenuImage">
           <img
-            src="images/nav/materials_list_img.jpg"
+            src="/images/nav/materials_list_img.jpg"
             alt="materials_menu_img"
           />
         </div>

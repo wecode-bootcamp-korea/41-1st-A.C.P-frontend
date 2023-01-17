@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './Search.scss';
 import SearchResult from './SearchResult';
 
-export default function Search({ menuTabClose }) {
+export default function Search({ menuTabClose, closeBtn }) {
   const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState('');
-  // const [searchResult, setSearchResult] = useState();
 
   const moveTo = (category, categoryId) => {
     navigate(`products?${category}=${categoryId}`);
@@ -21,11 +20,13 @@ export default function Search({ menuTabClose }) {
     setSearchParams(searchParams);
   };
 
-  // const onChange = e => {
-  //   setSearchValue(e.target.value);
-  //   searchParams.set('search', e.target.value);
-  //   setSearchParams(searchParams);
-  // };
+  const goBlank = () => {
+    closeBtn === 'closeBtn' && setSearchValue('');
+  };
+
+  useEffect(() => {
+    goBlank();
+  }, [closeBtn]);
 
   // useEffect(() => {
   //   fetch(`http://10.58.52.135:3000/plants/main?sort=new&offset=0&limit=6`, {
@@ -47,14 +48,20 @@ export default function Search({ menuTabClose }) {
     <div className="search">
       <div className="searchLeftBox">
         <div className="logoPart">
-          <Link to="/">
-            <img src="images/common/img_logo_b.png" alt="logo" />
-          </Link>
+          <img
+            src="/images/common/img_logo_b.png"
+            alt="logo"
+            onClick={() => {
+              menuTabClose();
+              navigate('/');
+            }}
+          />
         </div>
         <input
           type="text"
           className="searchInput"
           placeholder="Search"
+          value={searchValue}
           onChange={onChange}
         />
         <div className="keywordsBox">
@@ -75,12 +82,12 @@ export default function Search({ menuTabClose }) {
           </div>
         </div>
       </div>
-      <SearchResult plantResult={plantResult} menuTabClose={menuTabClose} />
-      <div className="menuImage">
+      <SearchResult plantResult={plantResult} searchValue={searchValue} />
+      {/* <div className="menuImage">
         <div className="searchImage">
-          <img src="images/nav/search_img.jpg" alt="search_img" />
+          <img src="/images/nav/search_img.jpg" alt="search_img" />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -93,10 +100,40 @@ const SEARCH_KEYWORDS = [
 ];
 
 const SEARCH_RESULT = [
-  { plant_id: 1, plant_name: '플로리다 소철', plant_img: '' },
-  { plant_id: 2, plant_name: '아이비', plant_img: '' },
-  { plant_id: 3, plant_name: '여인초', plant_img: '' },
-  { plant_id: 4, plant_name: '필로덴드론 플루토', plant_img: '' },
-  { plant_id: 5, plant_name: '아단소니', plant_img: '' },
-  { plant_id: 6, plant_name: '몬스테라', plant_img: '' },
+  {
+    plant_id: 1,
+    plant_name: '광휘식물',
+    plant_price: '10,000₩',
+    plant_image: '/images/productDetail/img03.jpg',
+  },
+  {
+    plant_id: 2,
+    plant_name: '민규식물',
+    plant_price: '20,000₩',
+    plant_image: '/images/productDetail/img04.jpg',
+  },
+  {
+    plant_id: 3,
+    plant_name: '상헌식물',
+    plant_price: '30,000₩',
+    plant_image: '/images/productDetail/img05.jpg',
+  },
+  {
+    plant_id: 4,
+    plant_name: '환성식물',
+    plant_price: '40,000₩',
+    plant_image: '/images/productDetail/img06.jpg',
+  },
+  {
+    plant_id: 5,
+    plant_name: '서윤식물',
+    plant_price: '50,000₩',
+    plant_image: '/images/productDetail/img07.jpg',
+  },
+  {
+    plant_id: 6,
+    plant_name: '현주식물',
+    plant_price: '60,000₩',
+    plant_image: '/images/productDetail/img08.jpg',
+  },
 ];
