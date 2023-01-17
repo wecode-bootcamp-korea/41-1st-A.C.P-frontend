@@ -4,21 +4,34 @@ import { Link } from 'react-router-dom';
 function ProductInfo({ item }) {
   const [isHover, setIsHover] = useState(false);
 
+  const { plant_id, plant_images, plant_name, plant_price } = item;
+
+  const imgUrl2 = '/images/productDetail/img04.jpg';
+
   return (
     <div className="productInfo">
-      <Link to={'/products/' + item.id}>
-        <div className="productsImg">
+      <div className="productsImg">
+        <Link to={'/products/' + plant_id}>
           <img
             alt="식물"
-            src={isHover ? item.hoverImg : item.img}
+            src={
+              isHover
+                ? imgUrl2
+                : `/images/productDetail/img${
+                    plant_id < 10 ? `0${plant_id}` : plant_id
+                  }.jpg`
+            }
             onMouseOver={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
           />
-        </div>
-      </Link>
+        </Link>
+      </div>
+
       <div className="productsInfo">
-        <h2 className="productsTitle">{item.title}</h2>
-        <p className="productsPrice">{item.price}</p>
+        <h2 className="productsTitle">{plant_name}</h2>
+        <p className="productsPrice">
+          {parseInt(plant_price).toLocaleString()}₩
+        </p>
       </div>
     </div>
   );

@@ -32,16 +32,9 @@
       height: 235px;
 
       p {
-        &:first-child {
-          font-size: 16px;
-          font-weight: 600;
-          color: $GRAY333;
-        }
-
-        &:last-child {
-          font-size: 14px;
-          color: $GRAY666;
-        }
+        font-size: 16px;
+        font-weight: 600;
+        color: $GRAY333;
       }
     }
 

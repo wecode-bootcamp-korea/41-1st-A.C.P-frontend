@@ -1,0 +1,19 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
+
+.header {
+  width: 100%;
+  height: 200px;
+  background-color: $bgColor;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 80px;
+
+  img {
+    width: 80px;
+    margin-left: 50px;
+  }
+}

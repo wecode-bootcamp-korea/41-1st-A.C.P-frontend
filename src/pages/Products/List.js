@@ -1,15 +1,16 @@
 /*eslint-disable*/
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import DataList from './DataList';
 import ProductInfo from './ProductInfo';
 
-function List() {
+function List({ productList }) {
   return (
     <>
-      {DataList.map(function (item, index) {
-        return <ProductInfo item={item} />;
-      })}
+      {productList.length > 0 ? (
+        productList.map(function (item, index) {
+          return <ProductInfo key={item.plant_id} item={item} />;
+        })
+      ) : (
+        <p>결과가 존재하지 않습니다</p>
+      )}
     </>
   );
 }

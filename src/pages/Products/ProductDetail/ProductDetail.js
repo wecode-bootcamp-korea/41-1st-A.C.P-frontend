@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FETCH_CART_API, FETCH_PLANTS_API } from '../../../config';
 import Modal from './components/Modal';
 import ProductInfo from './components/ProductInfo';
 import DifficultyDot from './DifficultyDot';
@@ -14,43 +15,32 @@ function ProductDetail() {
   const [productInfo, setProductInfo] = useState([]);
   const [modalText, setModalText] = useState('');
 
-  // 임시 데이터
-  const fakeData = {
-    id: 1,
-    name: '바보',
-    price: '100',
-  };
-
   const goToPage = path => {
     navigate(`/${path}`, {
-      state: fakeData,
+      state: productInfo,
     });
   };
 
-  // 장바구니 눌렀을 때, 장바구니에 담긴 목록을 백엔드에서 받아서 id를 확인한 후, 있으면 setModalText('동일한 상품')
-  // 없으면 (else 부분), 장바구니에 담는 api를 불러와서 해당 상품정보를 body에 담은 후, 잘 담긴 메세지(success)를 받으면, setModalText('장바구니에 상품이 담겼습니다')!
-
+  // // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
     setIsModalOpen(true);
-    fetch('http://10.58.52.135:3000/carts', {
-      method: 'GET',
+    fetch(FETCH_CART_API, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
       },
-      // body: JSON.stringify({
-      //   id: 1,
-      // }),
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.filter(item => item.id === 1)) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
-          fetch('http://10.58.52.135:3000/carts', {
+          fetch(FETCH_CART_API, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
+              Authorization: localStorage.getItem('accessToken'),
             },
             body: JSON.stringify({
               userId: 100,
@@ -67,16 +57,15 @@ function ProductDetail() {
   };
 
   // BE와 통신세팅 -> 상품리스트에서 클릭했을 때 요청되어, 상품상세에 데이터가 뿌려지는 fetch 코드
-  // 성공 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   useEffect(() => {
-    fetch(`http://10.58.52.135:3000/plants/${productId}`, {
-      method: 'POST',
+    // scrollTop
+    window.scrollTo(0, 0);
+
+    fetch(`${FETCH_PLANTS_API}/${productId}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({
-        plant_id: 1,
-      }),
     })
       .then(res => res.json())
       .then(data => {
@@ -92,7 +81,7 @@ function ProductDetail() {
     Hard: 4,
   };
 
-  // ===== 응답데이터 이름 ===== //
+  // ===== 응답데이터 객체 구조 할당 ===== //
   const {
     id,
     plant_name,
@@ -110,10 +99,7 @@ function ProductDetail() {
     <div className="productDetail">
       <div className="productDetailTop">
         <div className="productDetailImage">
-          <img
-            src="images/productDetail/productDetail_img_01.jpg"
-            alt="상품이미지"
-          />
+          <img src="/images/productDetail/img03.jpg" alt="상품이미지" />
         </div>
         <div className="productDetailInfos">
           <h1>{plant_name}</h1>
@@ -142,15 +128,11 @@ function ProductDetail() {
             <button
               className="payBtn"
               onClick={() => {
-                localStorage.setItem('id', JSON.stringify(fakeData));
                 goToPage('order');
               }}
             >
               구매하기 &nbsp;
-              {/* {`${Number(plant_price.split('.').join('')).toLocaleString()}`} */}
-              {/* {console.log(
-                Number(plant_price2.split('.').join('')).toLocaleString()
-              )} */}
+              {parseInt(plant_price).toLocaleString()}₩
             </button>
             <button className="cartBtn" onClick={handleModal}>
               장바구니

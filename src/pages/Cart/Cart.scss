@@ -1,42 +1,113 @@
-@import '../../styles/mixin.scss';
 @import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
 
 .cart {
   overflow: hidden;
   height: 100%;
 
-  &.empty {
-    .cartLeft {
-      width: 100%;
-    }
-  }
-
   .innerCart {
     display: flex;
-    height: 100%;
+    // height: 100%;
+    height: 100vh;
   }
 
-  .cartLeft {
+  .cartWrap {
     width: 60%;
     min-width: 600px;
     padding: 80px 70px 80px 90px;
     box-sizing: border-box;
 
-    .titleArticle {
+    .cartWrapTitle {
       font-size: 32px;
       color: $GRAY333;
       border-bottom: 1px solid $borderColor;
     }
-  }
-  .cartRight {
-    width: 40%;
-    background-color: cornflowerblue;
-  }
 
-  .txtCart {
-    @include flexSortCenter;
-    height: 360px;
-    margin-top: 12px;
-    font-size: 16px;
+    .cartWrapContent {
+      padding-top: 16px;
+    }
+
+    .cartItemList {
+      overflow-y: auto;
+      height: 620px;
+      margin-top: 16px;
+      padding: 60px 30px 0 0;
+      border-top: 1px solid rgba($borderColor, 0.4);
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .cartItem {
+      display: flex;
+      position: relative;
+      height: 300px;
+
+      & + .cartItem {
+        margin-top: 45px;
+      }
+
+      .imgWrap {
+        width: 50%;
+
+        .imgCartItem {
+          width: 200px;
+          height: 100%;
+        }
+      }
+
+      .itemInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-basis: 100%;
+        margin-left: 20px;
+
+        &:hover {
+          .btnDelete {
+            opacity: 0.87;
+          }
+        }
+
+        .boxText {
+          .title {
+            font-size: 16px;
+            font-weight: 700;
+          }
+        }
+
+        .boxPrice {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .infoPrice {
+          display: flex;
+          flex-direction: column;
+          text-align: right;
+          font-size: 16px;
+
+          .numPrice {
+            font-family: 'Pretendard';
+            font-weight: 700;
+          }
+        }
+
+        .btnDelete {
+          @include position($top: 2px, $right: 0);
+          @include btnText;
+          opacity: 0;
+          transition: all 0.2s ease-in;
+        }
+      }
+    }
+
+    .cartWrapText {
+      @include flexSortCenter;
+      height: 360px;
+      margin-top: 12px;
+      font-size: 16px;
+    }
   }
 }

@@ -1,36 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import OrderRight from '../../components/OrderRight/OrderRight';
-import WrapCart from './WrapCart/WrapCart';
+import CartWrap from './components/CartWrap/CartWrap';
+import CartPriceInfo from './components/CartPriceInfo/CartPriceInfo';
+import { cartDataRefactor, fetchApi } from './config';
 import './Cart.scss';
+import { FETCH_CART_API } from '../../config';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
-  const [cartTotalPrice, setCartTotalPrice] = useState();
+  const [selectedItems, setSelectedItems] = useState([]);
+  const totalPrice = selectedItems.reduce(
+    (acc, curr) => acc + curr.itemPrice,
+    0
+  );
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    // 장바구니 데이터 가져오기
-    fetch('/data/cart.json')
-      .then(res => res.json())
-      .then(data => {
-        setCartItems(data);
-
-        const itemTotalPrice = data.reduce(
-          (acc, curr) => acc + parseInt(curr.price),
-          0
-        );
-
-        setCartTotalPrice(itemTotalPrice);
-      });
+    getCartItems();
+    token === null && navigate('/');
   }, []);
 
+  const getCartItems = async () => {
+    // const result = await fetchApi('/data/cart.json');
+    const result = await fetchApi(FETCH_CART_API);
+    console.log(result.data);
+    const data = cartDataRefactor(result.data);
+    setCartItems(data);
+  };
+
   return (
-    <section className={`cart${cartItems.length > 0 ? '' : ' empty'}`}>
+    <section className="cart">
       <div className="innerCart">
-        <article className="cartLeft">
-          <h2 className="titleArticle">장바구니</h2>
-          <WrapCart cartItems={cartItems} />
-        </article>
-        {cartItems.length > 0 && <OrderRight cartTotalPrice={cartTotalPrice} />}
+        <CartWrap
+          cartItems={cartItems}
+          setCartItems={setCartItems}
+          selectedItems={selectedItems}
+          setSelectedItems={setSelectedItems}
+        />
+        <CartPriceInfo totalPrice={totalPrice} />
       </div>
     </section>
   );

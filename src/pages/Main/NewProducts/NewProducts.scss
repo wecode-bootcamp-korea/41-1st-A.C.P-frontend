@@ -1,0 +1,98 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
+
+.newProductsWrapper {
+  width: 100%;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  animation-name: smoothSlide;
+  animation-duration: 0.5s;
+
+  .newProductsWindow {
+    width: 60vw;
+    overflow: hidden;
+
+    .newProductsSlide,
+    .newProductsSlideRight {
+      width: 200%;
+      height: 100%;
+      display: flex;
+      transition: transform 1.5s;
+
+      .newProductBox {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        margin: 0px 20px;
+
+        .newProductImg {
+          overflow: hidden;
+          width: 100%;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .newProductDetail {
+          font-size: 16px;
+
+          p {
+            display: flex;
+            justify-content: center;
+          }
+
+          .newProductName {
+            color: $GRAY333;
+            margin-top: 10px;
+          }
+
+          .newProductPrice {
+            color: $GRAY666;
+          }
+        }
+      }
+    }
+
+    .newProductsSlideRight {
+      transform: translateX(-50%);
+    }
+  }
+
+  .slideBtn {
+    width: 100vw;
+    height: 420px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    z-index: 90;
+
+    .backBtn,
+    .nextBtn {
+      background-color: transparent;
+      border-style: none;
+      margin: 0px 80px;
+      display: flex;
+      align-items: center;
+      opacity: 0.7;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .back {
+        width: 50px;
+        transform: rotate(180deg);
+      }
+
+      .next {
+        width: 50px;
+      }
+    }
+  }
+}

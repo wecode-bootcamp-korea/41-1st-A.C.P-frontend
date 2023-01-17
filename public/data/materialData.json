@@ -1,0 +1,63 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "독일토분",
+      "size": null,
+      "color": "노랑",
+      "price": "25000",
+      "img_url": "/images/productDetail/img04.jpg",
+      "diameter": "10-20cm"
+    },
+    {
+      "id": 2,
+      "name": "asdad토분",
+      "size": null,
+      "color": "노랑",
+      "price": "25000",
+      "img_url": "/images/productDetail/img02.jpg",
+      "diameter": "10-20cm"
+    },
+    {
+      "id": 3,
+      "name": "yyfsqwe토분",
+      "size": null,
+      "color": "노랑",
+      "price": "25000",
+      "img_url": "/images/productDetail/img03.jpg",
+      "diameter": "10-20cm"
+    },
+    {
+      "id": 4,
+      "name": "zxc토분",
+      "size": null,
+      "color": "노랑",
+      "price": "25000",
+      "img_url": "/images/productDetail/img05.jpg"
+    },
+    {
+      "id": 5,
+      "name": "nbf토분",
+      "size": null,
+      "color": "노랑",
+      "price": "25000",
+      "img_url": "/images/productDetail/img07.jpg"
+    },
+    {
+      "id": 6,
+      "name": "qwe토분",
+      "size": null,
+      "color": "노랑",
+      "price": "25000",
+      "img_url": "/images/productDetail/img09.jpg"
+    },
+    {
+      "id": 7,
+      "name": "ppsad토분",
+      "size": null,
+      "color": "노랑",
+      "price": "25000",
+      "img_url": "/images/productDetail/img10.jpg"
+    }
+  ]
+}
