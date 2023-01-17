@@ -11,8 +11,8 @@ export default function Search({ menuTabClose }) {
   // const [searchResult, setSearchResult] = useState();
 
   const moveTo = (category, categoryId) => {
+    navigate(`products?${category}=${categoryId}`);
     menuTabClose();
-    navigate(`plants?${category}=${categoryId}`);
   };
 
   const onChange = e => {
@@ -75,7 +75,7 @@ export default function Search({ menuTabClose }) {
           </div>
         </div>
       </div>
-      <SearchResult plantResult={plantResult} />
+      <SearchResult plantResult={plantResult} menuTabClose={menuTabClose} />
       <div className="menuImage">
         <div className="searchImage">
           <img src="images/nav/search_img.jpg" alt="search_img" />

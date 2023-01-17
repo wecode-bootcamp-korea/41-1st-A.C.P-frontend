@@ -7,9 +7,9 @@ export default function PlantsCate({ menuTabClose }) {
 
   const setBigCateSort = (category, id) => {
     if (id === 0) {
-      navigate('/plants');
+      navigate('/products');
     } else {
-      navigate(`/plants?${category}=${id}`);
+      navigate(`/products?${category}=${id}`);
     }
   };
 
