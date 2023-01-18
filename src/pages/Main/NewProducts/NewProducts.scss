@@ -15,6 +15,7 @@
   .newProductsWindow {
     width: 60vw;
     overflow: hidden;
+    z-index: 60;
 
     .newProductsSlide,
     .newProductsSlideRight {
@@ -34,6 +35,10 @@
 
           img {
             width: 100%;
+          }
+
+          a {
+            display: inline-block;
           }
         }
 
@@ -69,7 +74,7 @@
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    z-index: 90;
+    z-index: 50;
 
     .backBtn,
     .nextBtn {

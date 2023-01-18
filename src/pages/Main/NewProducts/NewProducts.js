@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FETCH_PLANTS_API } from '../../../config';
 import './NewProducts.scss';
 
 export default function NewProducts() {
   const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.52.135:3000/plants/main?sort=new&offset=0&limit=6`, {
-      method: 'POST',
+    fetch(`${FETCH_PLANTS_API}/main?sort=new&offset=0&limit=6`, {
+      method: 'GET',
     })
       .then(response => response.json())
       .then(result => {
@@ -24,18 +25,23 @@ export default function NewProducts() {
         <div className="newProductsWindow">
           <div className={'newProductsSlide' + slideName}>
             {newProducts.map(newProductsInfo => {
-              const { plant_id, plant_name, plant_price, plant_img } =
-                newProductsInfo;
+              const { plant_id, plant_name, plant_price } = newProductsInfo;
+
               return (
                 <div key={plant_id} className="newProductBox">
                   <div className="newProductImg">
-                    <Link to="">
-                      <img src={plant_img} alt="" />
+                    <Link to={`/products/${plant_id}`}>
+                      <img
+                        src={`/images/productDetail/img0${plant_id + 2}.jpg`}
+                        alt="plant_img"
+                      />
                     </Link>
                   </div>
                   <div className="newProductDetail">
                     <p className="newProductName">{plant_name}</p>
-                    <p className="newProductPrice">{plant_price}</p>
+                    <p className="newProductPrice">
+                      {parseInt(plant_price).toLocaleString()}₩
+                    </p>
                   </div>
                 </div>
               );
@@ -45,7 +51,7 @@ export default function NewProducts() {
         <div className="slideBtn">
           <button className="backBtn">
             <img
-              src="images/main/next_ivory.png"
+              src="/images/main/next_ivory.png"
               alt="back"
               className="back"
               onClick={() => setSlideName('')}
@@ -53,7 +59,7 @@ export default function NewProducts() {
           </button>
           <button className="nextBtn">
             <img
-              src="images/main/next_ivory.png"
+              src="/images/main/next_ivory.png"
               alt="next"
               className="next"
               onClick={() => setSlideName('Right')}
