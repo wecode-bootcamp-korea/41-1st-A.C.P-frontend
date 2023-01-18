@@ -67,10 +67,12 @@ export default function User({ title, children }) {
         .then(data => {
           console.log(data);
           if (title === '회원가입') {
+            alert('회원가입이 완료되었습니다!');
             setUserInfo(initialUserInfo);
             navigate('/login');
           }
           if (data.accessToken) {
+            alert('로그인이 완료되었습니다!');
             localStorage.setItem('accessToken', data.accessToken);
             navigate('/');
           }
