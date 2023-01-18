@@ -29,8 +29,8 @@ export default function NewProducts() {
               return (
                 <div key={plant_id} className="newProductBox">
                   <div className="newProductImg">
-                    <Link to={`/products/${plant_id}`}>
-                      <img src={plant_img} alt="plant_img" />
+                    <Link to="">
+                      <img src={plant_img} alt="" />
                     </Link>
                   </div>
                   <div className="newProductDetail">
