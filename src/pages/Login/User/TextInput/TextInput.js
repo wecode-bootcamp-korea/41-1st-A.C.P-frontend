@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import './TextInput.scss';
 
 export default function TextInput({
@@ -11,15 +10,10 @@ export default function TextInput({
   setPasswordType,
   validCondition,
 }) {
-  const location = useLocation();
   const [isLabelMove, setIsLabelMove] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const isErrorCondition = !validCondition[`${name}`] && inputValue !== '';
-
-  useEffect(() => {
-    setIsLabelMove(false);
-  }, [location.pathname]);
 
   const handleInpChange = e => {
     const { name, value } = e.target;
