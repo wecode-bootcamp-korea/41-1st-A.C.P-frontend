@@ -29,10 +29,6 @@ function ProductDetail() {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('accessToken'),
       },
-      // body: JSON.stringify({
-      //   plantId: productId,
-      //   plantQuantity: 1,
-      // }),
     })
       .then(res => res.json())
       .then(data => {
