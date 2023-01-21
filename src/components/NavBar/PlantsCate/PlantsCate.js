@@ -20,9 +20,14 @@ export default function PlantsCate({ menuTabClose }) {
   return (
     <div className="plantsCate">
       <div className="logoPart">
-        <Link to="/">
-          <img src="/images/common/img_logo_b.png" alt="logo" />
-        </Link>
+        <img
+          src="/images/common/img_logo_b.png"
+          alt="logo"
+          onClick={() => {
+            menuTabClose();
+            navigate('/');
+          }}
+        />
       </div>
       <div className="categoryLeft">
         {BIG_CATE_MENU.map(({ id, title, categoryItems }) => {
@@ -34,7 +39,10 @@ export default function PlantsCate({ menuTabClose }) {
                   <li key={id} className="bigCategoryItems">
                     <p
                       className="bigItem"
-                      onClick={() => setBigCateSort(category, id)}
+                      onClick={() => {
+                        menuTabClose();
+                        setBigCateSort(category, id);
+                      }}
                     >
                       {title}
                     </p>
@@ -55,7 +63,10 @@ export default function PlantsCate({ menuTabClose }) {
                   <li key={id} className="categoryItems">
                     <p
                       className="item"
-                      onClick={() => setSmallCateSort(category, id)}
+                      onClick={() => {
+                        menuTabClose();
+                        setSmallCateSort(category, id);
+                      }}
                     >
                       {title}
                     </p>

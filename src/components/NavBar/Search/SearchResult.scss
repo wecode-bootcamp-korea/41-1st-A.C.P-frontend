@@ -1,0 +1,55 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/common.scss';
+@import '../../../styles/animation.scss';
+
+.searchResult {
+  width: 55%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 100px;
+  overflow: scroll;
+  border-left: 1px solid #d5d4c9;
+
+  .searched {
+    font-size: 16px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .resultProductName {
+      color: $GRAY333;
+      margin-top: 10px;
+    }
+
+    .resultProductPrice {
+      color: $GRAY666;
+    }
+  }
+
+  .resultImgBox {
+    width: 260px;
+    height: 390px;
+
+    .resultImg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .resultProductName {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .searchedHide {
+    display: none;
+  }
+}
+
+.searchResult::-webkit-scrollbar {
+  width: 5px;
+}
