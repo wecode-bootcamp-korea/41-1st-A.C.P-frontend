@@ -24,8 +24,8 @@ function ProductDetail() {
   // // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
     setIsModalOpen(true);
-    fetch(FETCH_CART_API, {
-      method: 'POST',
+    fetch('http://43.201.37.226:3000/carts', {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: localStorage.getItem('accessToken'),
@@ -33,7 +33,10 @@ function ProductDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.filter(item => item.id === 1)) {
+        let dataArr = [{ ...data }];
+
+        if (dataArr.filter(data => data.data[0].plants[0].id === productId)) {
+          // console.log(data.data[0].plants[0].id);
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
           fetch(FETCH_CART_API, {
@@ -43,11 +46,13 @@ function ProductDetail() {
               Authorization: localStorage.getItem('accessToken'),
             },
             body: JSON.stringify({
-              userId: 100,
+              plantId: productId,
+              plantQuantity: 1,
             }),
           })
             .then(res => res.json())
             .then(data => {
+              console.log(data);
               if (data.message === 'upsert data to cart success!!') {
                 setModalText('장바구니에 상품이 담겼습니다');
               }
@@ -70,7 +75,6 @@ function ProductDetail() {
       .then(res => res.json())
       .then(data => {
         setProductInfo(data);
-        console.log(data);
       });
   }, [productId]);
 
