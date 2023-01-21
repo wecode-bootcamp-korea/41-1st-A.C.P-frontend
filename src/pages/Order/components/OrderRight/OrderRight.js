@@ -5,6 +5,7 @@ import OrderBtn from './components/OrderBtn';
 import OrderPriceInfos from './components/OrderPriceInfos';
 import './OrderRight.scss';
 import { useLocation } from 'react-router-dom';
+import { FETCH_ORDER_API } from '../../../../config';
 
 function OrderRight() {
   const [data, setData] = useState('');
@@ -28,7 +29,7 @@ function OrderRight() {
   // console.log('1회성데이터 이름 가격 확인 ->', plant_name, plant_price);
 
   const fetchCreateOrder = () => {
-    fetch('http://43.201.37.226:3000/orders', {
+    fetch(FETCH_ORDER_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

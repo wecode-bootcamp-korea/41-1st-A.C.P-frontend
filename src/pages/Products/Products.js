@@ -1,14 +1,18 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { GET_PLANTS_API } from '../../config';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
+import { FETCH_PLANTS_API } from '../../config';
 import List from './List';
 import FilterData from './Data/FilterData';
 import FilterModal from './FilterModal/FilterModal';
 import './Products.scss';
 
 export default function Products() {
-  const [plus, setPlus] = useState(1);
   const [modal, setModal] = useState(false);
   const { species, categoryInfo } = FilterData;
   const [productList, setProductList] = useState([]);
@@ -22,6 +26,7 @@ export default function Products() {
   const maxLength = Math.ceil(maxProductLength / defaultLimit) || 1;
 
   useEffect(() => {
+    navigate('/products/offset');
     searchParams.set('offset', 0);
     searchParams.set('limit', 6);
     setSearchParams(searchParams);
@@ -29,7 +34,7 @@ export default function Products() {
   }, []);
 
   const fetchProductData = () => {
-    fetch(GET_PLANTS_API, {
+    fetch(FETCH_PLANTS_API, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -40,7 +45,7 @@ export default function Products() {
   };
 
   const fetchQueryData = queryString => {
-    fetch(`http://43.201.37.226:3000/plants?${queryString}`, {
+    fetch(`${FETCH_PLANTS_API}?${queryString}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
