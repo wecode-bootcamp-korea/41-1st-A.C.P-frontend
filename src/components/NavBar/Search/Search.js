@@ -83,11 +83,6 @@ export default function Search({ menuTabClose, closeBtn }) {
         </div>
       </div>
       <SearchResult plantResult={plantResult} searchValue={searchValue} />
-      {/* <div className="menuImage">
-        <div className="searchImage">
-          <img src="/images/nav/search_img.jpg" alt="search_img" />
-        </div>
-      </div> */}
     </div>
   );
 }
