@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import InfoInput from './components/InfoInput';
 import OrderRight from './components/OrderRight/OrderRight';
 import './Order.scss';
+import { FETCH_ORDER_API } from '../../config';
 
 export default function Order() {
   const [dateBox, setDateBox] = useState(false);
@@ -9,6 +10,26 @@ export default function Order() {
 
   const showDateBox = e => {
     setDateBox(!dateBox);
+  };
+
+  const OrderUserInfoData = () => {
+    fetch(FETCH_ORDER_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      body: {
+        name: 'productName',
+        quantity: 1,
+        address: 'address',
+        id: 'orderNumber',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
   };
 
   return (
@@ -26,6 +47,9 @@ export default function Order() {
           <div className="infoInputs">
             {INFOINPUT_LABEL_VALUE.map(data => {
               return <InfoInput key={data.id} label={data.value} />;
+              // map으로 돌려지고 있는 inputvalue 값은 대체 어떻게 가져옴...?
+              // 주소 라벨인 inputvalue 값을 가져와야 하는데
+              // 그 이유는 fetch로 POST로 백엔드한테 address를 보내줘야 해서!
             })}
           </div>
           <ul>
@@ -61,7 +85,7 @@ export default function Order() {
           </ul>
         </div>
       </div>
-      <OrderRight />
+      <OrderRight OrderUserInfoData={OrderUserInfoData} date={date} />
     </div>
   );
 }
