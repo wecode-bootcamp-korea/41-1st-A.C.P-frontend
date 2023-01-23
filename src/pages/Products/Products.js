@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import {
   Link,
@@ -18,6 +17,7 @@ export default function Products() {
   const [productList, setProductList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const [changeData, setChangeData] = useState(false);
 
   const defaultLimit = 6;
   const maxProductLength = 41;
@@ -33,24 +33,19 @@ export default function Products() {
     fetchQueryData(searchParams);
   }, []);
 
-  const fetchProductData = () => {
-    fetch(FETCH_PLANTS_API, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then(res => res.json())
-      .then(data => setProductList(data.plantsList));
-  };
+  // const fetchProductData = () => {
+  //   fetch(FETCH_PLANTS_API, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => setProductList(data.plantsList));
+  // };
 
   const fetchQueryData = queryString => {
-    fetch(`${FETCH_PLANTS_API}?${queryString}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
+    fetch(`${FETCH_PLANTS_API}?${queryString}`)
       .then(res => res.json())
       .then(data => setProductList(data.plantsList));
   };
@@ -112,9 +107,9 @@ export default function Products() {
       <div className="productsMain">
         <List productList={productList} />
       </div>
-      <div className="button">
+      <div className="moreButtonWrap">
         <button
-          className="btn"
+          className="moreButton"
           onClick={handleMoreClick}
           disabled={currentCount === maxLength && 'disabled'}
         >

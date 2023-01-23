@@ -1,5 +1,7 @@
 @import '../../styles/variables.scss';
+
 .materials {
+  border: 1px solid yellow;
   width: 100%;
   height: 100px;
   background-color: $bgColorPoint;
@@ -7,6 +9,7 @@
   justify-content: space-between;
   padding: 0px px 0px 20px;
   box-sizing: border-box;
+
   .materialsFilter {
     margin-left: 60px;
     font-size: 16px;
@@ -15,17 +18,20 @@
     padding-top: 40px;
     background-color: $bgColorPoint;
     cursor: pointer;
+    
     .materialFilter {
       margin-right: 40px;
       font-size: 16px;
       color: $GRAY333;
       display: inline-block;
       background-color: $bgColorPoint;
+
       &:hover {
         border-bottom: 1px solid rgba($GRAY333, 1);
       }
     }
   }
+
   .filterButton {
     background-color: transparent;
     font-size: 16px;
@@ -36,6 +42,7 @@
     border: 1px solid $GRAY333;
     margin-right: 20px;
     margin-top: 30px;
+
     &:hover {
       cursor: pointer;
       color: white;
@@ -52,6 +59,7 @@
   color: $GRAY333;
   list-style: none;
   padding-left: 60px;
+
   .materialFilterL {
     padding-top: 30px;
     border-bottom: 1px solid rgba(#d5d4c9, 1);
@@ -62,10 +70,10 @@
 
     width: 220px;
   }
-  .materialCheckBox {
-  }
 }
+
 .materialMain {
+  border: 1px solid red;
   background-color: $bgColor;
   display: flex;
   justify-content: space-around;
@@ -79,18 +87,23 @@
     width: 400px;
     height: 600px;
     margin-top: 100px;
+
     .materialImg {
+      border: 1px solid green;
       overflow: hidden;
       width: auto;
       height: 90%;
       cursor: pointer;
+
       .img {
         width: 100%;
       }
     }
   }
+
   .materialsInfo {
     text-align: center;
+
     .materialTitle {
       height: 5%;
       text-align: center;
@@ -98,6 +111,7 @@
       color: $GRAY333;
       font-size: 18px;
     }
+
     .materialPrice {
       height: 5%;
       text-align: center;
@@ -108,8 +122,10 @@
     }
   }
 }
+
 .button {
   text-align: center;
+
   .btn {
     color: $GRAY666;
     font-family: 'Source Serif 4';
@@ -132,3 +148,4 @@
     }
   }
 }
+

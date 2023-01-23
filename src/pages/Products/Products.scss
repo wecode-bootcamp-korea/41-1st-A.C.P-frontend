@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
 .filter {
+  border: 1px solid red;
   width: 100%;
   height: 100px;
   background-color: $bgColorPoint;
@@ -8,39 +9,42 @@
   justify-content: space-between;
   padding: 0px 40px 0px 20px;
   box-sizing: border-box;
+
   .plantsFilter {
-    margin-left: 40px;
+    display: flex;
+    margin-left: 30px;
     font-size: 16px;
     color: $GRAY333;
-    display: inline-block;
-    padding-top: 40px;
+    line-height: 100px;
     background-color: $bgColorPoint;
     cursor: pointer;
+
     .plantFilter {
-      display: inline-block;
       background-color: $bgColorPoint;
     }
+
     .linkCategory {
+      border: 1px solid blue;
       font-size: 16px;
       color: $GRAY333;
-      display: inline-block;
-      margin: auto 60px auto 20px;
+      margin: auto 60px auto 0;
       cursor: pointer;
+
       &:hover {
         border-bottom: 1px solid rgba($GRAY333, 1);
       }
     }
   }
+
   .filterButton {
     background-color: transparent;
     font-size: 16px;
     color: $GRAY333;
-    margin: auto 0px;
     height: 50px;
     width: 120px;
     border: 1px solid $GRAY333;
-    margin-right: 20px;
-    margin-top: 30px;
+    margin: 25px 0 20px 0;
+  
     &:hover {
       cursor: pointer;
       color: white;
@@ -48,6 +52,7 @@
     }
   }
 }
+
 .productsMain {
   background-color: $bgColor;
   display: flex;
@@ -62,18 +67,22 @@
     width: 400px;
     height: 600px;
     margin-top: 100px;
+
     .productsImg {
       width: auto;
       height: 90%;
       cursor: pointer;
+
       img {
         width: 100%;
         height: 100%;
       }
     }
+
     .productsInfo {
       padding: 15px 0px;
       text-align: center;
+
       .productsTitle {
         height: 5%;
         text-align: center;
@@ -81,6 +90,7 @@
         color: $GRAY333;
         font-size: 18px;
       }
+
       .productsPrice {
         height: 5%;
         text-align: center;
@@ -93,9 +103,10 @@
   }
 }
 
-.button {
+.moreButtonWrap {
   text-align: center;
-  .btn {
+
+  .moreButton {
     color: $GRAY666;
     font-family: 'Source Serif 4';
     font-size: 16px;
@@ -117,3 +128,4 @@
     }
   }
 }
+
