@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import './OrderPriceInfos.scss';
 
-function OrderPriceInfos() {
-  const price = '90,000';
-  const [totalPrice, setTotalPrice] = useState(price);
+function OrderPriceInfos({ data }) {
+  const { plant_price } = data;
+  const price = parseInt(plant_price).toLocaleString();
+  const initialPoint = Number(100000).toLocaleString(); // 추후 백엔드에서 포인트데이터 줘야 함
+  const deliveryCost = Number(2500).toLocaleString();
+
+  const [totalPrice, setTotalPrice] = useState(plant_price);
+  const [point, setPoint] = useState(Number(100000));
 
   useEffect(() => {
-    setTotalPrice(
-      `${(Number(price.split(',').join('')) + 2500).toLocaleString()}`
-    );
-  });
+    setTotalPrice((parseInt(plant_price) + 2500).toLocaleString());
+    setPoint((point - Number(plant_price) - 2500).toLocaleString());
+  }, []);
 
   return (
     <div className="orderPriceInfos">
@@ -20,11 +24,11 @@ function OrderPriceInfos() {
       </div>
       <div className="deliveryCost">
         <span>배송비</span>
-        <span>2,500₩</span>
+        <span>{deliveryCost}₩</span>
       </div>
       <div className="point">
         <span>포인트</span>
-        <span>100,000 point</span>
+        <span>{initialPoint + ' point'}</span>
       </div>
       <div className="totalPrice">
         <span>총 결제금액</span>
@@ -32,7 +36,7 @@ function OrderPriceInfos() {
       </div>
       <div className="restPoint">
         <span>잔여포인트</span>
-        <span>7,500 point</span>
+        <span>{point + ' point'}</span>
       </div>
     </div>
   );
