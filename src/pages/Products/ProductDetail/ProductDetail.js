@@ -33,10 +33,13 @@ function ProductDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        let dataArr = [{ ...data }];
+        const dataArr = data.data;
+        const hasItem =
+          dataArr.length > 0 &&
+          dataArr.filter(data => data.plants[0].id === parseInt(productId))
+            .length > 0;
 
-        if (dataArr.filter(data => data.data[0].plants[0].id === productId)) {
-          // console.log(data.data[0].plants[0].id);
+        if (hasItem) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
           fetch(FETCH_CART_API, {
