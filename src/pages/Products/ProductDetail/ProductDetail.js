@@ -24,7 +24,7 @@ function ProductDetail() {
   // // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
     setIsModalOpen(true);
-    fetch('http://43.201.37.226:3000/carts', {
+    fetch(FETCH_CART_API, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -33,10 +33,13 @@ function ProductDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        let dataArr = [{ ...data }];
+        let dataArr = [...data.data];
 
-        if (dataArr.filter(data => data.data[0].plants[0].id === productId)) {
-          // console.log(data.data[0].plants[0].id);
+        const hasItem =
+          dataArr.length > 0 &&
+          dataArr.find(data => data.plants[0].id === productId);
+
+        if (hasItem) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
           fetch(FETCH_CART_API, {
