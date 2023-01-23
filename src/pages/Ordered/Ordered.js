@@ -1,36 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FETCH_ORDERED_API } from '../../config';
 import OrderedInfo from './components/OrderedInfo';
 import './Ordered.scss';
 
 function Ordered({ state }) {
-  const location = useLocation();
   const [orderedInfo, setOrderedInfo] = useState([]);
-  console.log(location.state);
-
-  useEffect(() => {
-    setOrderedInfo([location.state]);
-  }, []);
-
-  console.log('ordered에 뿌려지는 데이터 : ', orderedInfo);
 
   // BE와 통신세팅 -> 오더페이지에서 넘어온 데이터 뿌려주는 fetch 코드
-  const fetchOrderedTable = e => {
-    fetch(`${FETCH_ORDERED_API}/1`, {
-      method: 'POST',
+  useEffect(() => {
+    fetch(`${FETCH_ORDERED_API}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({
-        plant_id: 1,
-      }),
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-      }, []);
-  };
+        setOrderedInfo(data);
+        console.log(orderedInfo);
+      });
+  }, []);
 
   return (
     <div className="ordered">
@@ -54,7 +44,8 @@ function Ordered({ state }) {
             </tr>
           </thead>
           <tfoot>
-            {orderedInfo.length > 0 &&
+            <OrderedInfo />
+            {/* {orderedInfo.length > 0 &&
               orderedInfo.map(info => {
                 const arr = Object.keys(info);
                 let name = '';
@@ -67,7 +58,7 @@ function Ordered({ state }) {
                 return (
                   <OrderedInfo key={info[name]} info={info} name={info[name]} />
                 );
-              })}
+              })} */}
           </tfoot>
         </table>
         <div className="orderedHomeBtn">
