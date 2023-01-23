@@ -1,4 +1,6 @@
 import React from 'react';
+import { FETCH_CART_API } from '../../../../config';
+import { fetchApi } from '../../config';
 import CheckBox from '../CheckBox/CheckBox';
 import SelectBox from '../SelectBox/SelectBox';
 
@@ -63,10 +65,20 @@ export default function CartItem({
       updateQuantityAndPrice(selectedItems, setSelectedItems, cartId, quantity);
   };
 
-  const removeCartItem = () => {
-    const newArr = [...cartItems];
-    const filteredItems = newArr.filter(item => item.cart_id !== cart_id);
-    setCartItems(filteredItems);
+  const removeCartItem = async () => {
+    const result = await fetchApi(
+      `${FETCH_CART_API}/?cartId=${cart_id}`,
+      'DELETE'
+    );
+
+    if (result.message === 'CART_DELETED') {
+      alert('장바구니 아이템이 삭제되었습니다!');
+      const newArr = [...cartItems];
+      const filteredItems = newArr.filter(item => item.cart_id !== cart_id);
+      setCartItems(filteredItems);
+      return;
+    }
+    alert('삭제가 실패했습니다!');
   };
 
   return (
