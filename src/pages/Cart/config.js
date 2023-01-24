@@ -30,22 +30,19 @@ export const fetchApi = async (url, method = 'GET', fetchdata) => {
 };
 
 export const cartDataRefactor = fetchResultData => {
-  console.log(fetchResultData);
   return fetchResultData.map(item => {
     const nutrientsData = item.nutrients[0].name !== null && item.nutrients[0];
     const plantsData = item.plants[0].name !== null && item.plants[0];
     const potsData = item.pots[0].name !== null && item.pots[0];
 
-    const categoryList = Object.keys(item).slice(1); // ['nutrients', 'plants', 'pots']
+    const categoryList = Object.keys(item).slice(1); // ['plants', 'pots', 'nutrients']
     const categoryIndex =
-      (item.nutrients[0].name !== null && '0') ||
-      (item.plants[0].name !== null && '1') ||
-      (item.pots[0].name !== null && '2');
+      (item.plants[0].name !== null && '0') ||
+      (item.pots[0].name !== null && '1') ||
+      (item.nutrients[0].name !== null && '2');
 
     const presentData = nutrientsData || plantsData || potsData;
     const itemPrice = presentData.quantity * presentData.price;
-
-    console.log(typeof itemPrice, itemPrice);
 
     return {
       cart_id: item.cart_id,
