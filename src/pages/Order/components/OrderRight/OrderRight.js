@@ -5,7 +5,7 @@ import OrderPriceInfos from './components/OrderPriceInfos';
 import './OrderRight.scss';
 import { useLocation } from 'react-router-dom';
 
-function OrderRight({ OrderUserInfoData, date }) {
+function OrderRight({ OrderUserInfoData, date, address }) {
   const location = useLocation();
   const state = location.state;
 
@@ -19,6 +19,7 @@ function OrderRight({ OrderUserInfoData, date }) {
         data={state}
         OrderUserInfoData={OrderUserInfoData}
         date={date}
+        address={address}
       />
     </div>
   );

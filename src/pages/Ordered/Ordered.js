@@ -48,7 +48,7 @@ function Ordered() {
             </tr>
           </thead>
           <tfoot>
-            <OrderedInfo date={state} />
+            <OrderedInfo date={state.date} address={state.address} />
           </tfoot>
         </table>
         <div className="orderedHomeBtn">

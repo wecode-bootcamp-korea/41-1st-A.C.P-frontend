@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './OrderBtn.scss';
 
-function OrderBtn({ OrderUserInfoData, date }) {
+function OrderBtn({ OrderUserInfoData, date, address }) {
   const navigate = useNavigate();
 
   const goToPage = path => {
-    navigate(`/${path}`, { state: date });
+    navigate(`/${path}`, { state: { date, address } });
     OrderUserInfoData();
   };
 

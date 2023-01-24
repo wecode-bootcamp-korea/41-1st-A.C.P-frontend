@@ -4,9 +4,20 @@ import OrderRight from './components/OrderRight/OrderRight';
 import './Order.scss';
 import { FETCH_ORDER_API } from '../../config';
 
+const initialInfoInput = {
+  name: '',
+  phoneNumber: '',
+  addressCode: '',
+  address: '',
+  addressDetail: '',
+};
+
 export default function Order() {
   const [dateBox, setDateBox] = useState(false);
   const [date, setDate] = useState('날짜 선택');
+  const [infoInputValue, setInfoInputValue] = useState(initialInfoInput);
+
+  const address = infoInputValue.address;
 
   const showDateBox = e => {
     setDateBox(!dateBox);
@@ -20,10 +31,10 @@ export default function Order() {
         Authorization: localStorage.getItem('accessToken'),
       },
       body: {
-        name: 'productName',
-        quantity: 1,
-        address: 'address',
-        id: 'orderNumber',
+        order_id: '',
+        plants_name: '',
+        pot_name: '',
+        nutrients_name: '',
       },
     })
       .then(res => res.json())
@@ -46,10 +57,18 @@ export default function Order() {
           <h2>배송지 정보</h2>
           <div className="infoInputs">
             {INFOINPUT_LABEL_VALUE.map(data => {
-              return <InfoInput key={data.id} label={data.value} />;
+              return (
+                <InfoInput
+                  key={data.id}
+                  label={data.value}
+                  name={data.name}
+                  infoInputValue={infoInputValue}
+                  setInfoInputValue={setInfoInputValue}
+                />
+              );
               // map으로 돌려지고 있는 inputvalue 값은 대체 어떻게 가져옴...?
-              // 주소 라벨인 inputvalue 값을 가져와야 하는데
-              // 그 이유는 fetch로 POST로 백엔드한테 address를 보내줘야 해서!
+              // 주소 라벨 인풋창 value 값을 가져와야 하는데
+              // 주소 프론트딴에서 보내줘야 할 것 같다
             })}
           </div>
           <ul>
@@ -85,7 +104,11 @@ export default function Order() {
           </ul>
         </div>
       </div>
-      <OrderRight OrderUserInfoData={OrderUserInfoData} date={date} />
+      <OrderRight
+        OrderUserInfoData={OrderUserInfoData}
+        date={date}
+        address={address}
+      />
     </div>
   );
 }
@@ -100,9 +123,9 @@ const SELECT_DATE = [
 ];
 
 const INFOINPUT_LABEL_VALUE = [
-  { id: 1, value: '수령인 성함' },
-  { id: 2, value: '수령인 전화번호' },
-  { id: 3, value: '우편번호' },
-  { id: 4, value: '주소' },
-  { id: 5, value: '상세주소' },
+  { id: 1, name: 'name', value: '수령인 성함' },
+  { id: 2, name: 'phoneNumber', value: '수령인 전화번호' },
+  { id: 3, name: 'addressCode', value: '우편번호' },
+  { id: 4, name: 'address', value: '주소' },
+  { id: 5, name: 'addressDetail', value: '상세주소' },
 ];
