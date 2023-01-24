@@ -17,12 +17,14 @@ export default function Cart() {
   const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
+    if (!token) {
+      alert('현재 회원만 장바구니 사용이 가능합니다. 로그인해주세요!');
+      navigate('/login');
+    }
     getCartItems();
-    token === null && navigate('/');
-  }, []);
+  }, [token, navigate]);
 
   const getCartItems = async () => {
-    // const result = await fetchApi('/data/cart.json');
     const result = await fetchApi(FETCH_CART_API);
     console.log(result.data);
     const data = cartDataRefactor(result.data);
