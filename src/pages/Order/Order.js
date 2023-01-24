@@ -1,11 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InfoInput from './components/InfoInput';
 import OrderRight from './components/OrderRight/OrderRight';
 import './Order.scss';
+import { FETCH_ORDER_API } from '../../config';
+
+const initialInfoInput = {
+  name: '',
+  phoneNumber: '',
+  addressCode: '',
+  address: '',
+  addressDetail: '',
+};
 
 export default function Order() {
   const [dateBox, setDateBox] = useState(false);
   const [date, setDate] = useState('날짜 선택');
+  const [infoInputValue, setInfoInputValue] = useState(initialInfoInput);
+
+  const OrderUserInfoData = () => {
+    fetch(FETCH_ORDER_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('accessToken'),
+      },
+      body: {
+        order_id: '',
+        plants_name: '',
+        pot_name: '',
+        nutrients_name: '',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+  };
+
+  // useEffect(() => {
+  //   const totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
+  //   const products = JSON.parse(localStorage.getItem('products'));
+  // });
+
+  const address = infoInputValue.address;
 
   const showDateBox = e => {
     setDateBox(!dateBox);
@@ -25,7 +62,15 @@ export default function Order() {
           <h2>배송지 정보</h2>
           <div className="infoInputs">
             {INFOINPUT_LABEL_VALUE.map(data => {
-              return <InfoInput key={data.id} label={data.value} />;
+              return (
+                <InfoInput
+                  key={data.id}
+                  label={data.value}
+                  name={data.name}
+                  infoInputValue={infoInputValue}
+                  setInfoInputValue={setInfoInputValue}
+                />
+              );
             })}
           </div>
           <ul>
@@ -61,7 +106,11 @@ export default function Order() {
           </ul>
         </div>
       </div>
-      <OrderRight />
+      <OrderRight
+        OrderUserInfoData={OrderUserInfoData}
+        date={date}
+        address={address}
+      />
     </div>
   );
 }
@@ -76,9 +125,9 @@ const SELECT_DATE = [
 ];
 
 const INFOINPUT_LABEL_VALUE = [
-  { id: 1, value: '수령인 성함' },
-  { id: 2, value: '수령인 전화번호' },
-  { id: 3, value: '우편번호' },
-  { id: 4, value: '주소' },
-  { id: 5, value: '상세주소' },
+  { id: 1, name: 'name', value: '수령인 성함' },
+  { id: 2, name: 'phoneNumber', value: '수령인 전화번호' },
+  { id: 3, name: 'addressCode', value: '우편번호' },
+  { id: 4, name: 'address', value: '주소' },
+  { id: 5, name: 'addressDetail', value: '상세주소' },
 ];

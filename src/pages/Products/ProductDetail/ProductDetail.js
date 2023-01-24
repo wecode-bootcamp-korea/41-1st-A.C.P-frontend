@@ -30,7 +30,7 @@ function ProductDetail() {
     }
 
     setIsModalOpen(true);
-    fetch('http://43.201.37.226:3000/carts', {
+    fetch(FETCH_CART_API, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -44,7 +44,6 @@ function ProductDetail() {
           dataArr.length > 0 &&
           dataArr.filter(data => data.plants[0].id === parseInt(productId))
             .length > 0;
-
         if (hasItem) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {

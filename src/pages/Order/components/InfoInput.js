@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 
-function InfoInput({ label }) {
+function InfoInput({ label, name, infoInputValue, setInfoInputValue }) {
   const [move, setMove] = useState(false);
-  const [inputValue, setInputValue] = useState('');
 
   const onFocusInput = () => {
     setMove(true);
   };
 
-  const onBlurInput = () => {
-    inputValue !== '' ? setMove(true) : setMove(false);
+  const onBlurInput = e => {
+    const { name } = e.target;
+    infoInputValue[name] !== '' ? setMove(true) : setMove(false);
   };
 
   const saveInputValue = e => {
-    setInputValue(e.target.value);
+    const { name, value } = e.target;
+    setInfoInputValue(prev => ({ ...prev, [name]: value }));
   };
 
   return (
     <div className={`orderTextInput${move ? ' move' : ''}`}>
       <input
         type="text"
+        name={name}
         onFocus={onFocusInput}
         onBlur={onBlurInput}
         onChange={saveInputValue}
