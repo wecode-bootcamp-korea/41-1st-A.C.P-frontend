@@ -10,6 +10,7 @@ function ProductDetail() {
   const navigate = useNavigate();
   const params = useParams();
   const productId = params.id;
+  const token = localStorage.getItem('accessToken');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productInfo, setProductInfo] = useState([]);
@@ -23,6 +24,11 @@ function ProductDetail() {
 
   // // 조건에 맞게 modal 띄우는 fetch 코드
   const handleModal = e => {
+    if (!token) {
+      alert('현재 회원만 장바구니 사용이 가능합니다. 로그인해주세요!');
+      return;
+    }
+
     setIsModalOpen(true);
     fetch('http://43.201.37.226:3000/carts', {
       method: 'GET',
