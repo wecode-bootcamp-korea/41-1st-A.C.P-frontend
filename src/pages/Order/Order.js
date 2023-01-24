@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InfoInput from './components/InfoInput';
 import OrderRight from './components/OrderRight/OrderRight';
 import './Order.scss';
@@ -16,12 +16,6 @@ export default function Order() {
   const [dateBox, setDateBox] = useState(false);
   const [date, setDate] = useState('날짜 선택');
   const [infoInputValue, setInfoInputValue] = useState(initialInfoInput);
-
-  const address = infoInputValue.address;
-
-  const showDateBox = e => {
-    setDateBox(!dateBox);
-  };
 
   const OrderUserInfoData = () => {
     fetch(FETCH_ORDER_API, {
@@ -41,6 +35,17 @@ export default function Order() {
       .then(data => {
         console.log(data);
       });
+  };
+
+  // useEffect(() => {
+  //   const totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
+  //   const products = JSON.parse(localStorage.getItem('products'));
+  // });
+
+  const address = infoInputValue.address;
+
+  const showDateBox = e => {
+    setDateBox(!dateBox);
   };
 
   return (
@@ -66,9 +71,6 @@ export default function Order() {
                   setInfoInputValue={setInfoInputValue}
                 />
               );
-              // map으로 돌려지고 있는 inputvalue 값은 대체 어떻게 가져옴...?
-              // 주소 라벨 인풋창 value 값을 가져와야 하는데
-              // 주소 프론트딴에서 보내줘야 할 것 같다
             })}
           </div>
           <ul>

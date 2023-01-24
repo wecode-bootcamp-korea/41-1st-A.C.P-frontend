@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 function OrderRight({ OrderUserInfoData, date, address }) {
   const location = useLocation();
   const state = location.state;
+  console.log(state);
 
   return (
     <div className="orderRight">
