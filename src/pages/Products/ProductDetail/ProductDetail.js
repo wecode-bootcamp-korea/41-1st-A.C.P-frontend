@@ -33,12 +33,11 @@ function ProductDetail() {
     })
       .then(res => res.json())
       .then(data => {
-        let dataArr = [...data.data];
-
+        const dataArr = data.data;
         const hasItem =
           dataArr.length > 0 &&
-          dataArr.find(data => data.plants[0].id === productId);
-
+          dataArr.filter(data => data.plants[0].id === parseInt(productId))
+            .length > 0;
         if (hasItem) {
           setModalText('동일한 상품이 담겨있습니다.');
         } else {
