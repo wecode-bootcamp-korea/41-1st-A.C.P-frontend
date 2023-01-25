@@ -32,6 +32,8 @@ export default function CartItem({
           id: data.id,
           quantity: data.quantity,
           price: data.price,
+          name: data.name,
+          description: data.description,
         },
         itemPrice,
       },

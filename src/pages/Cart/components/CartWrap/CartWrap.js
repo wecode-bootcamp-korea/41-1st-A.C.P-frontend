@@ -17,6 +17,8 @@ export default function CartWrap({
       return;
     }
 
+    console.log(cartItems);
+
     const allSelectedItems = cartItems.map(item => {
       const { cart_id, data, itemPrice } = item;
       return {
@@ -25,6 +27,8 @@ export default function CartWrap({
           id: data.id,
           quantity: data.quantity,
           price: data.price,
+          name: data.name,
+          description: data.description,
         },
         itemPrice,
       };
