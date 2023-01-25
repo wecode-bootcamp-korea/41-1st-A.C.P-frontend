@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CartPriceInfo.scss';
 
@@ -7,21 +8,17 @@ export default function CartPriceInfo({ totalPrice, selectedItems }) {
   const shipFee = totalPrice ? 2500 : 0;
   const finalAmount = totalPrice + shipFee;
 
+  useEffect(() => {
+    localStorage.removeItem('orders');
+  }, []);
+
   const createOrder = async (e, finalAmount) => {
-    switch (true) {
-      case selectedItems.length === 0:
-        alert('장바구니의 상품을 선택해주세요!');
-        return;
-      case selectedItems.length > 1:
-        alert('현재 선택된 상품이 1개인 경우만 주문이 가능합니다.');
-        return;
-      default:
-        console.log('장바구니 예외상황 통과!');
-        break;
+    if (selectedItems.length === 0) {
+      alert('장바구니의 상품을 선택해주세요!');
+      return;
     }
-    // 장바구니 -> 주문하기 임시로 Localstorage 사용
-    // 버튼 누르면 Localstorage set 실행
-    console.log('selectedItems', selectedItems);
+
+    // 장바구니 -> 주문하기 Localstorage로 구현
     const products = selectedItems.map(item => {
       const { id, quantity, name, description } = item.data;
       return {
