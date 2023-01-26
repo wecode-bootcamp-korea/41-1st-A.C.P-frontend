@@ -26,9 +26,9 @@ export default function Cart() {
 
   const getCartItems = async () => {
     const result = await fetchApi(FETCH_CART_API);
-    console.log(result.data);
     const data = cartDataRefactor(result.data);
     setCartItems(data);
+    console.log('processed data', data);
   };
 
   return (
@@ -40,7 +40,7 @@ export default function Cart() {
           selectedItems={selectedItems}
           setSelectedItems={setSelectedItems}
         />
-        <CartPriceInfo totalPrice={totalPrice} />
+        <CartPriceInfo totalPrice={totalPrice} selectedItems={selectedItems} />
       </div>
     </section>
   );
