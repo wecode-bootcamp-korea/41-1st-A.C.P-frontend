@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import './Search.scss';
+import { FETCH_PLANTS_API } from '../../../config';
 import SearchResult from './SearchResult';
+import './Search.scss';
 
 export default function Search({ menuTabClose, closeBtn }) {
   const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState('');
+  const [plantResult, setPlantResult] = useState([]);
 
   const moveTo = (category, categoryId) => {
     navigate(`products?${category}=${categoryId}`);
@@ -28,21 +30,22 @@ export default function Search({ menuTabClose, closeBtn }) {
     goBlank();
   }, [closeBtn]);
 
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.135:3000/plants/main?sort=new&offset=0&limit=6`, {
-  //     method: 'POST',
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       setSearchResult(result);
-  //     });
-  // }, [searchValue]);
+  useEffect(() => {
+    fetch(`${FETCH_PLANTS_API}/search?content=${searchValue}`, {
+      method: 'GET',
+    })
+      .then(response => response.json())
+      .then(result => {
+        setPlantResult(result);
+        console.log(result);
+      });
+  }, [searchValue]);
 
-  const plantResult = SEARCH_RESULT.filter(val => {
-    return val.plant_name
-      .replace(' ', '')
-      .includes(searchValue.replace(' ', ''));
-  });
+  // const plantResult = SEARCH_RESULT.filter(val => {
+  //   return val.plant_name
+  //     .replace(' ', '')
+  //     .includes(searchValue.replace(' ', ''));
+  // });
 
   return (
     <div className="search">
@@ -92,43 +95,4 @@ const SEARCH_KEYWORDS = [
   { category: 'species', categoryId: 4, title: '소철과 허브' },
   { category: 'positions', categoryId: 1, title: 'Houseplant' },
   { category: 'moods', categoryId: 2, title: 'Adorable' },
-];
-
-const SEARCH_RESULT = [
-  {
-    plant_id: 1,
-    plant_name: '광휘식물',
-    plant_price: '10,000₩',
-    plant_image: '/images/productDetail/img03.jpg',
-  },
-  {
-    plant_id: 2,
-    plant_name: '민규식물',
-    plant_price: '20,000₩',
-    plant_image: '/images/productDetail/img04.jpg',
-  },
-  {
-    plant_id: 3,
-    plant_name: '상헌식물',
-    plant_price: '30,000₩',
-    plant_image: '/images/productDetail/img05.jpg',
-  },
-  {
-    plant_id: 4,
-    plant_name: '환성식물',
-    plant_price: '40,000₩',
-    plant_image: '/images/productDetail/img06.jpg',
-  },
-  {
-    plant_id: 5,
-    plant_name: '서윤식물',
-    plant_price: '50,000₩',
-    plant_image: '/images/productDetail/img07.jpg',
-  },
-  {
-    plant_id: 6,
-    plant_name: '현주식물',
-    plant_price: '60,000₩',
-    plant_image: '/images/productDetail/img08.jpg',
-  },
 ];
