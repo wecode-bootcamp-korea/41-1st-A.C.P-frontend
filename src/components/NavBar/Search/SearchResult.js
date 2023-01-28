@@ -20,18 +20,18 @@ export default function SearchResult({ plantResult, searchValue }) {
 
   return (
     <div className="searchResult">
-      {plantResult.map(({ plant_id, plant_name, plant_price, plant_image }) => {
+      {plantResult.map(({ id, name, plant_img }) => {
         return (
           <div
-            key={plant_id}
+            key={id}
             className={'searched' + hide}
-            onClick={() => moveToResult(plant_id)}
+            onClick={() => moveToResult(id)}
           >
             <div className="resultImgBox">
-              <img className="resultImg" src={plant_image} alt="products" />
+              <img className="resultImg" src={plant_img} alt="products" />
             </div>
-            <p className="resultProductName">{plant_name}</p>
-            <p className="resultProductPrice">{plant_price}</p>
+            <p className="resultProductName">{name}</p>
+            {/* <p className="resultProductPrice">{plant_price}</p> */}
           </div>
         );
       })}
