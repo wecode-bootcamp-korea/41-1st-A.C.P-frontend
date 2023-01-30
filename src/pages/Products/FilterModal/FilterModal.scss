@@ -8,7 +8,7 @@
   color: $GRAY333;
 
   .filterCategoryL {
-    padding-left: 80px;
+    padding-left: 50px;
     padding-top: 30px;
 
     .filterCategoryM {
@@ -17,12 +17,16 @@
       border-bottom: 1px solid rgba(#d5d4c9, 1);
       width: 220px;
     }
+
     .filterCategoryS {
       line-height: 50px;
     }
   }
+
   .checkBox {
+    display: flex;
     line-height: 50px;
+
     .inpCheck {
       width: 15px;
       height: 15px;
@@ -30,6 +34,9 @@
       margin-right: 4px;
       border: 1px solid #bcbbb4;
       background-color: transparent;
+      appearance: none;
+      cursor: pointer;
+
       &::before {
         display: inline-block;
         width: 10px;
@@ -47,38 +54,8 @@
         );
         transform: scale(0);
         line-height: 40px;
-      }
-      &:checked {
-        &::before {
-          background-color: currentcolor;
-          transform: scale(1);
-        }
-      }
-    }
-  }
-
-  .checkBox {
-    display: flex;
-
-    .inpChk {
-      width: 15px;
-      height: 15px;
-      margin: 0;
-      margin-right: 4px;
-      border: 1px solid #bcbbb4;
-      background-color: transparent;
-      appearance: none;
-      cursor: pointer;
-
-      &::before {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        margin-left: 2px;
-        background-color: transparent;
-        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-        transform: scale(0);
         content: '';
+
       }
 
       &:checked {
